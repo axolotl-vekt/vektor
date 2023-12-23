@@ -31,8 +31,11 @@ const config = {
       template: './client/index.html',
     })
   ],
-	devServer: {static: {publicPath: '/dist', directory: path.join(__dirname, 'dist')}, 
-	proxy: {'/': 'http://localhost:3000'}},
+	devServer: {
+    static: {
+      publicPath: '/dist', 
+      directory: path.join(__dirname, 'dist')}, 
+	proxy: {'/': 'http://localhost:3000'}}
 };
 
 module.exports = config;
