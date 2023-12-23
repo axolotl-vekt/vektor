@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 const router = require('./router/router.js');
-const controller = require('./controller/controller.js');
+const controller = require('./controllers/controller.js');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
