@@ -28,15 +28,19 @@ const config = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      templateContent: './client/index.html',
-      filename: 'index.html',
+      template: './client/index.html',
     })
   ],
+<<<<<<< HEAD
 	devServer: {
     static: {
       publicPath: '/dist', 
       directory: path.join(__dirname, 'dist')}, 
 	proxy: {'/': 'http://localhost:3000'}}
+=======
+	devServer: {static: {publicPath: '/dist', directory: path.join(__dirname, 'dist')}, 
+	proxy: {'/': 'http://localhost:3000'}},
+>>>>>>> 1d0ac2534c0f4cbbbf41234e92df6386d455abf8
 };
 
 module.exports = config;
