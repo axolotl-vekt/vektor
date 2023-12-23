@@ -32,7 +32,10 @@ const config = {
       filename: 'index.html',
     })
   ],
-	devServer: {static: {publicPath: '/dist', directory: path.join(__dirname, 'dist')}, 
+	devServer: {
+    static: {
+      publicPath: '/dist', 
+      directory: path.join(__dirname, 'dist')}, 
 	proxy: {'/': 'http://localhost:3000'}}
 };
 
