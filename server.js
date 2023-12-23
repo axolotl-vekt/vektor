@@ -1,1 +1,1 @@
-console.log('test')
+const path = require('path');
