@@ -1,3 +1,4 @@
+
 .loginContainer {
     display: flex;
     justify-content: space-around;
@@ -46,4 +47,30 @@
 
 .loginBtn {
     padding: 1rem;
+}
+body {
+  background-color: #fefae0;
+}
+
+.hp-header {
+  background-color: #ccd5ae;
+  text-align: center;
+  font-size: 80px;
+  color: #ffffff
+  
+}
+
+.entries-container {
+  background-color: #f9f1de;
+  text-align: center;
+  border-style: solid;
+  height: 15em;
+  width: 20em;
+  border-radius: 1em;
+  border-color: #c5a789
+}
+
+.entries {
+  text-align: left;
+  margin-left: 1em;
 }
