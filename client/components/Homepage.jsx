@@ -2,7 +2,7 @@ import React from 'react';
 
 function Homepage() {
   return(
-  <div>
+  <div className="hp-body">
     <h1 className="hp-header">Homepage</h1>
     <div className="entries-container">Entries
       <div className="entries">
