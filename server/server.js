@@ -11,6 +11,3 @@ app.use(cors())
 app.use(express.urlencoded({extended: true}));
 app.use('/',router);
 
-app.get('/', (res,req) => {
-
-});
