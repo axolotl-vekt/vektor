@@ -9,9 +9,9 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const PORT = 3000;
 
-const MONGO_URI = 'mongodb+srv://tawniex44:3vd5DPgTjLU819sO@cluster0.7z5ioep.mongodb.net/?retryWrites=true&w=majority'
+// const MONGO_URI = 'mongodb+srv://tawniex44:3vd5DPgTjLU819sO@cluster0.7z5ioep.mongodb.net/?retryWrites=true&w=majority'
 
-// const MONGO_URI = "mongodb+srv://ewong1217:kZFC34hkjGKrKbs5@cluster0.hukljwm.mongodb.net/?retryWrites=true&w=majority"
+const MONGO_URI = "mongodb+srv://ewong1217:kZFC34hkjGKrKbs5@cluster0.hukljwm.mongodb.net/?retryWrites=true&w=majority"
 
 mongoose.connect(MONGO_URI, {
     useNewUrlParser: true,
@@ -28,7 +28,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 
 
-app.use('/', router);
+app.use('/api', router);
 
 // app.get('/', (res,req) => {
 //     return res.sendFile(path.join(__dirname, '../client/index.html'));

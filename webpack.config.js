@@ -36,7 +36,7 @@ const config = {
       publicPath: '/dist', 
       directory: path.join(__dirname, 'dist')
     }, 
-	  proxy: {'/': 'http://localhost:3000'}
+	  proxy: {'/api': 'http://localhost:3000'}
   }
 };
 
