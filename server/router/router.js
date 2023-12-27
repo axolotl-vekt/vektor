@@ -7,6 +7,11 @@ router.get('/', (req, res) => {
     return res.sendFile(path.resolve(__dirname, '../../client/index.html'))
 });
 
+router.get('/homepage', (req, res) => {
+    return res.sendFile(path.resolve(__dirname, '../../client/index.html'))
+});
+
+
 router.post('/signup', controller.createUser, (req,res) => {
     return res.status(200).json(res.locals.newUser)
 })
