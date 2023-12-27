@@ -59,9 +59,10 @@ function Login() {
                             value = {loginData.password}></input>
                         </div>
                         <div className='loginBtn'>
+                            <Link to="/homepage">homepage</Link>
                             <button type='submit'>Sign in</button>
                         </div>
-                    <p>Don't have an account? <Link to="signup">Sign Up</Link></p>
+                    <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
                     </form>
                 </div>
             </div>
