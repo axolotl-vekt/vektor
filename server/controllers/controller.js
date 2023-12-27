@@ -39,4 +39,23 @@ controller.createUser = async (req, res, next) => {
 //     }
 // }
 
+controller.createEntry = async (req, res, next) => {
+    const { bloodSugar, bloodPressure } = req.body
+    try {
+        const newEntry = await Info.create({
+            bloodSugar,
+            bloodPressure,
+        })
+        console.log('created entry')
+        res.locals.entry = newEntry._id;
+        return next();
+    } catch (error) { return next({
+        log: 'Error in createUser middleware',
+            status: 500,
+            error: 'Error in creating user'
+        })
+    }
+
+}
+
 module.exports = controller;
