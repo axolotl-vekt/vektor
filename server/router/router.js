@@ -11,6 +11,9 @@ router.post('/signup', controller.createUser, (req,res) => {
     return res.status(200).json(res.locals.newUser)
 })
 
+router.post('/login', controller.verifyUser, controller.startSession, controller.setSSIDCookie, (req,res) => {
+    return res.status(200).json(res.locals.id)
+}) 
 
 
 module.exports = router;

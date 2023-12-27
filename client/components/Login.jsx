@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
+import { useCookies } from 'react-cookie';
 
 
 function Login() {
@@ -8,6 +9,12 @@ function Login() {
         username:'',
         password:'',
     });
+
+    // const [ cookies, setCookies ] = useCookies(["user"]);
+
+    // const handleCookies = () => {
+    //     setCookies('user', loginData.username, {path: '/', secure: true})
+    // }
 
     const navigate = useNavigate();
     const handleChange = (e) => {
@@ -20,7 +27,7 @@ function Login() {
         e.preventDefault();
         // check what route for get request for login
         try {
-            const loginInfo = await fetch('http://localhost:3000/', {
+            const loginInfo = await fetch('http://localhost:3000/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -28,7 +35,8 @@ function Login() {
             body:
                 JSON.stringify(loginData)
         })
-        if (loginInfo.success) {
+        if (loginInfo.ok) {
+            // handleCookies()
             navigate('/homepage')
         }
         else {
@@ -49,17 +57,16 @@ function Login() {
                             <label >Username: </label>
                         </div>
                         <div >
-                            <input className='loginInput' type='text' placeholder='Enter Username' onChange={handleChange} value= {loginData.username}></input>
+                            <input className='loginInput' type='text' name='username' placeholder='Enter Username' onChange={handleChange} value= {loginData.username}></input>
                         </div>
                         <div className='loginLabelDiv'>
                             <label >Password: </label>
                         </div>
                         <div>
-                            <input className='loginInput' type='text' placeholder='Enter Password' onChange={handleChange}
+                            <input className='loginInput' type='password' name = 'password' placeholder='Enter Password' onChange={handleChange}
                             value = {loginData.password}></input>
                         </div>
                         <div className='loginBtn'>
-                            <Link to="/homepage">homepage</Link>
                             <button type='submit'>Sign in</button>
                         </div>
                     <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
