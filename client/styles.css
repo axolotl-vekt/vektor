@@ -2,6 +2,10 @@
   margin:0;
 }
 
+html {
+  background-color: #ccd5ae;
+}
+
 .loginPageContainer {
   display: flex;
 }
@@ -66,6 +70,63 @@
 .loginBtn {
     padding: 1rem;
 }
+
+.signUpPageContainer {
+  display: flex;
+  justify-content: space-around;
+  background-color: #ccd5ae;
+}
+
+.signUpCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border-radius: 15px;
+  padding: 5rem;
+  margin: 10rem;
+}
+
+.signUpTitle {
+  padding-bottom: 2rem;
+}
+
+.signUpInput {
+  border: none;
+  border-bottom: 1px solid grey;
+  margin: 1rem;
+  width: 10rem;
+  text-align: center;
+}
+
+.signUpInput:focus {
+  outline:none;
+}
+
+.signUpButtons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.signUpSubmitBtn {
+  border: none;
+  background-color: #ccd5ae;
+  color: white;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+.signUpCancelBtn {
+  border: 2px solid #ccd5ae;
+  background-color: white;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+.signUpSubmitBtn, .signUpCancelBtn:hover {
+  cursor: pointer;
+}
+
 body {
   background-color: #fefae0;
 }
@@ -75,7 +136,6 @@ body {
   text-align: center;
   font-size: 80px;
   color: #ffffff
-  
 }
 
 .entries-container {
