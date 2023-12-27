@@ -152,3 +152,11 @@ body {
   text-align: left;
   margin-left: 1em;
 }
+
+.cardContainer {
+  display: flex;
+}
+
+.entries-container{
+  flex-direction: column;
+}
