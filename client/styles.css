@@ -1,0 +1,154 @@
+* {
+  margin:0;
+}
+
+html {
+  background-color: #ccd5ae;
+}
+
+.loginPageContainer {
+  display: flex;
+}
+#overlay {
+  position: fixed;
+  top: 470px;
+  right: 240px;
+}
+.loginImg {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+.loginContainer {
+    display: flex;
+    justify-content: space-around;
+    background-color: #ccd5ae;
+}
+.loginCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    justify-items: center;
+    width: 25rem;
+    border-radius: 10px;
+    margin: 10rem;
+    padding: 5rem 0;
+    box-shadow: 10px 10px 10px #3a5a40;
+}
+
+.loginTitle {
+    padding: 0;
+    margin: 0;
+}
+
+.loginInputForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+.loginLabelDiv {
+    margin-top: 1rem;
+    justify-items: center;
+    font-size: 17px;
+}
+
+.loginInput {
+    border: none;
+    border-radius: 10px;
+    height: 2rem;
+    width: 15rem;
+    background-color: #e9edc9;
+    text-align: center;
+}
+
+.loginButton {
+    width: 100%;
+}
+
+.loginBtn {
+    padding: 1rem;
+}
+
+.signUpPageContainer {
+  display: flex;
+  justify-content: space-around;
+  background-color: #ccd5ae;
+}
+
+.signUpCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border-radius: 15px;
+  padding: 5rem;
+  margin: 10rem;
+}
+
+.signUpTitle {
+  padding-bottom: 2rem;
+}
+
+.signUpInput {
+  border: none;
+  border-bottom: 1px solid grey;
+  margin: 1rem;
+  width: 10rem;
+  text-align: center;
+}
+
+.signUpInput:focus {
+  outline:none;
+}
+
+.signUpButtons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.signUpSubmitBtn {
+  border: none;
+  background-color: #ccd5ae;
+  color: white;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+.signUpCancelBtn {
+  border: 2px solid #ccd5ae;
+  background-color: white;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+.signUpSubmitBtn, .signUpCancelBtn:hover {
+  cursor: pointer;
+}
+
+body {
+  background-color: #fefae0;
+}
+
+.hp-header {
+  background-color: #ccd5ae;
+  text-align: center;
+  font-size: 80px;
+  color: #ffffff
+}
+
+.entries-container {
+  background-color: #f9f1de;
+  text-align: center;
+  border-style: solid;
+  height: 15em;
+  width: 20em;
+  border-radius: 1em;
+  border-color: #c5a789
+}
+
+.entries {
+  text-align: left;
+  margin-left: 1em;
+}

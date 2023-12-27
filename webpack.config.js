@@ -34,8 +34,10 @@ const config = {
 	devServer: {
     static: {
       publicPath: '/dist', 
-      directory: path.join(__dirname, 'dist')}, 
-	proxy: {'/': 'http://localhost:3000'}}
+      directory: path.join(__dirname, 'dist')
+    }, 
+	  proxy: {'/api': 'http://localhost:3000'}
+  }
 };
 
 module.exports = config;
