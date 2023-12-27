@@ -24,6 +24,7 @@ function SignUp() {
     }
 
     const handleSubmit = async (e) => {
+        e.preventDefault();
         try {
             const userInfo = await fetch('http://localhost:3000/api/signup', {
                 method: 'POST',
@@ -32,9 +33,7 @@ function SignUp() {
                 },
                 body: JSON.stringify(signUp)
             })
-            if (userInfo.ok) {
-                navigate('/homepage')
-            }
+            navigate('/')
         } catch (error) {
             console.error('Error in signing up')
         }
@@ -61,7 +60,6 @@ function SignUp() {
                             <button className='signUpSubmitBtn' type='submit'>Submit</button>
                             <button className='signUpCancelBtn' type='button' onClick={handleCancel}>Cancel</button>
                         </div>
-                        
                     </form>
                 </div>
             </div>

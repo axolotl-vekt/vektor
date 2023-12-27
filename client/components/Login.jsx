@@ -13,7 +13,7 @@ function Login() {
     const handleChange = (e) => {
         e.preventDefault();
         const { name, value } = e.target;
-        setLogin(...loginData, [name] =value)
+        setLogin({...loginData, [name]:value})
     }
 
     const handleSubmit = async (e) => {
