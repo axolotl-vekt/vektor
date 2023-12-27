@@ -30,11 +30,14 @@ function SignUp() {
     return(
         <div>
             <div>
-                <form className='signUpForm' onSubmit={handleSubmit}>
-                    <div>
-
-                    </div>
-                </form>
+                <div>
+                    <h2>Create an Account</h2>
+                    <form className='signUpForm' onSubmit={handleSubmit}>
+                        <div >
+                            
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     )
