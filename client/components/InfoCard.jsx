@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 
+const useInput = ({start}) => {
+    const [value, setValue] = useState(start);
+    const onChange = (e) => {
+      setValue(e.target.value);
+    };
+    return [value, onChange];
+  };
+
 function InfoCard() {
-
-
-
-
-
 
 
   return (

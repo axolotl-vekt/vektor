@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, useNavigate} from 'react-router-dom'
 import InfoCard from './InfoCard';
 
 function Homepage() {
@@ -6,10 +7,16 @@ function Homepage() {
   for (let i = 0; i < 3; i++) {
     cards.push(<InfoCard key={crypto.randomUUID()}/>);
   }
+  
+  const navigate = useNavigate();
 
+  const handleClick = () => {
+    navigate('/foodlog');
+  };
   return (
     <div>
       <h1 className='hp-header'>Homepage</h1>
+      <button onClick={handleClick}>Create Entry</button>
       <div className='card-container'>{cards}</div>
     </div>
   );
