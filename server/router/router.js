@@ -16,6 +16,9 @@ router.post('/signup', controller.createUser, (req,res) => {
     return res.status(200).json(res.locals.newUser)
 })
 
+router.post('/entry', controller.createEntry, (req,res) => {
+    return res.status(200).json(res.locals.newUser)
+})
 
 
 module.exports = router;
