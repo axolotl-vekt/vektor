@@ -1,3 +1,6 @@
+* {
+  margin:0;
+}
 
 .loginContainer {
     display: flex;
@@ -10,10 +13,11 @@
     align-items: center;
     background-color: white;
     justify-items: center;
-    width: 30rem;
+    width: 25rem;
     border-radius: 10px;
     margin: 10rem;
     padding: 5rem 0;
+    box-shadow: 10px 10px 10px #3a5a40;
 }
 
 .loginTitle {
@@ -28,7 +32,7 @@
     align-items: center;
 }
 .loginLabelDiv {
-    margin: 1rem;
+    margin-top: 1rem;
     justify-items: center;
     font-size: 17px;
 }
@@ -39,6 +43,7 @@
     height: 2rem;
     width: 15rem;
     background-color: #e9edc9;
+    text-align: center;
 }
 
 .loginButton {
