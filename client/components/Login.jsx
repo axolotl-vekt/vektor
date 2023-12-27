@@ -24,13 +24,15 @@ function Login() {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            body:
+                JSON.stringify(loginData)
         })
         if (loginInfo.success) {
             navigate('/homepage')
         }
         else {
-            navigate('/login')
+            navigate('/')
         }
     } catch(error) {
         console.error('Error in fetching data ', error)
@@ -42,7 +44,6 @@ function Login() {
             <div className='loginContainer'>
                 <div className='loginCard'>
                     <h2 className='loginTitle'>Login</h2>
-                    <p>Don't have an account? <Link to="signUp">SignUp</Link></p>
                     <form className='loginInputForm' onSubmit={handleSubmit}>
                         <div className='loginLabelDiv'>
                             <label >Username: </label>
@@ -60,8 +61,13 @@ function Login() {
                         <div className='loginBtn'>
                             <button type='submit'>Sign in</button>
                         </div>
+                    <p>Don't have an account? <Link to="signup">Sign Up</Link></p>
                     </form>
                 </div>
+            </div>
+            <div >
+                <h3 id="overlay">Vektor</h3>
+                <img className='loginImg' src="https://pics.craiyon.com/2023-06-26/5c43832150134eb99cdee5fde6ffa06b.webp" alt="" />
             </div>
         </div>
     )

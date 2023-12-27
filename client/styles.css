@@ -2,6 +2,19 @@
   margin:0;
 }
 
+.loginPageContainer {
+  display: flex;
+}
+#overlay {
+  position: fixed;
+  top: 470px;
+  right: 240px;
+}
+.loginImg {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
 .loginContainer {
     display: flex;
     justify-content: space-around;
