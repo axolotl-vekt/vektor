@@ -19,10 +19,13 @@ function SignUp() {
             console.error('error occurred in extracting values from form')
         }
     }
+    const handleCancel = (e) => {
+        navigate('/')
+    }
 
     const handleSubmit = async (e) => {
         try {
-            const userInfo = await fetch('http://localhost:3000/signup', {
+            const userInfo = await fetch('http://localhost:3000/api/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -30,7 +33,7 @@ function SignUp() {
                 body: JSON.stringify(signUp)
             })
             if (userInfo.ok) {
-                navigate('/http://localhost:8080/homepage')
+                navigate('/homepage')
             }
         } catch (error) {
             console.error('Error in signing up')
@@ -56,7 +59,7 @@ function SignUp() {
                         </div>
                         <div className='signUpButtons'>
                             <button className='signUpSubmitBtn' type='submit'>Submit</button>
-                            <button className='signUpCancelBtn'>Cancel</button>
+                            <button className='signUpCancelBtn' type='button' onClick={handleCancel}>Cancel</button>
                         </div>
                         
                     </form>
