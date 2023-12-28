@@ -20,7 +20,7 @@ router.post('/login', controller.verifyUser, (req,res) => {
     return res.status(200).json(res.locals.id)
 }) 
 router.post('/entry', controller.createEntry, (req,res) => {
-    return res.status(200).json(res.locals.newUser)
+    return res.status(200).json(res.locals.entry)
 })
 
 
