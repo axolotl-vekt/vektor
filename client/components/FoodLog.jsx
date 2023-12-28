@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 const useInput = ({ start }) => {
   const [value, setValue] = useState(start);
   const onChange = (e) => {
+    e.preventDefault();
     setValue(e.target.value);
   };
   return [value, onChange];
@@ -17,7 +18,9 @@ function FoodLog() {
   const [bloodPressure, setBloodPressure] = useInput('');
   const [time, setTime] = useInput('');
 
-  const saveEntry = async () => {
+  const navigate = useNavigate();
+  const saveEntry = async (e) => {
+    e.preventDefault();
     const body = {
       image,
       date,
@@ -37,6 +40,7 @@ function FoodLog() {
       const data = await response.json();
       console.log(data);
       console.log('Data Posted!');
+      navigate('/homepage')
     } catch (error) {
       console.error('Error in front-end:', error.message);
     }
