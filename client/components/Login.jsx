@@ -10,11 +10,11 @@ function Login() {
         password:'',
     });
 
-    // const [ cookies, setCookies ] = useCookies(["user"]);
+    const [ cookies, setCookies ] = useCookies(["user"]);
 
-    // const handleCookies = () => {
-    //     setCookies('user', loginData.username, {path: '/', secure: true})
-    // }
+    const handleCookies = () => {
+        setCookies('user', loginData.username, {path: '/', secure: true})
+    }
 
     const navigate = useNavigate();
     const handleChange = (e) => {
@@ -36,7 +36,7 @@ function Login() {
                 JSON.stringify(loginData)
         })
         if (loginInfo.ok) {
-            // handleCookies()
+            handleCookies()
             navigate('/homepage')
         }
         else {

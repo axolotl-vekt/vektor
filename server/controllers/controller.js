@@ -47,33 +47,33 @@ controller.verifyUser = async (req, res, next) => {
     }
 }
 
-controller.startSession = async (req, res, next) => {
-    if (res.locals.id == undefined) {
-        return next('Error in startSession Controller: No user id')
-    }
+// controller.startSession = async (req, res, next) => {
+//     if (res.locals.id == undefined) {
+//         return next('Error in startSession Controller: No user id')
+//     }
 
-    const checkForSession = await Session.findOne({ cookieId: res.locals.id });
-    if (checkForSession) return next();
+//     const checkForSession = await Session.findOne({ cookieId: res.locals.id });
+//     if (checkForSession) return next();
 
-    Session.create({ cookieId: res.locals.id }, (err, sesionInfo) => {
-        if (err) {
-            return next('Error in startSession Controller: ' + err);
-        };
-        return next();
-    })
-}
+//     Session.create({ cookieId: res.locals.id }, (err, sesionInfo) => {
+//         if (err) {
+//             return next('Error in startSession Controller: ' + err);
+//         };
+//         return next();
+//     })
+// }
 
-controller.setSSIDCookie = (req, res, next) => {
-    const { username } = req.body;
-    if (!username) {
-        return next('Error in userController.verifyUser')
-    }
-    if (res.locals.id === undefined) {
-        return next('Error in userController.verifyUser: No user id')
-    }
-    res.cookie('ssid', `${res.locals.id}`, { httpOnly: true })
-    return next();
-}
+// controller.setSSIDCookie = (req, res, next) => {
+//     const { username } = req.body;
+//     if (!username) {
+//         return next('Error in userController.verifyUser')
+//     }
+//     if (res.locals.id === undefined) {
+//         return next('Error in userController.verifyUser: No user id')
+//     }
+//     res.cookie('ssid', `${res.locals.id}`, { httpOnly: true })
+//     return next();
+// }
 
 
 
