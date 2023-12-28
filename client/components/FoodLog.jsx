@@ -13,7 +13,7 @@ const useInput = ({ start }) => {
 
 function FoodLog(props) {
   const [image, setImage] = useState('');
-  const [date, setDate] = useInput('');
+  // const [date, setDate] = useInput('');
   const [bloodSugar, setBloodSugar] = useInput('');
   const [bloodPressure, setBloodPressure] = useInput('');
   const [time, setTime] = useInput('');
@@ -46,6 +46,8 @@ function FoodLog(props) {
     }
   };
 
+  const date = new Date();
+
   return (props.trigger) ? (
     <form className='entries-container'>
       <div className='entries'>
@@ -56,7 +58,7 @@ function FoodLog(props) {
         )}
         <label>
           {' '}
-          Date: <input value={date || ''} onChange={setDate}></input>
+          Date: {date.toLocaleDateString()}
         </label>
         <label>
           {' '}
