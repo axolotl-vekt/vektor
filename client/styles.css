@@ -49,28 +49,74 @@
     padding: 1rem;
 }
 body {
-  background-color: #fefae0;
+  background-color: #faedcd;
 }
 
 .hp-header {
   background-color: #ccd5ae;
   text-align: center;
   font-size: 80px;
-  color: #ffffff
-  
+  color: #ffffff;
+  margin-top: 0;
 }
 
 .entries-container {
+  display: flex;
+  flex-direction: column;
   background-color: #f9f1de;
   text-align: center;
   border-style: solid;
-  height: 15em;
+  height: 24em;
   width: 20em;
   border-radius: 1em;
   border-color: #c5a789
 }
 
 .entries {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   text-align: left;
   margin-left: 1em;
 }
+
+label, input {
+  display: block;
+}
+
+label {
+  margin-bottom: 5px;
+}
+
+
+#entry-btn {
+  background-color: #edc298;
+  border: none;
+  border-radius: 1em;
+  height: 2em;
+  width: 6em;
+  margin-bottom: 2em;
+}
+
+.submit-btn {
+  background-color: #ccd5ae;
+  align-self: flex-start;
+  border: none;
+  border-radius: 1em;
+  height: 2em;
+  width: 5em;
+  margin-top: 2em;
+}
+
+#delete-btn {
+  background-color: rgb(227, 85, 85);
+  border: none;
+  border-radius: 1em;
+  height: 2em;
+  width: 5em;
+  align-self: flex-end;
+  margin-right: 1em;
+  margin-top: 1em;
+}
+
+
