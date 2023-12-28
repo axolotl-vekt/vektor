@@ -1,4 +1,4 @@
-const Entry = require('../models/entryModel');
+const Info = require('../models/entryModel');
 const Session = require('../models/sessionModel');
 const User = require('../models/userModel');
 
@@ -80,17 +80,19 @@ controller.verifyUser = async (req, res, next) => {
 controller.createEntry = async (req, res, next) => {
     const { bloodSugar, bloodPressure } = req.body
     try {
+        console.log(bloodSugar)
         const newEntry = await Info.create({
             bloodSugar,
             bloodPressure,
         })
         console.log('created entry')
         res.locals.entry = newEntry._id;
+        console.log(res.locals.entry)
         return next();
     } catch (error) { return next({
-        log: 'Error in createUser middleware',
+        log: 'Error in createEntry middleware',
             status: 500,
-            error: 'Error in creating user'
+            error: 'Error in creating entry'
         })
     }
 
