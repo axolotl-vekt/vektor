@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate} from 'react-router-dom'
 import InfoCard from './InfoCard';
+import FoodLog from './FoodLog';
 
 function Homepage() {
   const cards = [];
-  for (let i = 0; i < 3; i++) {
-    cards.push(<InfoCard key={crypto.randomUUID()}/>);
-  }
+  // for (let i = 0; i < 3; i++) {
+  //   cards.push(<InfoCard key={crypto.randomUUID()}/>);
+  // }
+  const [buttonPopup, setButtonPopup] = useState(false);
   
   const navigate = useNavigate();
 
@@ -16,8 +18,9 @@ function Homepage() {
   return (
     <div>
       <h1 className='hp-header'>Homepage</h1>
-      <button onClick={handleClick}>Create Entry</button>
+      <button id='newEntry-btn' onClick={() => setButtonPopup(true)}>New Entry</button>
       <div className='card-container'>{cards}</div>
+      <FoodLog trigger={buttonPopup} setTrigger={setButtonPopup}></FoodLog>
     </div>
   );
 }

@@ -8,9 +8,9 @@ import FoodLog from './components/FoodLog';
 function App() {
   return (
     <Routes>
-      <Route exact path='/' element={<Login />} />
-      <Route exact path='/homepage' element={<Homepage />} />
-      <Route exact path='/signup' element={<SignUp />} />
+      {/* <Route exact path='/' element={<Login />} /> */}
+      <Route exact path='/' element={<Homepage />} />
+      {/* <Route exact path='/signup' element={<SignUp />} /> */}
       <Route exact path='/foodlog' element={<FoodLog />} />
     </Routes>
   );

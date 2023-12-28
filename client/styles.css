@@ -2,9 +2,9 @@
   margin:0;
 }
 
-html {
+/* html {
   background-color: #ccd5ae;
-}
+} */
 
 .loginPageContainer {
   display: flex;
@@ -156,6 +156,11 @@ body {
   justify-content: space-between;
   text-align: left;
   margin-left: 1em;
+  /* ----------- */
+  position: relative;
+  padding: 32px;
+  width: 100%;
+  max-width: 640px;
 }
 
 .cardContainer {
@@ -163,5 +168,48 @@ body {
 }
 
 .entries-container{
-  flex-direction: column;
+  /* flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 45%;
+  height: 45%;
+  background-color: rgb(235, 216, 216); */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#newEntry-btn {
+  background-color: #edc298;
+  border: none;
+  border-radius: 1em;
+  height: 2em;
+  width: 6em;
+  margin: 2em;
+}
+
+#newEntry-btn:hover {
+  transform: scale(1.08);
+  cursor: pointer;
+}
+
+.popup-close-btn {
+  background-color: #edc298;
+  border: none;
+  border-radius: 1em;
+  height: 2em;
+  width: 6em;
+  margin: 2em;
+  margin-top: 0;
+}
+
+.save-entry-btn {
+  background-color: #edc298;
+  border: none;
+  border-radius: 1em;
+  height: 2em;
+  width: 6em;
+  margin: 2em;
 }

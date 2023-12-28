@@ -1,4 +1,4 @@
-const Entry = require('../models/entryModel');
+const Info = require('../models/entryModel');
 const Session = require('../models/sessionModel');
 const User = require('../models/userModel');
 
