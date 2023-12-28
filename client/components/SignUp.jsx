@@ -54,7 +54,7 @@ function SignUp() {
                             <input className='signUpInput' type='text' name='username' placeholder='Create Username' onChange={handleChange}></input>
                         </div>
                         <div >
-                            <input className='signUpInput' type='text' name='password' placeholder='Create Password' onChange={handleChange}></input>
+                            <input className='signUpInput' type='password' name='password' placeholder='Create Password' onChange={handleChange}></input>
                         </div>
                         <div className='signUpButtons'>
                             <button className='signUpSubmitBtn' type='submit'>Submit</button>
