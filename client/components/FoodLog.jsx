@@ -11,9 +11,9 @@ const useInput = ({ start }) => {
   return [value, onChange];
 };
 
-function FoodLog() {
+function FoodLog(props) {
   const [image, setImage] = useState('');
-  const [date, setDate] = useInput('');
+  // const [date, setDate] = useInput('');
   const [bloodSugar, setBloodSugar] = useInput('');
   const [bloodPressure, setBloodPressure] = useInput('');
   const [time, setTime] = useInput('');
@@ -46,7 +46,9 @@ function FoodLog() {
     }
   };
 
-  return (
+  const date = new Date();
+
+  return (props.trigger) ? (
     <form className='entries-container'>
       <div className='entries'>
         {image === '' || image === null ? (
@@ -56,7 +58,7 @@ function FoodLog() {
         )}
         <label>
           {' '}
-          Date: <input value={date || ''} onChange={setDate}></input>
+          Date: {date.toLocaleDateString()}
         </label>
         <label>
           {' '}
@@ -78,12 +80,14 @@ function FoodLog() {
         <p>Before or After meal?</p>
         {/* link to where you can see the images */}
         <Link to='/foodlog'>Meal Log</Link>
-        <button className='save-entry' onClick={saveEntry}>
-          Submit
+        <button className='save-entry-btn' onClick={saveEntry}>
+          Save Entry
         </button>
+        <button className='popup-close-btn' onClick={() => props.setTrigger(false)}>Close</button>
+        { props.children }
       </div>
     </form>
-  );
+  ) : '';
 }
 
 export default FoodLog;
