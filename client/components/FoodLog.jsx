@@ -15,7 +15,8 @@ function FoodLog(props) {
   const [image, setImage] = useState('');
   // const [date, setDate] = useInput('');
   const [bloodSugar, setBloodSugar] = useInput('');
-  const [bloodPressure, setBloodPressure] = useInput('');
+  const [sysPressure, setSysPressure] = useInput('');
+  const [diaPressure, setDiaPressure] = useInput('');
   const [time, setTime] = useInput('');
 
   const navigate = useNavigate();
@@ -25,7 +26,8 @@ function FoodLog(props) {
       image,
       date,
       bloodSugar,
-      bloodPressure,
+      sysPressure,
+      diaPressure,
       time
     };
     try {
@@ -67,10 +69,18 @@ function FoodLog(props) {
         </label>
         <label>
           {' '}
-          Blood Pressure:{' '}
+          Systolic Blood Pressure:{' '}
           <input
-            value={bloodPressure || ''}
-            onChange={setBloodPressure}
+            value={sysPressure || ''}
+            onChange={setSysPressure}
+          ></input>
+        </label>
+        <label>
+          {' '}
+          Diastolic Blood Pressure:{' '}
+          <input
+            value={diaPressure || ''}
+            onChange={setDiaPressure}
           ></input>
         </label>
         <label>

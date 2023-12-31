@@ -213,3 +213,7 @@ body {
   width: 6em;
   margin: 2em;
 }
+
+.graphs {
+  display: flex;
+}

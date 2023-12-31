@@ -47,6 +47,22 @@ controller.verifyUser = async (req, res, next) => {
     }
 }
 
+controller.getInfo = async (req,res,next) => {
+    try{
+        const data = await Info.find({})
+        if (data) {
+            res.locals.data = data;
+            console.log(data)
+            return next();
+        }
+    } catch (error) {
+        return next({
+            log: 'Error in getSugar middleware',
+            status: 500,
+            error: 'Error in retreiving sugar levels'
+        })
+    }
+}
 // controller.startSession = async (req, res, next) => {
 //     if (res.locals.id == undefined) {
 //         return next('Error in startSession Controller: No user id')
@@ -78,12 +94,13 @@ controller.verifyUser = async (req, res, next) => {
 
 
 controller.createEntry = async (req, res, next) => {
-    const { bloodSugar, bloodPressure } = req.body
+    const { bloodSugar, sysPressure, diaPressure } = req.body
     try {
         console.log(bloodSugar)
         const newEntry = await Info.create({
             bloodSugar,
-            bloodPressure,
+            sysPressure,
+            diaPressure,
         })
         console.log('created entry')
         res.locals.entry = newEntry._id;
