@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate} from 'react-router-dom'
 import InfoCard from './InfoCard';
 import FoodLog from './FoodLog';
+import SugarGraph from './SugarGraph';
+import BloodPressureGraph from './BloodPressureGraph'
 
 function Homepage() {
   const cards = [];
@@ -18,6 +20,10 @@ function Homepage() {
   return (
     <div>
       <h1 className='hp-header'>Homepage</h1>
+      <div className='graphs'>
+        <SugarGraph />
+        <BloodPressureGraph />
+      </div>
       <button id='newEntry-btn' onClick={() => setButtonPopup(true)}>New Entry</button>
       <div className='card-container'>{cards}</div>
       <FoodLog trigger={buttonPopup} setTrigger={setButtonPopup}></FoodLog>

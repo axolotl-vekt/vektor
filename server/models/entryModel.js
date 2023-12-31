@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const infoSchema = new Schema({
   date: { type: Date, default: Date.now },
   bloodSugar: { type: Number },
-  bloodPressure: { type: String },
+  sysPressure: { type: Number },
+  diaPressure: {type: Number},
   beforeMeal: { type: Boolean },
 });
 //can't have two 'User' --> there was one in userModel -EW
