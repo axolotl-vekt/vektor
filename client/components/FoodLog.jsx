@@ -10,8 +10,21 @@ const useInput = ({ start }) => {
   };
   return [value, onChange];
 };
+function getCookie(cookieName) {
+  const cookies = document.cookie.split('; ');
 
+  for (const cookie of cookies) {
+    const [name, value] = cookie.split('=');
+    if (name === cookieName) {
+      return decodeURIComponent(value);
+    }
+  }
+
+  return null;
+}
 function FoodLog(props) {
+  
+  const username = getCookie('username');
   const [image, setImage] = useState('');
   // const [date, setDate] = useInput('');
   const [bloodSugar, setBloodSugar] = useInput('');
@@ -23,6 +36,7 @@ function FoodLog(props) {
   const saveEntry = async (e) => {
     e.preventDefault();
     const body = {
+      username,
       image,
       date,
       bloodSugar,

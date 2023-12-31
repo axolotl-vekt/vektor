@@ -93,10 +93,11 @@ controller.getInfo = async (req,res,next) => {
 
 
 controller.createEntry = async (req, res, next) => {
-    const { bloodSugar, sysPressure, diaPressure } = req.body
+    const { username, bloodSugar, sysPressure, diaPressure } = req.body
     try {
         console.log(bloodSugar)
         const newEntry = await Info.create({
+            username,
             bloodSugar,
             sysPressure,
             diaPressure,
