@@ -52,7 +52,6 @@ controller.getInfo = async (req,res,next) => {
         const data = await Info.find({})
         if (data) {
             res.locals.data = data;
-            console.log(data)
             return next();
         }
     } catch (error) {
