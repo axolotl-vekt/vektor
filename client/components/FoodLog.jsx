@@ -53,40 +53,30 @@ function FoodLog(props) {
   return (props.trigger) ? (
     <form className='entries-container'>
       <div className='entries'>
-        {image === '' || image === null ? (
-          ''
-        ) : (
-          <img width={250} height={250} src={image} alt='Recipe Image' />
+        {image === '' || image === null ? ('') : 
+        (<img width={250} height={250} src={image} alt='Recipe Image' />
         )}
         <label>
-          {' '}
           Date: {date.toLocaleDateString()}
         </label>
-        <label>
-          {' '}
-          Blood Sugar:{' '}
-          <input value={bloodSugar || ''} onChange={setBloodSugar}></input>
+        <label className='bloodSugarInput'>
+          Blood Sugar:
+          <input value={bloodSugar || ''} onChange={setBloodSugar}></input> <p className='paragraphBP'>mg/dL</p>
         </label>
-        <label>
-          {' '}
-          Systolic Blood Pressure:{' '}
-          <input
+        <label className='bloodPressure'>
+          Blood Pressure:
+          <input className='inputBar'
             value={sysPressure || ''}
             onChange={setSysPressure}
-          ></input>
-        </label>
-        <label>
-          {' '}
-          Diastolic Blood Pressure:{' '}
-          <input
+          ></input> <p className='paragraphBP'>/</p>
+          <input className='inputBar'
             value={diaPressure || ''}
             onChange={setDiaPressure}
-          ></input>
+          ></input> <p className='paragraphBP'>mmHg</p>
         </label>
-        <label>
-          {' '}
+        {/* <label>
           Time: <input value={time || ''} onChange={setTime}></input>
-        </label>
+        </label> */}
         <p>Before or After meal?</p>
         {/* link to where you can see the images */}
         <Link to='/foodlog'>Meal Log</Link>
