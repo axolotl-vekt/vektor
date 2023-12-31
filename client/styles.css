@@ -197,6 +197,27 @@ body {
   cursor: pointer;
 }
 
+.bloodSugarInput {
+  display: flex;
+}
+
+.bloodSugarInput input {
+  width: 27px;
+}
+
+.bloodPressure {
+  display: flex;
+}
+
+.inputBar {
+  width: 27px;
+}
+
+.paragraphBP {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
 .popup-close-btn {
   background-color: #edc298;
   border: none;
@@ -254,7 +275,7 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 1fr);
-  gap: 0.5em;
+  gap: 1em;
 }
 
 
