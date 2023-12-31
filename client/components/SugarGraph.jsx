@@ -40,17 +40,9 @@ function LineGraph() {
       })
     })
     
-  const chartOptions = {
-    scales: {
-      y: {
-        suggestedMin: 50,
-      }
-    }
-  }
-    
   return (
     <div style={{ width: 700 }}>
-      <Line data={userData} options={chartOptions}/>
+      <Line data={userData} />
     </div>
   )
 }

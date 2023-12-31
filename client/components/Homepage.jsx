@@ -4,6 +4,7 @@ import InfoCard from './InfoCard';
 import FoodLog from './FoodLog';
 import SugarGraph from './SugarGraph';
 import BloodPressureGraph from './BloodPressureGraph'
+import Navbar from './Navbar'
 
 function Homepage() {
   const cards = [];
@@ -19,7 +20,9 @@ function Homepage() {
   };
   return (
     <div>
-      <h1 className='hp-header'>Homepage</h1>
+      <div>
+        <Navbar />
+      </div>
       <div className='graphs'>
         <SugarGraph />
         <BloodPressureGraph />
