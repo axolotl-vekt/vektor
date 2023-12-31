@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const infoSchema = new Schema({
+  username: {type: String, required: true},
   date: { type: Date, default: Date.now },
   bloodSugar: { type: Number },
   sysPressure: { type: Number },
