@@ -7,6 +7,8 @@ import BloodPressureGraph from './BloodPressureGraph'
 import Navbar from './Navbar'
 
 function Homepage() {
+
+
   const cards = [];
   // for (let i = 0; i < 3; i++) {
   //   cards.push(<InfoCard key={crypto.randomUUID()}/>);
@@ -18,6 +20,19 @@ function Homepage() {
   const handleClick = () => {
     navigate('/foodlog');
   };
+  function getCookie(cookieName) {
+    const cookies = document.cookie.split('; ');
+  
+    for (const cookie of cookies) {
+      const [name, value] = cookie.split('=');
+      if (name === cookieName) {
+        return decodeURIComponent(value);
+      }
+    }
+  
+    return null;
+  }
+
   return (
     <div>
       <div>
@@ -29,7 +44,7 @@ function Homepage() {
       </div>
       <button id='newEntry-btn' onClick={() => setButtonPopup(true)}>New Entry</button>
       <div className='card-container'>{cards}</div>
-      <FoodLog trigger={buttonPopup} setTrigger={setButtonPopup}></FoodLog>
+      <FoodLog trigger={buttonPopup} setTrigger={setButtonPopup} getCookie={getCookie}></FoodLog>
     </div>
   );
 }
