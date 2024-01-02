@@ -11,21 +11,27 @@ const useInput = ({ start }) => {
   return [value, onChange];
 };
 
+
 function FoodLog(props) {
+  
+  const username = props.getCookie('username');
   const [image, setImage] = useState('');
   // const [date, setDate] = useInput('');
   const [bloodSugar, setBloodSugar] = useInput('');
-  const [bloodPressure, setBloodPressure] = useInput('');
+  const [sysPressure, setSysPressure] = useInput('');
+  const [diaPressure, setDiaPressure] = useInput('');
   const [time, setTime] = useInput('');
 
   const navigate = useNavigate();
   const saveEntry = async (e) => {
     e.preventDefault();
     const body = {
+      username,
       image,
       date,
       bloodSugar,
-      bloodPressure,
+      sysPressure,
+      diaPressure,
       time
     };
     try {
@@ -49,34 +55,33 @@ function FoodLog(props) {
   const date = new Date();
 
   return (props.trigger) ? (
+    <div>
     <form className='entries-container'>
       <div className='entries'>
-        {image === '' || image === null ? (
-          ''
-        ) : (
-          <img width={250} height={250} src={image} alt='Recipe Image' />
+        {image === '' || image === null ? ('') : 
+        (<img width={250} height={250} src={image} alt='Recipe Image' />
         )}
         <label>
-          {' '}
           Date: {date.toLocaleDateString()}
         </label>
-        <label>
-          {' '}
-          Blood Sugar:{' '}
-          <input value={bloodSugar || ''} onChange={setBloodSugar}></input>
+        <label className='bloodSugarInput'>
+          Blood Sugar:
+          <input value={bloodSugar || ''} onChange={setBloodSugar}></input> <p className='paragraphBP'>mg/dL</p>
         </label>
-        <label>
-          {' '}
-          Blood Pressure:{' '}
-          <input
-            value={bloodPressure || ''}
-            onChange={setBloodPressure}
-          ></input>
+        <label className='bloodPressure'>
+          Blood Pressure:
+          <input className='inputBar'
+            value={sysPressure || ''}
+            onChange={setSysPressure}
+          ></input> <p className='paragraphBP'>/</p>
+          <input className='inputBar'
+            value={diaPressure || ''}
+            onChange={setDiaPressure}
+          ></input> <p className='paragraphBP'>mmHg</p>
         </label>
-        <label>
-          {' '}
+        {/* <label>
           Time: <input value={time || ''} onChange={setTime}></input>
-        </label>
+        </label> */}
         <p>Before or After meal?</p>
         {/* link to where you can see the images */}
         <Link to='/foodlog'>Meal Log</Link>
@@ -87,6 +92,8 @@ function FoodLog(props) {
         { props.children }
       </div>
     </form>
+
+    </div>
   ) : '';
 }
 

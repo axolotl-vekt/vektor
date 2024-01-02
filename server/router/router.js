@@ -11,6 +11,9 @@ router.get('/homepage', (req, res) => {
     return res.sendFile(path.resolve(__dirname, '../../client/index.html'))
 });
 
+router.get('/homepage/bloodsugar', controller.getInfo, (req,res) => {
+    return res.status(200).json(res.locals.data)
+})
 
 router.post('/signup', controller.createUser, (req,res) => {
     return res.status(200).json(res.locals.newUser)
@@ -23,5 +26,12 @@ router.post('/entry', controller.createEntry, (req,res) => {
     return res.status(200).json(res.locals.entry)
 })
 
+router.patch('/update', controller.updateEntry, (req,res) => {
+    return res.status(200).json({})
+})
+
+router.delete('/delete/:id', controller.deleteEntry, (req, res) => {
+    return res.status(200).json({})
+})
 
 module.exports = router;

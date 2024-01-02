@@ -10,10 +10,10 @@ function Login() {
         password:'',
     });
 
-    const [ cookies, setCookies ] = useCookies(["user"]);
+    const [ cookies, setCookies ] = useCookies(["username"]);
 
     const handleCookies = () => {
-        setCookies('user', loginData.username, {path: '/', secure: true})
+        setCookies('username', loginData.username, {path: '/', secure: true})
     }
 
     const navigate = useNavigate();
@@ -67,9 +67,9 @@ function Login() {
                             value = {loginData.password}></input>
                         </div>
                         <div className='loginBtn'>
-                            <button type='submit'>Sign in</button>
+                            <button type='submit'><strong>Sign in</strong></button>
                         </div>
-                    <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
+                        <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
                     </form>
                 </div>
             </div>

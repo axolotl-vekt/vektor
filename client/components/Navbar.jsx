@@ -4,9 +4,14 @@ import { Link } from 'react-router-dom';
 function Navbar() {
   return (
     <nav>
-      {/* <Link to="/">Home</Link>
-      <Link to="/about">About</Link>
-      <Link to="/contact">Contact</Link> */}
+      <div className='navBarContainer'>
+        <ul className='navBarList'>
+          <li className='navigationLinks'><Link to="/homepage" style={{textDecoration:'none', color:'white'}}><strong>Home</strong></Link></li>
+          <li className='navigationLinks'><Link to="/about" style={{textDecoration:'none', color:'white'}}><strong>About</strong></Link></li>
+          <li className='navigationLinks'><Link to="/contact" style={{textDecoration:'none', color:'white'}}><strong>Contact</strong></Link></li>
+          <li className='navigationLinks'><Link to="/games" style={{textDecoration:'none', color:'white'}}><strong>Games</strong></Link></li>
+        </ul>
+      </div>
     </nav>
   );
 }
