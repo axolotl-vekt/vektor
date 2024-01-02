@@ -33,7 +33,6 @@ controller.verifyUser = async (req, res, next) => {
     const { username, password } = req.body
     try {
         const userConfirmed = await User.findOne({ username, password })
-        console.log(userConfirmed)
         if (userConfirmed) {
             res.locals.id = userConfirmed._id;
             return next();
@@ -95,7 +94,6 @@ controller.getInfo = async (req,res,next) => {
 controller.createEntry = async (req, res, next) => {
     const { username, bloodSugar, sysPressure, diaPressure } = req.body
     try {
-        console.log(bloodSugar)
         const newEntry = await Info.create({
             username,
             bloodSugar,
@@ -104,7 +102,6 @@ controller.createEntry = async (req, res, next) => {
         })
         console.log('created entry')
         res.locals.entry = newEntry._id;
-        console.log(res.locals.entry)
         return next();
     } catch (error) { return next({
         log: 'Error in createEntry middleware',
@@ -116,9 +113,10 @@ controller.createEntry = async (req, res, next) => {
 }
 
 controller.deleteEntry = async (req, res, next) => {
-    const { id } = req.body;
+    const { id } = req.params;
+    console.log(req.params)
     try {
-        await Info.findOneAndDelete({id})
+        await Info.findOneAndDelete({_id:id})
         return next();
     }
     catch(error){
