@@ -339,3 +339,27 @@ body {
   transform: scale(1);
   
 }
+
+.graphs {
+  display: flex;
+  justify-content: space-around;
+}
+
+.entriesContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.entriesHomepage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ccd5ae;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid black;
+  width: 20rem;
+  margin: 10px;
+  box-shadow: 5px 5px 5px #3a5a40;
+}

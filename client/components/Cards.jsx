@@ -39,7 +39,7 @@ function Cards() {
                 items[prev].state=''
                 setItems([...items])
                 setprev(-1)
-            },50)
+            },10)
         }
     }
 
