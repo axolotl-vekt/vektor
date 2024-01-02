@@ -142,7 +142,7 @@ function Homepage() {
   return (
     <div>
       <h1>VEKTOR</h1>
-      <Quotes/>
+      <h3><Quotes /></h3>
       <div>
         <Navbar />
       </div>
