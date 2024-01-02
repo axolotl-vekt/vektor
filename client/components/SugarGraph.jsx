@@ -22,7 +22,7 @@ function LineGraph({username}) {
           if (Object.hasOwn(data[i],'bloodSugar') && data[i].username===username) {
             sugarLevel.push(data[i].bloodSugar)
             const dateObject = new Date(data[i].date);
-            const options = { weekday: 'short', month: 'short', day: 'numeric'};
+            const options = { month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric'};
             const formattedDate = dateObject.toLocaleString('en-US', options)
             sugarDate.push(formattedDate)
           }

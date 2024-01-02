@@ -418,3 +418,8 @@ body {
   text-align: center;
   color: white;
 }
+
+.modalContainer {
+  position: fixed;
+  background-color: grey;
+}
