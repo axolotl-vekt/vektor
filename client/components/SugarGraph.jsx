@@ -3,6 +3,9 @@ import { Line } from 'react-chartjs-2'
 import { useState, useEffect } from 'react';
 import { Chart as ChartJS} from 'chart.js/auto'
 
+/** Line graph function that takes in username and
+ * renders a line graph of blood sugar levels
+ * */
 function LineGraph({username}) {
 
   const sugarLevel =[];
@@ -11,7 +14,7 @@ function LineGraph({username}) {
   const [ userData, setData ] = useState({
     labels: '',
     datasets: [],
-  }) 
+  })
 
 
   useEffect(() => {
@@ -39,7 +42,7 @@ function LineGraph({username}) {
         setData(chartData)
       })
     })
-    
+
   return (
     <div style={{ width: 700 }}>
       <Line data={userData} />
@@ -48,6 +51,3 @@ function LineGraph({username}) {
 }
 
 export default LineGraph
-
-
-
