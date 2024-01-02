@@ -26,5 +26,12 @@ router.post('/entry', controller.createEntry, (req,res) => {
     return res.status(200).json(res.locals.entry)
 })
 
+router.patch('/update', controller.updateEntry, (req,res) => {
+    return res.status(200).json({})
+})
+
+router.delete('/delete', controller.deleteEntry, (req, res) => {
+    return res.status(200).json({})
+})
 
 module.exports = router;

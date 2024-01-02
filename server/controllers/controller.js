@@ -115,4 +115,35 @@ controller.createEntry = async (req, res, next) => {
 
 }
 
+controller.deleteEntry = async (req, res, next) => {
+    const { id } = req.body;
+    try {
+        await Info.findOneAndDelete({id})
+        return next();
+    }
+    catch(error){
+        return next({
+            log: 'Error in deleteEntry middleware',
+            status: 500,
+            error: 'Error in deleting entry'
+        })
+    }
+}
+
+//Not done yet, for the updateEntry
+controller.updateEntry = async (req, res, next) => {
+    const { bloodSugar, sysPressure, diaPressure, _id } = req.body;
+    try {
+        await Info.updateOne({_id},)
+        return next();
+    }
+    catch(error) {
+        return next({
+            log: 'Error in updateEntry middleware',
+            status: 500,
+            error: 'Error in updating entry'
+        })
+    }
+}
+
 module.exports = controller;

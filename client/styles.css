@@ -10,11 +10,11 @@
 .loginPageContainer {
   display: flex;
 }
-#overlay {
+/* #overlay {
   position: fixed;
   top: 470px;
   right: 240px;
-}
+} */
 .loginImg {
   display: flex;
   height: 100%;
@@ -70,6 +70,18 @@
 
 .loginBtn {
     padding: 1rem;
+}
+
+.loginBtn button {
+  background-color: #ccd5ae;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.loginBtn button:hover {
+  cursor: pointer;
 }
 
 .signUpPageContainer {
@@ -195,6 +207,22 @@ body {
 #newEntry-btn:hover {
   transform: scale(1.08);
   cursor: pointer;
+}
+
+.updateBtn, .deleteBtn {
+  background-color: transparent;
+  border: none;
+  padding: 10px;
+  color: rgb(82, 81, 81);
+}
+
+.updateBtn:hover, .deleteBtn:hover {
+  cursor: pointer;
+}
+
+.entryBtn {
+  align-self: flex-end;
+  align-self: center;
 }
 
 .bloodSugarInput {
@@ -351,10 +379,15 @@ body {
   align-items: center;
 }
 
+.newEntryBtnContainer {
+  display: flex;
+  justify-content: space-around;
+  align-self: center;
+}
+
 .entriesHomepage {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-around;
   background-color: #ccd5ae;
   border-radius: 10px;
   padding: 10px;
@@ -362,4 +395,21 @@ body {
   width: 20rem;
   margin: 10px;
   box-shadow: 5px 5px 5px #3a5a40;
+}
+
+.oneGame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5rem;
+  background-color: #ccd5ae;
+  width: 250px;
+  padding: 0 0 1rem;
+  font-size: 25px;
+  color: white;
+}
+
+.memoryGame {
+  text-align: center;
+  color: white;
 }

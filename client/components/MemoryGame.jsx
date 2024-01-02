@@ -2,7 +2,7 @@ import React from 'react';
 import Cards from './Cards'
 import Navbar from './Navbar'
 
-function GameBoard() {
+function MemoryGame() {
   return (
     <div>
       <Navbar />
@@ -15,4 +15,4 @@ function GameBoard() {
   )
 }
 
-export default GameBoard
+export default MemoryGame
