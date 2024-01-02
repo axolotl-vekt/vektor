@@ -33,7 +33,6 @@ controller.verifyUser = async (req, res, next) => {
     const { username, password } = req.body
     try {
         const userConfirmed = await User.findOne({ username, password })
-        console.log(userConfirmed)
         if (userConfirmed) {
             res.locals.id = userConfirmed._id;
             return next();
@@ -47,6 +46,21 @@ controller.verifyUser = async (req, res, next) => {
     }
 }
 
+controller.getInfo = async (req,res,next) => {
+    try{
+        const data = await Info.find({})
+        if (data) {
+            res.locals.data = data;
+            return next();
+        }
+    } catch (error) {
+        return next({
+            log: 'Error in getSugar middleware',
+            status: 500,
+            error: 'Error in retreiving sugar levels'
+        })
+    }
+}
 // controller.startSession = async (req, res, next) => {
 //     if (res.locals.id == undefined) {
 //         return next('Error in startSession Controller: No user id')
@@ -78,16 +92,16 @@ controller.verifyUser = async (req, res, next) => {
 
 
 controller.createEntry = async (req, res, next) => {
-    const { bloodSugar, bloodPressure } = req.body
+    const { username, bloodSugar, sysPressure, diaPressure } = req.body
     try {
-        console.log(bloodSugar)
         const newEntry = await Info.create({
+            username,
             bloodSugar,
-            bloodPressure,
+            sysPressure,
+            diaPressure,
         })
         console.log('created entry')
         res.locals.entry = newEntry._id;
-        console.log(res.locals.entry)
         return next();
     } catch (error) { return next({
         log: 'Error in createEntry middleware',
@@ -96,6 +110,38 @@ controller.createEntry = async (req, res, next) => {
         })
     }
 
+}
+
+controller.deleteEntry = async (req, res, next) => {
+    const { id } = req.params;
+    console.log(req.params)
+    try {
+        await Info.findOneAndDelete({_id:id})
+        return next();
+    }
+    catch(error){
+        return next({
+            log: 'Error in deleteEntry middleware',
+            status: 500,
+            error: 'Error in deleting entry'
+        })
+    }
+}
+
+//Not done yet, for the updateEntry
+controller.updateEntry = async (req, res, next) => {
+    const { bloodSugar, sysPressure, diaPressure, id } = req.body;
+    try {
+        await Info.updateOne({_id:id},{bloodSugar, sysPressure, diaPressure})
+        return next();
+    }
+    catch(error) {
+        return next({
+            log: 'Error in updateEntry middleware',
+            status: 500,
+            error: 'Error in updating entry'
+        })
+    }
 }
 
 module.exports = controller;
