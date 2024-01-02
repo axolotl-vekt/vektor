@@ -346,8 +346,8 @@ body {
 }
 
 .entriesContainer {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   align-items: center;
 }
 
