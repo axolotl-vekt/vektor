@@ -10,10 +10,10 @@ function Login() {
         password:'',
     });
 
-    const [ cookies, setCookies ] = useCookies(["user"]);
+    const [ cookies, setCookies ] = useCookies(["username"]);
 
     const handleCookies = () => {
-        setCookies('user', loginData.username, {path: '/', secure: true})
+        setCookies('username', loginData.username, {path: '/', secure: true})
     }
 
     const navigate = useNavigate();

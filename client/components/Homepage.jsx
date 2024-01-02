@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate} from 'react-router-dom'
 import InfoCard from './InfoCard';
 import FoodLog from './FoodLog';
@@ -14,6 +14,23 @@ function Homepage() {
   //   cards.push(<InfoCard key={crypto.randomUUID()}/>);
   // }
   const [buttonPopup, setButtonPopup] = useState(false);
+  const [ data, setData ] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/api/homepage/bloodsugar')
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      const formattedData = data.map(item => {
+        const dateObject = new Date(item.date);
+        const options = { weekday: 'short', month: 'numeric', day: 'numeric' };
+        const formattedDate = dateObject.toLocaleString('en-US', options);
+        return {...item, date: formattedDate}
+      })
+      setData(formattedData)
+    })
+    .catch(console.log('Error displaying entries on homepage'))
+  })
   
   const navigate = useNavigate();
 
@@ -32,6 +49,7 @@ function Homepage() {
   
     return null;
   }
+  
 
   return (
     <div>
@@ -45,6 +63,15 @@ function Homepage() {
       <button id='newEntry-btn' onClick={() => setButtonPopup(true)}>New Entry</button>
       <div className='card-container'>{cards}</div>
       <FoodLog trigger={buttonPopup} setTrigger={setButtonPopup} getCookie={getCookie}></FoodLog>
+      <div className='entriesContainer'>
+        {data.map(item => (
+          <div key={item._id} className='entriesHomepage'>
+            <div>{item.date}</div>
+            <div>Blood Sugar: {item.bloodSugar} mg/dL</div>
+            <div>Blood Pressure: {item.sysPressure} / {item.diaPressure} mmHg</div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
