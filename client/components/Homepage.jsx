@@ -9,9 +9,20 @@ import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 
 function Homepage() {
-
-
-  // const cards = [];
+  
+  function getCookie(name) {
+    const cookies = document.cookie.split('; ');
+    for (const cookie of cookies) {
+      const [cookieName, cookieValue] = cookie.split('=');
+      if (cookieName === name) {
+        return cookieValue;
+      }
+    }
+    return null;
+  }
+  const usernameCookie = getCookie('username')
+  console.log(usernameCookie)
+  const cards = [];
   // for (let i = 0; i < 3; i++) {
   //   cards.push(<InfoCard key={crypto.randomUUID()}/>);
   // }
@@ -22,16 +33,29 @@ function Homepage() {
     fetch('http://localhost:3000/api/homepage/bloodsugar')
     .then(response => response.json())
     .then(data => {
-      const formattedData = data.map(item => {
-        const dateObject = new Date(item.date);
-        const options = { weekday: 'short', month: 'numeric', day: 'numeric' };
-        const formattedDate = dateObject.toLocaleString('en-US', options);
-        return {...item, date: formattedDate}
+      const array = []
+      data.forEach(el => { 
+      
+        if(el.username === usernameCookie){
+          const dateObject = new Date(el.date);
+          const options = { weekday: 'short', month: 'numeric', day: 'numeric' };
+          const formattedDate = dateObject.toLocaleString('en-US', options);
+          el.date = formattedDate
+          array.push(el)
+          // const formattedData = data.map(item => {
+            // const dateObject = new Date(item.date);
+            // const options = { weekday: 'short', month: 'numeric', day: 'numeric' };
+            // const formattedDate = dateObject.toLocaleString('en-US', options);
+            // return {...item, date: formattedDate}
+          // })
+          
+        }
+      
       })
-      setData(formattedData)
+      console.log(array)
+      setData(array)
     })
-    //need to pass in fxn into .catch or else, it'll always process console.log w/o the fxn
-    .catch((error) => console.log('Error displaying entries on homepage'))
+    .catch(error => console.log('Error displaying entries on homepage'))
   })
   
   // const navigate = useNavigate();
@@ -67,12 +91,13 @@ function Homepage() {
 
   return (
     <div>
+      <h1>VEKTOR</h1>
       <div>
         <Navbar />
       </div>
       <div className='graphs'>
-        <SugarGraph />
-        <BloodPressureGraph />
+        <SugarGraph username={usernameCookie}/>
+        <BloodPressureGraph username={usernameCookie}/>
       </div>
       <div className='newEntryBtnContainer'>
         <button id='newEntry-btn' onClick={() => setButtonPopup(true)}>New Entry</button>

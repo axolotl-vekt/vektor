@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { Line } from 'react-chartjs-2'
 
-function BloodPressureGraph() {
+function BloodPressureGraph({username}) {
 	const [ userData, setData ] = useState({
 		labels: '',
 		datasets: [],
@@ -16,7 +16,7 @@ function BloodPressureGraph() {
 			.then(response => response.json())
 			.then(data => {
 				for (let i = 0; i < data.length; i++) {
-					if (Object.hasOwn(data[i],'sysPressure')) {
+					if (Object.hasOwn(data[i],'sysPressure') && data[i].username === username) {
 						systolicPressures.push(data[i].sysPressure)
 						diabolicPressures.push(data[i].diaPressure)
 						const dateObject = new Date(data[i].date)

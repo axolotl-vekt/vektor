@@ -6,7 +6,12 @@
 /* html {
   background-color: #ccd5ae;
 } */
-
+h1 {
+  text-align: center;
+  font-family:'Courier New', Courier, monospace;
+  font-size: 50px;
+}
+ 
 .loginPageContainer {
   display: flex;
 }
