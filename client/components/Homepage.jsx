@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import { Link, useNavigate} from 'react-router-dom'
-import InfoCard from './InfoCard';
 import FoodLog from './FoodLog';
 import SugarGraph from './SugarGraph';
 import BloodPressureGraph from './BloodPressureGraph'
 import Navbar from './Navbar'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
+
 
 function Homepage() {
   
@@ -31,7 +33,6 @@ function Homepage() {
     fetch('http://localhost:3000/api/homepage/bloodsugar')
     .then(response => response.json())
     .then(data => {
-      console.log(data);
       const array = []
       data.forEach(el => { 
       
@@ -57,11 +58,12 @@ function Homepage() {
     .catch(error => console.log('Error displaying entries on homepage'))
   })
   
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate('/foodlog');
-  };
+  // const handleClick = () => {
+  //   navigate('/foodlog');
+  // };
+
   function getCookie(cookieName) {
     const cookies = document.cookie.split('; ');
   
@@ -74,7 +76,18 @@ function Homepage() {
   
     return null;
   }
-  
+
+  const handleDelete = (id) => {
+    fetch('http://localhost:3000/api/delete', {
+      method: 'DELETE',
+      body: {
+        id
+      }
+    })
+    .then(response => response.json())
+    .then(console.log('successfully deleted'))
+    .catch(err => console.log(err))
+  }
 
   return (
     <div>
@@ -86,15 +99,23 @@ function Homepage() {
         <SugarGraph username={usernameCookie}/>
         <BloodPressureGraph username={usernameCookie}/>
       </div>
-      <button id='newEntry-btn' onClick={() => setButtonPopup(true)}>New Entry</button>
-      <div className='card-container'>{cards}</div>
+      <div className='newEntryBtnContainer'>
+        <button id='newEntry-btn' onClick={() => setButtonPopup(true)}>New Entry</button>
+      </div>
+      {/* <div className='card-container'>{cards}</div> */}
       <FoodLog trigger={buttonPopup} setTrigger={setButtonPopup} getCookie={getCookie}></FoodLog>
       <div className='entriesContainer'>
         {data.map(item => (
           <div key={item._id} className='entriesHomepage'>
-            <div>{item.date}</div>
-            <div>Blood Sugar: {item.bloodSugar} mg/dL</div>
-            <div>Blood Pressure: {item.sysPressure} / {item.diaPressure} mmHg</div>
+            <div>
+              <div>{item.date}</div>
+              <div>Blood Sugar: {item.bloodSugar} mg/dL</div>
+              <div>Blood Pressure: {item.sysPressure} / {item.diaPressure} mmHg</div>
+            </div>
+            <div className='entryBtn'>
+              <button className='updateBtn'><FontAwesomeIcon icon={faPen} /></button>
+              <button className='deleteBtn'><FontAwesomeIcon icon={faTrash} onClick={() => handleDelete(item._id)}/></button>
+            </div>
           </div>
         ))}
       </div>

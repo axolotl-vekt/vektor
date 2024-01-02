@@ -55,6 +55,7 @@ function FoodLog(props) {
   const date = new Date();
 
   return (props.trigger) ? (
+    <div>
     <form className='entries-container'>
       <div className='entries'>
         {image === '' || image === null ? ('') : 
@@ -91,6 +92,8 @@ function FoodLog(props) {
         { props.children }
       </div>
     </form>
+
+    </div>
   ) : '';
 }
 
