@@ -7,8 +7,19 @@ import BloodPressureGraph from './BloodPressureGraph'
 import Navbar from './Navbar'
 
 function Homepage() {
-
-
+  
+  function getCookie(name) {
+    const cookies = document.cookie.split('; ');
+    for (const cookie of cookies) {
+      const [cookieName, cookieValue] = cookie.split('=');
+      if (cookieName === name) {
+        return cookieValue;
+      }
+    }
+    return null;
+  }
+  const usernameCookie = getCookie('username')
+  console.log(usernameCookie)
   const cards = [];
   // for (let i = 0; i < 3; i++) {
   //   cards.push(<InfoCard key={crypto.randomUUID()}/>);
@@ -21,15 +32,29 @@ function Homepage() {
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      const formattedData = data.map(item => {
-        const dateObject = new Date(item.date);
-        const options = { weekday: 'short', month: 'numeric', day: 'numeric' };
-        const formattedDate = dateObject.toLocaleString('en-US', options);
-        return {...item, date: formattedDate}
+      const array = []
+      data.forEach(el => { 
+      
+        if(el.username === usernameCookie){
+          const dateObject = new Date(el.date);
+          const options = { weekday: 'short', month: 'numeric', day: 'numeric' };
+          const formattedDate = dateObject.toLocaleString('en-US', options);
+          el.date = formattedDate
+          array.push(el)
+          // const formattedData = data.map(item => {
+            // const dateObject = new Date(item.date);
+            // const options = { weekday: 'short', month: 'numeric', day: 'numeric' };
+            // const formattedDate = dateObject.toLocaleString('en-US', options);
+            // return {...item, date: formattedDate}
+          // })
+          
+        }
+      
       })
-      setData(formattedData)
+      console.log(array)
+      setData(array)
     })
-    .catch(console.log('Error displaying entries on homepage'))
+    .catch(error => console.log('Error displaying entries on homepage'))
   })
   
   const navigate = useNavigate();
@@ -53,12 +78,13 @@ function Homepage() {
 
   return (
     <div>
+      <h1>VEKTOR</h1>
       <div>
         <Navbar />
       </div>
       <div className='graphs'>
-        <SugarGraph />
-        <BloodPressureGraph />
+        <SugarGraph username={usernameCookie}/>
+        <BloodPressureGraph username={usernameCookie}/>
       </div>
       <button id='newEntry-btn' onClick={() => setButtonPopup(true)}>New Entry</button>
       <div className='card-container'>{cards}</div>

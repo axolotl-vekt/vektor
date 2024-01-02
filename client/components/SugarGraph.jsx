@@ -3,7 +3,7 @@ import { Line } from 'react-chartjs-2'
 import { useState, useEffect } from 'react';
 import { Chart as ChartJS} from 'chart.js/auto'
 
-function LineGraph() {
+function LineGraph({username}) {
 
   const sugarLevel =[];
   const sugarDate = [];
@@ -19,7 +19,7 @@ function LineGraph() {
       .then(response => response.json())
       .then(data => {
         for (let i = 0; i < data.length; i++) {
-          if (Object.hasOwn(data[i],'bloodSugar')) {
+          if (Object.hasOwn(data[i],'bloodSugar') && data[i].username===username) {
             sugarLevel.push(data[i].bloodSugar)
             const dateObject = new Date(data[i].date);
             const options = { weekday: 'short', month: 'short', day: 'numeric'};
