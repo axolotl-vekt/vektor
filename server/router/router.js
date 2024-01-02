@@ -30,7 +30,7 @@ router.patch('/update', controller.updateEntry, (req,res) => {
     return res.status(200).json({})
 })
 
-router.delete('/delete', controller.deleteEntry, (req, res) => {
+router.delete('/delete/:id', controller.deleteEntry, (req, res) => {
     return res.status(200).json({})
 })
 

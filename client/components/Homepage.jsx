@@ -78,13 +78,12 @@ function Homepage() {
   }
 
   const handleDelete = (id) => {
-    fetch('http://localhost:3000/api/delete', {
+    fetch(`http://localhost:3000/api/delete/${id}`, {
       method: 'DELETE',
-      body: {
-        id
+      headers: {
+        'Content-Type':'application/json'
       }
     })
-    .then(response => response.json())
     .then(console.log('successfully deleted'))
     .catch(err => console.log(err))
   }
