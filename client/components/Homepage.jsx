@@ -7,6 +7,7 @@ import Navbar from './Navbar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 import Modal from './Modal'
+import Quotes from './Quotes'
 
 
 function Homepage() {
@@ -141,6 +142,7 @@ function Homepage() {
   return (
     <div>
       <h1>VEKTOR</h1>
+      <h3><Quotes /></h3>
       <div>
         <Navbar />
       </div>
