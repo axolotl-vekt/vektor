@@ -169,18 +169,18 @@ function Homepage() {
             </div>
           </div>
         ))}
-              <Modal isOpen={open} onClose={handleClose}  onSubmit={handleSubmit}>
-                <div>
-                  <form>
-                    <div>
-                      <label>Blood Sugar</label>
-                      <input type='text' onChange={handleChange} name='bloodSugar'/> mg/dL
-                    </div>
-                    <div>
-                      <label>Blood Pressure</label>
-                      <input type='text' onChange={handleChange} name='sysPressure'/> / <input type='text' onChange={handleChange} name='diaPressure'/> mmHg
-                    </div>
-                  </form>
+              <Modal isOpen={open} onClose={handleClose} onSubmit={handleSubmit}>
+                  <div>
+                    <form>
+                      <div>
+                        <label>Blood Sugar</label>
+                        <input type='text' onChange={handleChange} name='bloodSugar' className='inputHealth'/> mg/dL
+                      </div>
+                      <div>
+                        <label>Blood Pressure</label>
+                        <input type='text' onChange={handleChange} name='sysPressure' className='inputHealth'/> / <input type='text' onChange={handleChange} name='diaPressure' className='inputHealth'/> mmHg
+                      </div>
+                    </form>
                 </div>
               </Modal>
       </div>
