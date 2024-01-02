@@ -6,6 +6,7 @@ import BloodPressureGraph from './BloodPressureGraph'
 import Navbar from './Navbar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
+import Modal from './Modal'
 
 
 function Homepage() {
@@ -38,7 +39,7 @@ function Homepage() {
       
         if(el.username === usernameCookie){
           const dateObject = new Date(el.date);
-          const options = { weekday: 'short', month: 'numeric', day: 'numeric' };
+          const options = { weekday: 'short', month: 'numeric', day: 'numeric', hour: 'numeric', minute:'numeric' };
           const formattedDate = dateObject.toLocaleString('en-US', options);
           el.date = formattedDate
           array.push(el)
@@ -56,7 +57,7 @@ function Homepage() {
       setData(array)
     })
     .catch(error => console.log('Error displaying entries on homepage'))
-  })
+  },[data])
   
   // const navigate = useNavigate();
 
@@ -88,6 +89,55 @@ function Homepage() {
     .catch(err => console.log(err))
   }
 
+  //update pop up modal:
+  const [ open, setOpen ] = useState(false);
+  const [ itemId, setItemId ] = useState(null)
+  const [ formData, setFormData ] = useState({
+    bloodSugar:'',
+    sysPressure:'',
+    diaPressure:'',
+  })
+
+  const handleOpen = (theId) => {
+    setOpen(true);
+    setItemId(theId)
+  };
+
+  const handleClose = () => {
+    setOpen(false)
+    setItemId(null)
+    setFormData({
+      bloodSugar:'',
+      sysPressure:'',
+      diaPressure:''
+    })
+  }
+
+  const handleSubmit = () => {
+    if (itemId) {
+      const selectedItem = data.find(item => item._id === itemId)
+      if (selectedItem) {
+        fetch('http://localhost:3000/api/update/', {
+          method: 'PATCH',
+          headers: {
+            'Content-Type':'application/json'
+          },
+          body: JSON.stringify({
+            id: itemId,
+            bloodSugar: formData.bloodSugar,
+            sysPressure: formData.sysPressure,
+            diaPressure: formData.diaPressure,
+          })
+        })
+      }
+    }
+  }
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({...formData, [name]:value})
+  }
+
   return (
     <div>
       <h1>VEKTOR</h1>
@@ -112,11 +162,25 @@ function Homepage() {
               <div>Blood Pressure: {item.sysPressure} / {item.diaPressure} mmHg</div>
             </div>
             <div className='entryBtn'>
-              <button className='updateBtn'><FontAwesomeIcon icon={faPen} /></button>
+              <button className='updateBtn'><FontAwesomeIcon icon={faPen}  type='button' onClick={() => handleOpen(item._id)}/></button>
               <button className='deleteBtn'><FontAwesomeIcon icon={faTrash} onClick={() => handleDelete(item._id)}/></button>
             </div>
           </div>
         ))}
+              <Modal isOpen={open} onClose={handleClose}  onSubmit={handleSubmit}>
+                <div>
+                  <form>
+                    <div>
+                      <label>Blood Sugar</label>
+                      <input type='text' onChange={handleChange} name='bloodSugar'/> mg/dL
+                    </div>
+                    <div>
+                      <label>Blood Pressure</label>
+                      <input type='text' onChange={handleChange} name='sysPressure'/> / <input type='text' onChange={handleChange} name='diaPressure'/> mmHg
+                    </div>
+                  </form>
+                </div>
+              </Modal>
       </div>
     </div>
   );

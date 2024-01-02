@@ -20,7 +20,7 @@ function BloodPressureGraph({username}) {
 						systolicPressures.push(data[i].sysPressure)
 						diabolicPressures.push(data[i].diaPressure)
 						const dateObject = new Date(data[i].date)
-						const options = { weekday: 'short', month: 'short', day: 'numeric'};
+						const options = {  month: 'short', day: 'numeric', hour: 'numeric', minute:'numeric'};
 						const formattedDate = dateObject.toLocaleString('en-Us', options);
 						bpDates.push(formattedDate)
 					}
