@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+//Should import useCookies
 
 function SignUp() {
     const [ signUp, setSignUp ] = useState({
@@ -9,7 +10,12 @@ function SignUp() {
         username:'',
         password:'',
     })
+    /**Use Navigate to use react router dom to switch pages */
     const navigate = useNavigate();
+
+    /**handleChange function to get text from every input field,
+     * spreads the signUp object and adds the updated property to it using setSignUp
+     */
     const handleChange = (e) => {
         e.preventDefault();
         try {
@@ -19,10 +25,12 @@ function SignUp() {
             console.error('error occurred in extracting values from form')
         }
     }
+    /** cancel button to navigate user back to homepage */
     const handleCancel = (e) => {
         navigate('/')
     }
 
+    /** handleSubmit fetch request to back end */
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
