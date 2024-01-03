@@ -38,7 +38,7 @@ function BloodPressureGraph({username}) {
 				}
 			setData(chartData);
 			})
-	})
+	}, [])
 
 
 

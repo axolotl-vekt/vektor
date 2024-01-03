@@ -3,6 +3,9 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 //Should import useCookies
 
+/**
+ * Signup page for creating an Account
+ */
 function SignUp() {
     const [ signUp, setSignUp ] = useState({
         firstName:'',
@@ -30,7 +33,7 @@ function SignUp() {
         navigate('/')
     }
 
-    /** handleSubmit fetch request to back end */
+    /** handleSubmit fetch request to back end to POST a new user to the DB*/
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {

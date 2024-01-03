@@ -2,6 +2,9 @@ import React from 'react';
 import Cards from './Cards'
 import Navbar from './Navbar'
 
+/** 
+ * Renders a link to the memory game
+ * */
 function MemoryGame() {
   /**returns to card.jsx */
   return (
