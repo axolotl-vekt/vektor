@@ -1,11 +1,19 @@
+/** Importing in Mongo DB Schema */
 const Info = require('../models/entryModel');
 const Session = require('../models/sessionModel');
 const User = require('../models/userModel');
 
 const controller = {};
 
+/** create user middleware
+ * We should add first name and last name (and other info) to user collection
+*/
 controller.createUser = async (req, res, next) => {
+    /** get usernmae and password from front end */
     const { username, password } = req.body
+    /** check that username and password were sent from front end
+     * otherwise return error
+     */
     if (!username || !password) {
         return next({
             log: 'Error in createUser middleware',
@@ -13,12 +21,17 @@ controller.createUser = async (req, res, next) => {
             error: 'Error in creating user, please follow rules for username and password'
         })
     }
+    /** asynchronously create new user in db
+     * sending username, password
+     * getting back newUser entry
+     */
     try {
         const newUser = await User.create({
             username: username,
             password: password,
         })
         console.log('got the newUser')
+        /** sending user id back to router.js */
         res.locals.newUser = newUser._id;
         return next();
     } catch (error) { return next({
@@ -29,11 +42,16 @@ controller.createUser = async (req, res, next) => {
     }
 }
 
+/** verify user middleware */
 controller.verifyUser = async (req, res, next) => {
+     /** get usernmae and password from front end */
     const { username, password } = req.body
+    /** asynchronously query database to find username and password
+     * and getting back verified user entry */
     try {
         const userConfirmed = await User.findOne({ username, password })
         if (userConfirmed) {
+            /** sending verified user id to router.js */
             res.locals.id = userConfirmed._id;
             return next();
         }
@@ -46,7 +64,9 @@ controller.verifyUser = async (req, res, next) => {
     }
 }
 
+/** getInfo middleware */
 controller.getInfo = async (req,res,next) => {
+    /** query "Info" collection of database, send back ALL data */
     try{
         const data = await Info.find({})
         if (data) {
@@ -90,9 +110,11 @@ controller.getInfo = async (req,res,next) => {
 // }
 
 
-
+/** createEntry middleware*/
 controller.createEntry = async (req, res, next) => {
+    /** get username, bloodSugar, sysPressure, and diaPressure from front end */
     const { username, bloodSugar, sysPressure, diaPressure } = req.body
+    /** asynchronously create document in "Info" collection */
     try {
         const newEntry = await Info.create({
             username,
@@ -101,6 +123,7 @@ controller.createEntry = async (req, res, next) => {
             diaPressure,
         })
         console.log('created entry')
+        /** send id of document back to router.js */
         res.locals.entry = newEntry._id;
         return next();
     } catch (error) { return next({
@@ -112,7 +135,9 @@ controller.createEntry = async (req, res, next) => {
 
 }
 
+/** deleteEntry middleware */
 controller.deleteEntry = async (req, res, next) => {
+    /** get id of data point (document in Info) from front end */
     const { id } = req.params;
     console.log(req.params)
     try {
@@ -128,8 +153,11 @@ controller.deleteEntry = async (req, res, next) => {
     }
 }
 
+/** updateEntry middleware */
 controller.updateEntry = async (req, res, next) => {
+    /** get bloodSugar, sysPressure, diaPressure and data point id from front end */
     const { bloodSugar, sysPressure, diaPressure, id } = req.body;
+    /** query Info collection using id; update document's fields */
     try {
         await Info.updateOne({_id:id},{bloodSugar, sysPressure, diaPressure})
         return next();

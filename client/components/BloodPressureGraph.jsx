@@ -56,7 +56,7 @@ function BloodPressureGraph({username}) {
 				}
 			setData(chartData);
 			})
-	})
+	}, [])
 /** 
  * component returns a div containing a Line chart from react-chartjs-2, and it passes the 
  * userData as the data prop for the chart. 
