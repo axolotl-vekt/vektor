@@ -15,7 +15,7 @@ function LineGraph({username}) {
     labels: '',
     datasets: [],
   })
-
+// test comment
 
   useEffect(() => {
     fetch('http://localhost:3000/api/homepage/bloodsugar')
