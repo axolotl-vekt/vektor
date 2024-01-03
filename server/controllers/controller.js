@@ -1,54 +1,67 @@
-const Info = require('../models/entryModel');
-const Session = require('../models/sessionModel');
-const User = require('../models/userModel');
+const Info = require('../models/dataModel');
+const Session = require('../models/dataModel');
+const User = require('../models/dataModel');
+const bcrypt = require('bcrypt');
 
 const controller = {};
 
 controller.createUser = async (req, res, next) => {
     const { username, password } = req.body
+    
     if (!username || !password) {
-        return next({
-            log: 'Error in createUser middleware',
-            status: 400,
-            error: 'Error in creating user, please follow rules for username and password'
-        })
+        return 
+        next({
+            log: 'Error happened at createUser middleware',
+            message: { error: 'User not created' },
+          });
     }
+
     try {
+
+        const hashedPassword = await bcrypt.hash(10);
         const newUser = await User.create({
             username: username,
-            password: password,
+            password: hashedPassword,
         })
-        console.log('got the newUser')
+        console.log('got the newUser');
+
         res.locals.newUser = newUser._id;
-        return next();
+        next();
+        
     } catch (error) { return next({
         log: 'Error in createUser middleware',
-            status: 500,
-            error: 'Error in creating user'
+        status: 500
         })
     }
 }
 
 controller.verifyUser = async (req, res, next) => {
     const { username, password } = req.body
+
     try {
-        const userConfirmed = await User.findOne({ username, password })
+        const userConfirmed = await User.findOne({ username })
+        console.log("=> User Name Found:", username);
+
         if (userConfirmed) {
-            res.locals.id = userConfirmed._id;
+            const passwordMatch = await bcrypt.compare(password, userConfirmed.password)
+            console.log("=> Password Found:", username);
+        if (passwordMatch){
+            res.locals.id = userConfirmed._id; //do not change - Mongoose
             return next();
-        }
+            }
+        } //else statement for err handle username & password
+
     } catch (error) {
         return next({
-            log: 'Error in getUser middleware',
-            status: 500,
-            error: 'Error in getting user'
+            log: ('Error in Controller.verifyUser', error),
+            status: 500
         })
     }
 }
 
 controller.getInfo = async (req,res,next) => {
     try{
-        const data = await Info.find({})
+        const data = await Info.find({}) //compete logic for "/homepage" sugar tracking card
         if (data) {
             res.locals.data = data;
             return next();
@@ -56,8 +69,7 @@ controller.getInfo = async (req,res,next) => {
     } catch (error) {
         return next({
             log: 'Error in getSugar middleware',
-            status: 500,
-            error: 'Error in retreiving sugar levels'
+            status: 500
         })
     }
 }
@@ -92,7 +104,8 @@ controller.getInfo = async (req,res,next) => {
 
 
 controller.createEntry = async (req, res, next) => {
-    const { username, bloodSugar, sysPressure, diaPressure } = req.body
+    const { username, bloodSugar, sysPressure, diaPressure } = req.body;
+
     try {
         const newEntry = await Info.create({
             username,
@@ -109,7 +122,6 @@ controller.createEntry = async (req, res, next) => {
             error: 'Error in creating entry'
         })
     }
-
 }
 
 controller.deleteEntry = async (req, res, next) => {

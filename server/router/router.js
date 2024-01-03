@@ -4,11 +4,11 @@ const controller = require('../controllers/controller');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    return res.sendFile(path.resolve(__dirname, '../../client/index.html'))
+    return res.status(200).sendFile(path.resolve(__dirname, '../../client/index.html'))
 });
 
 router.get('/homepage', (req, res) => {
-    return res.sendFile(path.resolve(__dirname, '../../client/index.html'))
+    return res.status(200).sendFile(path.resolve(__dirname, '../../client/index.html'))
 });
 
 router.get('/homepage/bloodsugar', controller.getInfo, (req,res) => {

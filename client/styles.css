@@ -1,11 +1,8 @@
-* {
-  margin:0;
-  padding: 0;
-}
 
-/* html {
+html {
   background-color: #ccd5ae;
-} */
+}
+/*
 h1 {
   text-align: center;
   font-family:'Courier New', Courier, monospace;
@@ -15,11 +12,11 @@ h1 {
 .loginPageContainer {
   display: flex;
 }
-/* #overlay {
+#overlay {
   position: fixed;
   top: 470px;
   right: 240px;
-} */
+}
 .loginImg {
   display: flex;
   height: 100%;
@@ -175,7 +172,7 @@ body {
   justify-content: space-between;
   text-align: left;
   margin-left: 1em;
-  /* ----------- */
+  
   position: relative;
   padding: 32px;
   width: 100%;
@@ -187,13 +184,13 @@ body {
 }
 
 .entries-container{
-  /* flex-direction: column;
+  flex-direction: column;
   position: fixed;
   top: 0;
   left: 0;
   width: 45%;
   height: 45%;
-  background-color: rgb(235, 216, 216); */
+  background-color: rgb(235, 216, 216); 
 
   display: flex;
   justify-content: center;
@@ -337,8 +334,8 @@ body {
 }
 
 .individualCards img {
-  /* max-width: 80%;
-  max-height: 100px; */
+  max-width: 80%;
+  max-height: 100px; 
   transform: scale(0);
   animation: 2s hideImg linear;
   transition: transform 0.5s;
@@ -422,4 +419,4 @@ body {
 .modalContainer {
   position: fixed;
   background-color: grey;
-}
+} */
