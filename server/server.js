@@ -9,7 +9,7 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const PORT = 3000;
 
-const MONGO_URI = 
+const MONGO_URI = "mongodb+srv://cathyluong93:pE6Fqys2z94A9czA@cluster0.6zljii0.mongodb.net/?retryWrites=true&w=majority";
 
 // 'mongodb+srv://tawniex44:3vd5DPgTjLU819sO@cluster0.7z5ioep.mongodb.net/?retryWrites=true&w=majority'
 
