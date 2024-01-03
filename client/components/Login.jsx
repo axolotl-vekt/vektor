@@ -12,22 +12,10 @@ function Login(props) {
     const navigate = useNavigate();
 
 
-    const [ cookies, setCookies ] = useCookies(["username"]);
-
-    const handleCookies = () => {
-        setCookies('username', loginData.username, {path: '/', secure: true})
-    }
-
-    const handleChange = (e) => {
-        e.preventDefault();
-        const { name, value } = e.target;
-        setLogin({...loginData, [name]:value});
-    }
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log('login: ', username, password);
-        
+
         try {
             const loginInfo = {
             method: 'POST',
