@@ -4,6 +4,7 @@ const router = require('./router/router.js');
 const crypto = require('crypto');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 
 const PORT = 3000;
@@ -21,6 +22,8 @@ app.use(session({
   saveUninitialized: true,
   cookie: {
     maxAge: 1000 * 60 * 60 * 24, // 1 day (86,400,000ms)
+    httpOnly: true,
+    
   },
 }));
 
