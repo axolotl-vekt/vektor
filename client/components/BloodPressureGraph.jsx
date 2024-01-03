@@ -3,15 +3,29 @@ import { useState, useEffect } from 'react'
 import { Line } from 'react-chartjs-2'
 
 function BloodPressureGraph({username}) {
+
+	/**
+	 * initialize userData to store labels and datasets
+	 */
 	const [ userData, setData ] = useState({
 		labels: '',
 		datasets: [],
 	})
-
+	/**
+	 * initialize arrays to store individual data
+	 */
 	const systolicPressures = [];
 	const diabolicPressures = [];
 	const bpDates = [];
+
+	/**
+	 * fetches blood pressure data from the api
+	 */
 	useEffect(() => {
+		/**
+		 * upon successful request, loops through fetched data and checks if the data already has a sysPressure
+		 * property, and if the username matches. if it does it extracts that data and stores it in the arrays.
+		 */
 		fetch('http://localhost:3000/api/homepage/bloodsugar')
 			.then(response => response.json())
 			.then(data => {
@@ -25,6 +39,10 @@ function BloodPressureGraph({username}) {
 						bpDates.push(formattedDate)
 					}
 				}
+				/**
+				 * creates a chartData object with labels and datasets properties, which will be used to update the 
+				 * state variable.
+				 */
 				const chartData = {
 					labels: bpDates,
 					datasets: [
@@ -39,9 +57,10 @@ function BloodPressureGraph({username}) {
 			setData(chartData);
 			})
 	})
-
-
-
+/** 
+ * component returns a div containing a Line chart from react-chartjs-2, and it passes the 
+ * userData as the data prop for the chart. 
+ * */
   return (
     <div style={{ width: 700 }}>
       <Line data={userData}/>
