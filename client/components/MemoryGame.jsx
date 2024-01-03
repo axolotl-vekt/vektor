@@ -6,6 +6,7 @@ import Navbar from './Navbar'
  * Renders a link to the memory game
  * */
 function MemoryGame() {
+  /**returns to card.jsx */
   return (
     <div>
       <Navbar />

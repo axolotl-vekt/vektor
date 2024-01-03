@@ -13,31 +13,43 @@ import Quotes from './Quotes'
 function Homepage() {
   
   function getCookie(name) {
+    /**place the data into an array */
     const cookies = document.cookie.split('; ');
+    console.log('COOKIES', cookies)
+    /**iterate through the cookies array */
     for (const cookie of cookies) {
+      /**checks if the array contains '=' and removes it*/
       const [cookieName, cookieValue] = cookie.split('=');
+      /**if cookieName matches name, then we will return the cookieValue */
       if (cookieName === name) {
         return cookieValue;
       }
     }
+    /**else return null */
     return null;
   }
+  /**assign usernameCookie to username - login name */
   const usernameCookie = getCookie('username')
   console.log(usernameCookie)
   const cards = [];
   // for (let i = 0; i < 3; i++) {
   //   cards.push(<InfoCard key={crypto.randomUUID()}/>);
   // }
+  /**set buttonPopup to false */
   const [buttonPopup, setButtonPopup] = useState(false);
+  /**set data to empty array */
   const [ data, setData ] = useState([]);
 
   useEffect(() => {
+    /**fetching the data from router/homepage - which grabs all of the data from mongodb */
     fetch('http://localhost:3000/api/homepage/bloodsugar')
+    /**parses the data */
     .then(response => response.json())
     .then(data => {
       const array = []
+      /**iterate through the data */
       data.forEach(el => { 
-      
+      /**check if the username makes the usernameCookie */
         if(el.username === usernameCookie){
           const dateObject = new Date(el.date);
           const options = { weekday: 'short', month: 'numeric', day: 'numeric', hour: 'numeric', minute:'numeric' };
@@ -58,6 +70,10 @@ function Homepage() {
       setData(array)
     })
     .catch(error => console.log('Error displaying entries on homepage'))
+<<<<<<< HEAD
+    /**removed data from [data] - so browser does constantly render */
+=======
+>>>>>>> dev
   },[])
   
   // const navigate = useNavigate();
@@ -67,10 +83,12 @@ function Homepage() {
   // };
 
   function getCookie(cookieName) {
+    /**stores data into array */
     const cookies = document.cookie.split('; ');
-  
+    /**iterates through the array and removes the '=' */
     for (const cookie of cookies) {
       const [name, value] = cookie.split('=');
+      /**returns the value if name equals to cookieName */
       if (name === cookieName) {
         return decodeURIComponent(value);
       }
@@ -79,6 +97,7 @@ function Homepage() {
     return null;
   }
 
+  /**deletes the account */
   const handleDelete = (id) => {
     fetch(`http://localhost:3000/api/delete/${id}`, {
       method: 'DELETE',
@@ -114,6 +133,7 @@ function Homepage() {
     })
   }
 
+  /**saves the blood/press entries */
   const handleSubmit = () => {
     if (itemId) {
       const selectedItem = data.find(item => item._id === itemId)
