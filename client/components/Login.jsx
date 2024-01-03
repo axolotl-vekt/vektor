@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import { useCookies } from 'react-cookie';
-
+//need to fix cookie data flow, probably on the back end
 
 function Login() {
     const [ loginData, setLogin ] = useState({
@@ -17,12 +17,15 @@ function Login() {
     }
 
     const navigate = useNavigate();
+
+    /**handles input */
     const handleChange = (e) => {
         e.preventDefault();
         const { name, value } = e.target;
         setLogin({...loginData, [name]:value})
     }
 
+    /**does fetch request */
     const handleSubmit = async (e) => {
         e.preventDefault();
         // check what route for get request for login
