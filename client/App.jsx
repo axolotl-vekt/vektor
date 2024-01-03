@@ -7,6 +7,8 @@ import FoodLog from './components/FoodLog';
 import Games from './components/Games';
 import MemoryGame from './components/MemoryGame';
 
+//add testing
+
 function App() {
   return (
     
