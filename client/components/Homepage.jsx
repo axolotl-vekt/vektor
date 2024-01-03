@@ -58,7 +58,7 @@ function Homepage() {
       setData(array)
     })
     .catch(error => console.log('Error displaying entries on homepage'))
-  },[data])
+  },[])
   
   // const navigate = useNavigate();
 

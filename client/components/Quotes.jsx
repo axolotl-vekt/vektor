@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
 
+
+
+/** 
+ * fetches a quote from a quote api and renders it.
+ * */
+
 const quotesAPI = 'https://type.fit/api/quotes';
 
 function Quotes () {

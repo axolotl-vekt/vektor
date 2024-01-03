@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { Chart as ChartJS} from 'chart.js/auto'
 
 /** Line graph function that takes in username and
- * renders a line graph of blood sugar levels
+ * renders a line graph of blood sugar levels with chargJS
  * */
 function LineGraph({username}) {
 
@@ -18,10 +18,16 @@ function LineGraph({username}) {
   })
 
 
+/** 
+ * fetches all data from database and returns it.
+ * Then iterates through the data and pushes it to sugarLevel array and sugarDate array
+ * then sets the userData state
+ * */
   useEffect(() => {
     fetch('http://localhost:3000/api/homepage/bloodsugar')
       .then(response => response.json())
       .then(data => {
+        console.log("DATA", data)
         for (let i = 0; i < data.length; i++) {
           if (Object.hasOwn(data[i],'bloodSugar') && data[i].username===username) {
             sugarLevel.push(data[i].bloodSugar)
@@ -42,7 +48,7 @@ function LineGraph({username}) {
         }
         setData(chartData)
       })
-    })
+    }, [])
 
 /** Renders a line graph by passing in userData into a Line component from react chart js
  * */
