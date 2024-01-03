@@ -1,0 +1,467 @@
+body {
+  background-color: #faedcd;
+}
+
+* {
+  margin:0;
+  padding: 0;
+}
+
+h3 {
+  text-align: center;
+  background-color: #578b61;
+  color: rgb(165, 213, 180);
+  padding-bottom: 10px;
+}
+
+h1 {
+  text-align: center;
+  font-family:'Courier New', Courier, monospace;
+  font-size: 50px;
+  background-color: #578b61;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+ 
+.loginPageContainer {
+  display: flex;
+}
+
+.loginImg {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+.loginContainer {
+    display: flex;
+    justify-content: space-around;
+    background-color: #ccd5ae;
+}
+.loginCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    justify-items: center;
+    width: 25rem;
+    border-radius: 10px;
+    margin: 10rem;
+    padding: 5rem 0;
+    box-shadow: 10px 10px 10px #3a5a40;
+}
+
+.loginTitle {
+    padding: 0;
+    margin: 0;
+}
+
+.loginInputForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+.loginLabelDiv {
+    margin-top: 1rem;
+    justify-items: center;
+    font-size: 17px;
+}
+
+.loginInput {
+    border: none;
+    border-radius: 10px;
+    height: 2rem;
+    width: 15rem;
+    background-color: #e9edc9;
+    text-align: center;
+}
+
+.loginButton {
+    width: 100%;
+}
+
+.loginBtn {
+    padding: 1rem;
+}
+
+.loginBtn button {
+  background-color: #ccd5ae;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.loginBtn button:hover {
+  cursor: pointer;
+}
+
+/* --------signup page---------- */
+.signUpPageContainer {
+  display: flex;
+  justify-content: space-around;
+  background-color: #ccd5ae;
+}
+
+.signUpCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: white;
+  border-radius: 15px;
+  padding: 5rem;
+  margin: 10rem;
+  box-shadow: 10px 10px 10px #3a5a40;
+}
+
+.signUpTitle {
+  padding-bottom: 2rem;
+}
+
+.signUpInput {
+  border: none;
+  border-bottom: 1px solid grey;
+  margin: 1rem;
+  width: 10rem;
+  text-align: center;
+}
+
+.signUpInput:focus {
+  outline:none;
+}
+
+.signUpButtons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.signUpSubmitBtn {
+  border: none;
+  background-color: #ccd5ae;
+  color: white;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+.signUpCancelBtn {
+  border: 2px solid #ccd5ae;
+  background-color: white;
+  border-radius: 5px;
+  padding: 0.5rem;
+}
+
+.signUpSubmitBtn, .signUpCancelBtn:hover {
+  cursor: pointer;
+}
+
+
+/* --------- homepage --------- */
+.hp-header {
+  background-color: #ccd5ae;
+  text-align: center;
+  font-size: 80px;
+  color: #ffffff
+}
+
+.entries-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* for elements to be fully centered --> translate */
+  transform: translate(-50%,-50%);
+  width: 250px;
+  height: 100px;
+  
+  /* for elements to be fully centered --> translate */
+  transform: translate(-50%,-50%);
+  background-color: #f9f1de;
+  /* background-color: grey; */
+  text-align: center;
+  border-style: solid;
+  height: 15em;
+  width: 20em;
+  border-radius: 1em;
+  border-color: #c5a789;
+  box-shadow: 5px 5px 5px #7e644a;
+}
+
+#newEntryBtns {
+  display: flex;
+  justify-content: center;
+}
+
+.entries {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+  margin-left: 1em;
+  /* ----------- */
+  position: relative;
+  padding: 32px;
+  width: 100%;
+  max-width: 640px;
+}
+
+.cardContainer {
+  display: flex;
+}
+
+#newEntry-btn {
+  background-color: #edc298;
+  border: none;
+  border-radius: 1em;
+  height: 2em;
+  width: 6em;
+  margin: 2em;
+}
+
+#newEntry-btn:hover {
+  transform: scale(1.08);
+  cursor: pointer;
+}
+
+.updateBtn, .deleteBtn {
+  background-color: transparent;
+  border: none;
+  padding: 10px;
+  color: rgb(82, 81, 81);
+}
+
+.updateBtn:hover, .deleteBtn:hover , .save-entry-btn:hover, .popup-close-btn:hover {
+  cursor: pointer;
+}
+
+.entryBtn {
+  align-self: flex-end;
+  align-self: center;
+}
+
+.bloodSugarInput {
+  display: flex;
+}
+
+.bloodSugarInput input {
+  width: 27px;
+}
+
+.bloodPressure {
+  display: flex;
+}
+
+.inputBar {
+  width: 27px;
+}
+
+.paragraphBP {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.popup-close-btn {
+  background-color: #edc298;
+  border: none;
+  border-radius: 1em;
+  height: 2em;
+  width: 6em;
+  margin: 2em;
+  /* margin-top: 0; */
+}
+
+.save-entry-btn {
+  background-color: #edc298;
+  border: none;
+  border-radius: 1em;
+  height: 2em;
+  width: 6em;
+  margin: 2em;
+}
+
+.graphs {
+  display: flex;
+}
+
+.navBarContainer {
+  background-color: #c4cea0;
+  padding: 1rem;
+}
+
+.navBarList {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+}
+
+.navigationLinks:hover {
+  text-decoration: underline;
+  color: white;
+}
+
+.gameContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.gameName {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.boardGame {
+  height: 700px;
+  width: 700px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 1em;
+}
+
+.individualCards {
+  max-width: 80%;
+  max-height: 10rem;
+  padding: 4px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  transform: rotateY(180deg);
+  animation: 2s hideCard linear;
+  transition: transform 0.5s;
+}
+
+@keyframes hideCard{
+  0%, 70%{
+    transform: rotateY(0);
+  }
+  100%{
+    transform: rotateY(180deg);
+  }
+}
+
+.individualCards img {
+  /* max-width: 80%;
+  max-height: 100px; */
+  transform: scale(0);
+  animation: 2s hideImg linear;
+  transition: transform 0.5s;
+}
+
+@keyframes hideImg {
+  0%, 70% {
+    transform: scale(1);
+  }
+  100%{
+    transform: scale(0)
+  }
+}
+
+.individualCards.active {
+  transform: rotateY(0);
+  
+}
+
+.individualCards.wrong {
+  background-color: red;
+  
+}
+
+.individualCards.correct {
+  background-color: green;
+  
+}
+
+.individualCards.active img {
+  transform: scale(1);
+  
+}
+
+.graphs {
+  display: flex;
+  justify-content: space-around;
+}
+
+.entriesContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+}
+
+.newEntryBtnContainer {
+  display: flex;
+  justify-content: space-around;
+  align-self: center;
+}
+
+.entriesHomepage {
+  display: flex;
+  justify-content: space-around;
+  background-color: #ccd5ae;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid black;
+  width: 20rem;
+  margin: 10px;
+  box-shadow: 5px 5px 5px #3a5a40;
+}
+
+.oneGame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5rem;
+  background-color: #ccd5ae;
+  width: 250px;
+  padding: 0 0 1rem;
+  font-size: 25px;
+  color: white;
+}
+
+.memoryGame {
+  text-align: center;
+  color: white;
+}
+
+.modalContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* for elements to be fully centered --> translate */
+  transform: translate(-50%,-50%);
+  width: 250px;
+  height: 100px;
+  background-color: #e3eacc;
+  border-radius: 5px;
+  box-shadow: 10px 10px 10px #3a5a40;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+
+.inputHealth {
+  width: 27px;
+}
+
+.modalBtnContainer {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 20px;
+}
+
+.modalBtn {
+  background-color: #467750;
+  color: white;
+  border-radius: 10px;
+  padding: 5px;
+  border: none;
+}
+
+.modalBtn:hover {
+  cursor: pointer;
+}
