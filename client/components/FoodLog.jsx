@@ -15,8 +15,7 @@ const useInput = ({ start }) => {
 function FoodLog(props) {
   
   const username = props.getCookie('username');
-  const [image, setImage] = useState('');
-  // const [date, setDate] = useInput('');
+  const [date, setDate] = useInput('');
   const [bloodSugar, setBloodSugar] = useInput('');
   const [sysPressure, setSysPressure] = useInput('');
   const [diaPressure, setDiaPressure] = useInput('');
@@ -27,7 +26,6 @@ function FoodLog(props) {
     e.preventDefault();
     const body = {
       username,
-      image,
       date,
       bloodSugar,
       sysPressure,
@@ -50,31 +48,31 @@ function FoodLog(props) {
     }
   };
 
-  const date = new Date();
+  const today = new Date();
 
   return (props.trigger) ? (
-    <div>
-    <form className='entries-container'>
+    <div className="entries-form-container">
+    <form className='entries-form' onSubmit={saveEntry}>
       <div className='entries'>
-        {image === '' || image === null ? ('') : 
-        (<img width={250} height={250} src={image} alt='Recipe Image' />
-        )}
-        <label>
-          Date: {date.toLocaleDateString()}
+        <label className="dateLabel">
+          Date: {today.toLocaleDateString()}
         </label>
         <label className='bloodSugarInput'>
           Blood Sugar:
-          <input value={bloodSugar || ''} onChange={setBloodSugar}></input> <p className='paragraphBP'>mg/dL</p>
+          <input className="inputBar"
+            value={bloodSugar} 
+            onChange={(e)=>setBloodSugar(e.target.value)}>
+          </input> <p className='paragraphBP'>mg/dL</p>
         </label>
         <label className='bloodPressure'>
           Blood Pressure:
           <input className='inputBar'
-            value={sysPressure || ''}
-            onChange={setSysPressure}
+            value={sysPressure}
+            onChange={(e)=>setSysPressure(e.target.value)}
           ></input> <p className='paragraphBP'>/</p>
           <input className='inputBar'
-            value={diaPressure || ''}
-            onChange={setDiaPressure}
+            value={diaPressure}
+            onChange={(e)=>setDiaPressure(e.target.value)}
           ></input> <p className='paragraphBP'>mmHg</p>
         </label>
         {/* <label>
