@@ -36,20 +36,18 @@ function FoodLog(props) {
       time
     };
     try {
-      const response = await fetch('http://localhost:3000/api/entry', {
+      const options = {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(body),
-      });
+      };
 
+      const response = await fetch('http://localhost:3000/api/entry', options)
       const data = await response.json();
-      console.log(data);
-      console.log('Data Posted!');
-      navigate('/homepage')
+      console.log('Data Posted: ', data);
+      navigate('/homepage');
     } catch (error) {
-      console.error('Error in front-end:', error.message);
+        console.error('Error in front-end:', error.message);
     }
   };
 

@@ -1,37 +1,46 @@
-const Info = require('../models/dataModel');
-const Session = require('../models/dataModel');
-const User = require('../models/dataModel');
+const { Session, User, Info} = require('../models/dataModel');
+const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const controller = {};
 
 controller.createUser = async (req, res, next) => {
-    const { username, password } = req.body
+    const { username, password, firstName, lastName } = req.body
     
-    if (!username || !password) {
-        return 
-        next({
-            log: 'Error happened at createUser middleware',
-            message: { error: 'User not created' },
-          });
-    }
-
+    if (!username || !password || !firstName || !lastName) {
+        return next({
+            log: '=> ERROR - Username/Password Missing',
+            status: 500,
+            message: {error:  'User not created'},
+        });
+    };
+    
     try {
+        const salt = await bcrypt.genSalt();
+        const hashedPassword = await bcrypt.hash(password, salt)
 
-        const hashedPassword = await bcrypt.hash(10);
-        const newUser = await User.create({
+        const user = new User({
+            firstName: firstName,
+            lastName: lastName,
             username: username,
-            password: hashedPassword,
-        })
-        console.log('got the newUser');
+            password: hashedPassword
+        });
 
-        res.locals.newUser = newUser._id;
-        next();
-        
-    } catch (error) { return next({
-        log: 'Error in createUser middleware',
-        status: 500
-        })
+        console.log("newUser Schema: ", user)
+
+        await user.save();
+        console.log('=> User Created');
+
+        res.locals.userId = user._id;
+        res.json({message: 'username & password loaded', verified: true});
+        return next();
+    } 
+    
+    catch (error) { return next({
+        log: '=> ERROR - Exited Early - Create User Error',
+        status: 500,
+        message: {error:'Username unavailable'},
+    })
     }
 }
 
@@ -52,10 +61,7 @@ controller.verifyUser = async (req, res, next) => {
         } //else statement for err handle username & password
 
     } catch (error) {
-        return next({
-            log: ('Error in Controller.verifyUser', error),
-            status: 500
-        })
+        next({ message: 'Could not verify user' });
     }
 }
 
@@ -68,8 +74,9 @@ controller.getInfo = async (req,res,next) => {
         }
     } catch (error) {
         return next({
-            log: 'Error in getSugar middleware',
-            status: 500
+            log: 'Error in getInfo middleware',
+            status: 500,
+            message: {error: 'Error getting info'}
         })
     }
 }
@@ -116,10 +123,11 @@ controller.createEntry = async (req, res, next) => {
         console.log('created entry')
         res.locals.entry = newEntry._id;
         return next();
-    } catch (error) { return next({
-        log: 'Error in createEntry middleware',
+    } catch (error) { 
+        return next({
+            log: 'Error in createEntry middleware',
             status: 500,
-            error: 'Error in creating entry'
+            message: {error: 'Error in creating entry'}
         })
     }
 }
@@ -135,7 +143,7 @@ controller.deleteEntry = async (req, res, next) => {
         return next({
             log: 'Error in deleteEntry middleware',
             status: 500,
-            error: 'Error in deleting entry'
+            message: {error: 'Error deleting entry'}
         })
     }
 }
@@ -151,7 +159,7 @@ controller.updateEntry = async (req, res, next) => {
         return next({
             log: 'Error in updateEntry middleware',
             status: 500,
-            error: 'Error in updating entry'
+            message: {error: 'Error updating entry'}
         })
     }
 }

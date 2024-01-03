@@ -16,7 +16,7 @@ router.get('/homepage/bloodsugar', controller.getInfo, (req,res) => {
 })
 
 router.post('/signup', controller.createUser, (req,res) => {
-    return res.status(200).json(res.locals.newUser)
+    return res.status(200).send('passing through router.post/home')
 })
 
 router.post('/login', controller.verifyUser, (req,res) => {
