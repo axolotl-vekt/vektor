@@ -1,3 +1,4 @@
+/** Mongo database schema for sessions collection - not currently used */
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 

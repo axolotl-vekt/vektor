@@ -11,11 +11,12 @@ function LineGraph({username}) {
   const sugarLevel =[];
   const sugarDate = [];
 
+
   const [ userData, setData ] = useState({
     labels: '',
     datasets: [],
   })
-// test comment
+
 
 /** 
  * fetches all data from database and returns it.
@@ -49,6 +50,8 @@ function LineGraph({username}) {
       })
     }, [])
 
+/** Renders a line graph by passing in userData into a Line component from react chart js
+ * */
   return (
     <div style={{ width: 700 }}>
       <Line data={userData} />
