@@ -1,12 +1,28 @@
 const path = require('path');
 const express = require('express');
 const router = require('./router/router.js');
+const crypto = require('crypto');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const FileStore = require('session-file-store')(session);
 
 const PORT = 3000;
 
+const generateSecretKey = () => {
+  return crypto.randomBytes(32).toString('hex');
+};
+
 const app = express();
+
+app.use(session({
+  store: new FileStore(), 
+  secret: generateSecretKey(), 
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24, // 1 day (86,400,000ms)
+  },
+}));
 
 app.use(express.json());
 app.use(cors())

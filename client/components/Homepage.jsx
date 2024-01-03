@@ -3,7 +3,7 @@ import { Link, useNavigate} from 'react-router-dom'
 import FoodLog from './FoodLog';
 import SugarGraph from './SugarGraph';
 import BloodPressureGraph from './BloodPressureGraph'
-import Navbar from './Navbar'
+import Navbar, { items } from './Navbar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 import Modal from './Modal'
@@ -140,9 +140,9 @@ function Homepage() {
 
   return (
     <div>
-      <h1>VEKTOR</h1>
+      {/* <h1>VEKTOR</h1> */}
       <div>
-        <Navbar />
+        <Navbar items ={items}/>
       </div>
       <div className='graphs'>
         <SugarGraph username={usernameCookie}/>
