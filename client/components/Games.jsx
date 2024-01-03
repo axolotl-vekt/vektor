@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import Navbar from './Navbar'
 
 function Games() {
+   /**Game navigation bar for the top of the website. */
+  /**link to MemoryGame.jsx - which we see the memory game title plus brain image*/
   return (
     <div>
       <Navbar />

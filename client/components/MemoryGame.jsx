@@ -3,6 +3,7 @@ import Cards from './Cards'
 import Navbar from './Navbar'
 
 function MemoryGame() {
+  /**returns to card.jsx */
   return (
     <div>
       <Navbar />
