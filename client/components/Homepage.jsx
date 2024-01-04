@@ -70,10 +70,7 @@ function Homepage() {
       setData(array)
     })
     .catch(error => console.log('Error displaying entries on homepage'))
-<<<<<<< HEAD
     /**removed data from [data] - so browser does constantly render */
-=======
->>>>>>> dev
   },[])
   
   // const navigate = useNavigate();
