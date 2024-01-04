@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 
+
 const PORT = 3000;
 
 const generateSecretKey = () => {
@@ -15,22 +16,22 @@ const generateSecretKey = () => {
 
 const app = express();
 
-app.use(session({
-  store: new FileStore(), 
-  secret: generateSecretKey(), 
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    maxAge: 1000 * 60 * 60 * 24, // 1 day (86,400,000ms)
-    httpOnly: true,
-    
-  },
-}));
+app.use(
+  session({
+    name: "VEKT",
+    store: new FileStore(),
+    secret: generateSecretKey(),
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24, // 1 day (86,400,000ms)
+      httpOnly: true,
+    },
+    resave: false,
+    saveUninitialized: false,
+  }));
 
 app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
 
 app.use('/api', router);
 

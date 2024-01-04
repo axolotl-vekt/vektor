@@ -13,13 +13,13 @@ function SignUp() {
 
   const handleSubmit = async (data) => {
     data.preventDefault();
-  
-    if("" === password) {
-      setPasswordError("Please enter a password")
+
+    if ('' === password) {
+      setPasswordError('Please enter a password');
     }
-  
+
     if (password.length < 4) {
-      setPasswordError("The password must be 4 characters or longer")
+      setPasswordError('The password must be 4 characters or longer');
     }
 
     try {
@@ -32,7 +32,7 @@ function SignUp() {
       const reponse = await fetch('/api/signup', reqOpts);
       const data = await reponse.json();
 
-      if(data.verified === "username") {
+      if (data.verified === 'username') {
         setUserNameError('Sorry, Username is taken');
       }
 

@@ -3,16 +3,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import FoodLog from './FoodLog';
 import SugarGraph from './SugarGraph';
 import BloodPressureGraph from './BloodPressureGraph';
-import Navbar from './Navbar';
+//import { Navbar, items } from './Navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
 import Modal from './Modal';
 
 function Homepage() {
   function getCookie(name) {
-    const cookies = document.cookie.split("; ");
+    const cookies = document.cookie.split('; ');
     for (const cookie of cookies) {
-      const [cookieName, cookieValue] = cookie.split("=");
+      const [cookieName, cookieValue] = cookie.split('=');
       if (cookieName === name) {
         return cookieValue;
       }
@@ -70,7 +70,7 @@ function Homepage() {
     const cookies = document.cookie.split('; ');
 
     for (const cookie of cookies) {
-      const [name, value] = cookie.split("=");
+      const [name, value] = cookie.split('=');
       if (name === cookieName) {
         return decodeURIComponent(value);
       }
@@ -81,7 +81,7 @@ function Homepage() {
 
   const handleDelete = (id) => {
     fetch(`http://localhost:3000/api/delete/${id}`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -118,8 +118,8 @@ function Homepage() {
     if (itemId) {
       const selectedItem = data.find((item) => item._id === itemId);
       if (selectedItem) {
-        fetch("http://localhost:3000/api/update/", {
-          method: "PATCH",
+        fetch('http://localhost:3000/api/update/', {
+          method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
           },
@@ -143,7 +143,7 @@ function Homepage() {
     <div>
       {/* <h1>VEKTOR</h1> */}
       <div>
-        <Navbar items={items} />
+        {/* <Navbar items={items} /> */}
       </div>
       <div className="graphs">
         <SugarGraph username={usernameCookie} />

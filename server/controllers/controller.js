@@ -1,8 +1,14 @@
 const { Session, User, Info } = require('../models/dataModel');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
+const crypto = require('crypto');
+const express = require('express');
 
 const controller = {};
+const app = express();
 
 /*** Create a new user on "/signup" middleware handles bcrypt***/
 controller.createUser = async (req, res, next) => {
@@ -50,30 +56,35 @@ controller.createUser = async (req, res, next) => {
 /*** Verify user info on "/login" middleware handles bcrypt***/
 controller.verifyUser = async (req, res, next) => {
   const { username, password } = req.body;
+  console.log('=> Inside Middleware verifyUser');
+
+  console.log(req.session.id)
 
   try {
-    const userVerify = User.findOne({ username });
-    const checkUser = await userVerify .then(console.log(userVerify))
-
+    const userVerify = await User.findOne({ username });
+    
     if (!userVerify) {
       res.status(500).json({ message: 'username not found' });
       return next();
     }
-
+    
     if (await bcrypt.compare(password, userVerify.password)) {
       res.locals.verify = true;
       res.locals.userId = userVerify._id;
-      console.log('=> Password Verified');
       res.json({ verified: true });
+      console.log('=> Password Verified');
       return next();
     } else {
       //error handling if password entered does not match database
       res.status(500).json({ message: 'Wrong Password!' });
       return next();
     }
-  } catch (error) {
+  } 
+  
+  catch (error) {
     next({ message: 'Could not verify user' });
   }
+  return next();
 };
 
 controller.getInfo = async (req, res, next) => {
@@ -142,6 +153,37 @@ controller.updateEntry = async (req, res, next) => {
       message: { error: 'Error updating entry' },
     });
   }
+};
+
+controller.session = async (req, res, next) => {
+  console.log("=> Inside session middleware")
+
+  const generateSecretKey = () => {
+    return crypto.randomBytes(32).toString('hex');
+  };
+
+  console.log("=> Secrete Key Created");
+
+  session({
+    store: new FileStore(),
+    secret: generateSecretKey(),
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24, // 1 day (86,400,000ms)
+      httpOnly: true,
+    },
+  });
+
+  console.log('=> SessionID: ', req.session);
+
+    // const sessionData = new Session ({
+    //   cookieId: cookieSession
+    // });
+
+    // await sessionData.save();
+    // console.log('=> SessionID: ', sessionData, ' added to database');
+    next();
 };
 
 module.exports = controller;
