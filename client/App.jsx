@@ -24,6 +24,8 @@ function App() {
       <Route exact path='/memoryGame' element={<MemoryGame />} />
       <Route exact path='/about' element={<About />} />
       <Route exact path='/contact' element={<Contact />} />
+      <Route exact path='/getUser' element={<User />} />
+      <Route exact path='/updateUser' element={<User />} />
     </Routes>
   );
 }

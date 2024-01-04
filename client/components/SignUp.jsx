@@ -13,6 +13,7 @@ function SignUp() {
         username:'',
         password:'',
         phone: '',
+        email: '',
     })
     /**Use Navigate to use react router dom to switch pages */
     const navigate = useNavigate();
@@ -38,6 +39,7 @@ function SignUp() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            console.log(signUp);
             const userInfo = await fetch('http://localhost:3000/api/signup', {
                 method: 'POST',
                 headers: {
@@ -70,6 +72,9 @@ function SignUp() {
                         </div>
                         <div >
                             <input className='signUpInput' type='text' name='phone' placeholder='Phone Number' onChange={handleChange}></input>
+                        </div>
+                        <div >
+                            <input className='signUpInput' type='text' name='email' placeholder='Email' onChange={handleChange}></input>
                         </div>
                         <div className='signUpButtons'>
                             <button className='signUpSubmitBtn' type='submit'>Submit</button>
