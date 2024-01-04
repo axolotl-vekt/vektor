@@ -6,6 +6,7 @@ const router = require('./router/router.js');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
+require('dotenv').config();
 const PORT = 3000;
 /** set up app to use express, cors, json parsing, cookie parsing */
 const app = express();
@@ -24,9 +25,23 @@ const twilio = require('twilio')(
 );
 
 /** set up mongo database with mongoose */
-const MONGO_URI = 'mongodb+srv://cathyluong93:pE6Fqys2z94A9czA@cluster0.6zljii0.mongodb.net/?retryWrites=true&w=majority';
 // const MONGO_URI = 'mongodb+srv://tawniex44:3vd5DPgTjLU819sO@cluster0.7z5ioep.mongodb.net/?retryWrites=true&w=majority'
 // const MONGO_URI = "mongodb+srv://ewong1217:kZFC34hkjGKrKbs5@cluster0.hukljwm.mongodb.net/?retryWrites=true&w=majority"
+
+
+// const MONGO_URI = 'mongodb+srv://cathyluong93:pE6Fqys2z94A9czA@cluster0.6zljii0.mongodb.net/?retryWrites=true&w=majority';
+// const NODE_ENV = process.env.NODE_ENV || 'development';
+console.log("process.env.MONGO_URI", process.env.MONGO_URI)
+
+
+if(process.env.NODE_ENV === 'development') {
+  MONGO_URI = process.env.MONGO_URI;
+} else {
+  MONGO_URI = process.env.MONGO_TEST_URI;
+}
+
+
+console.log('process.env.NODE_ENV!', process.env.NODE_ENV)
 
 mongoose.connect(MONGO_URI, {
     useNewUrlParser: true,
