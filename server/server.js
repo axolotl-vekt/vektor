@@ -55,22 +55,6 @@ app.post('/api/messages', (req, res) => {
   });
 });
 
-// app.get('/send-text', (req, res) => {
-//   //Welcome Message
-//   res.send('Hello to the Twilio Server')
-
-//   //_GET Variables
-//   const { recipient, textmessage } = req.query;
-
-
-//   //Send Text
-//   client.messages.create({
-//       body: textmessage,
-//       to: recipient,  // Text this number
-//       from: '+18337919972' // From a valid Twilio number
-//   }).then((message) => console.log(message.body));
-// })
-
 // app.get('*', (req, res) => res.sendFile(path.join(__dirname, '../client/index.html')));
 
 /** all calls to database go through "/api" */

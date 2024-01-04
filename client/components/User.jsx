@@ -70,6 +70,7 @@ function User() {
       body: `Hi ${userInfo.firstName}, you've opted in to Invektus daily reminders!`,
     };
 
+
     fetch('/api/messages', {
       method: 'POST',
       headers: {
@@ -133,6 +134,18 @@ function User() {
       Welcome to Invektus!
     </h1>
     <form className='userInfo' onSubmit={handleSubmit}>
+        <br/><br/>
+        <label>
+          Username:
+          <input
+          // type="text"
+          name="username"
+          value={userInfo.username}
+          onChange={handleChange}
+          disabled
+          />
+        </label>
+
         <label><br/><br/>
           First Name:
           <input
@@ -152,17 +165,6 @@ function User() {
           onChange={handleChange}
           />
         </label><br/><br/>
-
-        {/* <label>
-          Username:
-          <input
-          // type="text"
-          name="username"
-          value={userInfo.username}
-          onChange={handleChange}
-          disabled
-          />
-        </label><br/><br/> */}
 
         <label>
           Email:
@@ -184,7 +186,12 @@ function User() {
           />
         </label><br/><br/>
 
-        <button className="sendTestText" onClick={textButtonChange}>Send Test Text</button>
+
+        <label className="optIn">
+          <input type="checkbox" name="optIn" value={userInfo.optIn} onChange={handleChange}/>
+          Opt in to daily text messages?
+        </label><br/>
+    <button className="userSaveBtn" onClick={textButtonChange}>Send Test Text</button><br></br><br></br>
 
     <button className="userSaveBtn" type="submit">Save</button>
     </form>
