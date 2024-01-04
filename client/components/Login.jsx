@@ -78,9 +78,9 @@ function Login() {
                 </div>
             </div>
             <div >
-                <h3 id="overlay">Invektus</h3>
                 {/* <img className='loginImg' src="https://pics.craiyon.com/2023-06-26/5c43832150134eb99cdee5fde6ffa06b.webp" alt="" /> */}
-                <img className='loginImg' src="https://www.caseblink.com/joinPageWawes.png" alt="" />
+                <img className='loginImg3' src="https://www.caseblink.com/joinPageWawes.png" alt="" />
+                <div class="centered">Invektus</div>
             </div>
         </div>
     )
