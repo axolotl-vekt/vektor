@@ -41,6 +41,7 @@ function Homepage() {
   /**set data to empty array */
   const [ data, setData ] = useState([]);
 
+
   useEffect(() => {
     /**fetching the data from router/homepage - which grabs all of the data from mongodb */
     fetch('http://localhost:3000/api/homepage/bloodsugar')
