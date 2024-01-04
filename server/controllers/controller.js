@@ -12,16 +12,45 @@ const app = express();
 
 /*** Create a new user on "/signup" middleware handles bcrypt***/
 controller.createUser = async (req, res, next) => {
-  const { username, password, firstName, lastName } = req.body;
+    const { username, password, firstName, lastName } = req.body
+    
+    if (!username || !password || !firstName || !lastName) {
+        return next({
+            log: '=> ERROR - Username/Password Missing',
+            status: 500,
+            message: {error:  'User not created'},
+        });
+    };
+    
+    try {
+        const salt = await bcrypt.genSalt();
+        const hashedPassword = await bcrypt.hash(password, salt)
 
-  //error handling for missing information at signup
-  if (!username || !password || !firstName || !lastName) {
-    return next({
-      log: '=> ERROR: Username/Password Missing',
-      status: 500,
-      message: { error: 'User not created' },
-    });
-  }
+        const user = new User({
+            firstName: firstName,
+            lastName: lastName,
+            username: username,
+            password: hashedPassword
+        });
+
+        console.log("newUser Schema: ", user)
+
+        await user.save();
+        console.log('=> User Created');
+
+        res.locals.userId = user._id;
+        // res.json({message: 'username & password loaded', verified: true});
+        return next();
+    } 
+    
+    catch (error) { return next({
+        log: '=> ERROR - Exited Early - Create User Error',
+        status: 500,
+        message: {error:'Username unavailable'},
+    })
+    }
+}
+
 
   try {
     //password encrypting
@@ -87,12 +116,20 @@ controller.verifyUser = async (req, res, next) => {
   return next();
 };
 
-controller.getInfo = async (req, res, next) => {
-  try {
-    const data = await Info.find({}); //compete logic for "/homepage" sugar tracking card
-    if (data) {
-      res.locals.data = data;
-      return next();
+controller.getInfo = async (req,res,next) => {
+    const { username } = req.body;
+    try{
+        const data = await Info.findAll({username: username}) //compete logic for "/homepage" sugar tracking card
+        if (data) {
+            res.locals.data = data;
+            return next();
+        }
+    } catch (error) {
+        return next({
+            log: 'Error in getInfo middleware',
+            status: 500,
+            message: {error: 'Error getting info'}
+        })
     }
   } catch (error) {
     return next({
@@ -104,26 +141,29 @@ controller.getInfo = async (req, res, next) => {
 };
 
 controller.createEntry = async (req, res, next) => {
-  const { username, bloodSugar, sysPressure, diaPressure } = req.body;
-
-  try {
-    const newEntry = await Info.create({
-      username,
-      bloodSugar,
-      sysPressure,
-      diaPressure,
-    });
-    console.log('created entry');
-    res.locals.entry = newEntry._id;
-    return next();
-  } catch (error) {
-    return next({
-      log: 'Error in createEntry middleware',
-      status: 500,
-      message: { error: 'Error in creating entry' },
-    });
-  }
-};
+    const { username, bloodSugar, sysPressure, diaPressure } = req.body;
+    console.log('req.body:', req.body) //works
+    try {
+        const newEntry = new Info({
+            username,
+            bloodSugar,
+            sysPressure,
+            diaPressure,
+        })
+        await newEntry.save();
+        console.log("Entry created")
+        res.locals.entry = newEntry._id;
+        console.log("res.locals.entry: ", res.locals.entry)
+        // res.json({message:'entry created', verified: true})
+        return next();
+    } catch (error) { 
+        return next({
+            log: 'Error in createEntry middleware',
+            status: 500,
+            message: {error: 'Error in creating entry'}
+        })
+    }
+}
 
 controller.deleteEntry = async (req, res, next) => {
   const { id } = req.params;
