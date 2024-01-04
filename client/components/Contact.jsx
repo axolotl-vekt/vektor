@@ -19,6 +19,9 @@ function Contact() {
             <div className="aboutbody">
             <h2>Email: Invektus@gmail.com</h2>
             </div>
+            <div>
+            <img className='loginImg2' src="https://media4.giphy.com/media/cAhYSQkgSq8KLlciwF/giphy.gif?cid=ecf05e47v6uc5pq8fhmee1svkbzqtourxwx2i7ib2meya4mo&ep=v1_gifs_related&rid=giphy.gif&ct=g" alt="" />
+            </div>
         </div>
         
     )

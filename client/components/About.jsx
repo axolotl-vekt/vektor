@@ -17,7 +17,7 @@ function About() {
                 effectively managing the challenges posed by this chronic condition.
             </div>
             <div>
-            <img className='loginImg' src="https://pics.craiyon.com/2023-06-26/5c43832150134eb99cdee5fde6ffa06b.webp" alt="" />
+            <img className='loginImg' src="https://media2.giphy.com/media/zMQve1zBszJ3Uqsbi2/giphy.gif?cid=ecf05e47z2ymgogd8ro4cjao5bzj21s2s5h6dvmns8iujjqw&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="" />
             </div>
         </div>
         
