@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --open --hot --progress --color \" \"nodemon ./server/server.js\"",
     "test": "npm start",
-    "build": "webpack --mode development"
+    "build": "webpack --mode development",
+    "prettier": "prettier --check '**/**/*.{js,jsx,ts,tsx,css}'",
+    "prettier:fix": "prettier --write '**/**/*.{js,jsx,ts,tsx,css}'"
   },
   "keywords": [],
   "author": "",
@@ -33,10 +35,14 @@
     "node-sass": "^9.0.0",
     "npm": "^10.2.5",
     "react-chartjs-2": "^5.2.0",
+<<<<<<< HEAD
     "react-scroll": "^1.9.0",
     "react-svg-drawing": "^1.0.1",
     "react-transition-group": "^4.4.5",
     "scrollreveal": "^4.0.9",
+=======
+    "react-draggable": "^4.4.6",
+>>>>>>> dev
     "session-file-store": "^1.5.0",
     "styled-components": "^6.1.6",
     "supertest": "^6.3.3"
@@ -57,6 +63,7 @@
     "html-webpack-plugin": "^5.6.0",
     "nodemon": "^3.0.2",
     "postcss-loader": "^7.3.3",
+    "prettier": "^3.1.1",
     "react": "^18.2.0",
     "react-cookie": "^6.1.1",
     "react-dom": "^18.2.0",

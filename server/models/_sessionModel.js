@@ -6,8 +6,5 @@
 //   createdAt: { type: Date, expires: 30, default: Date.now }
 // });
 
-
 // const Session = mongoose.model('Session', sessionSchema);
 // module.exports = { Session };
-
-

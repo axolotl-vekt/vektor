@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Draggable from 'react-draggable';
 
 //inspo from star wars units
 const useInput = ({ start }) => {
@@ -11,9 +12,7 @@ const useInput = ({ start }) => {
   return [value, onChange];
 };
 
-
 function FoodLog(props) {
-  
   const username = props.getCookie('username');
   const [image, setImage] = useState('');
   // const [date, setDate] = useInput('');
@@ -32,67 +31,81 @@ function FoodLog(props) {
       bloodSugar,
       sysPressure,
       diaPressure,
-      time
+      time,
     };
     try {
       const options = {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),
       };
 
-      const response = await fetch('http://localhost:3000/api/entry', options)
+      const response = await fetch('http://localhost:3000/api/entry', options);
       const data = await response.json();
       console.log('Data Posted: ', data);
       navigate('/homepage');
     } catch (error) {
-        console.error('Error in front-end:', error.message);
+      console.error('Error in front-end:', error.message);
     }
   };
 
   const date = new Date();
 
-  return (props.trigger) ? (
+  return props.trigger ? (
     <div>
-    <form className='entries-container'>
-      <div className='entries'>
-        {image === '' || image === null ? ('') : 
-        (<img width={250} height={250} src={image} alt='Recipe Image' />
-        )}
-        <label>
-          Date: {date.toLocaleDateString()}
-        </label>
-        <label className='bloodSugarInput'>
-          Blood Sugar:
-          <input value={bloodSugar || ''} onChange={setBloodSugar}></input> <p className='paragraphBP'>mg/dL</p>
-        </label>
-        <label className='bloodPressure'>
-          Blood Pressure:
-          <input className='inputBar'
-            value={sysPressure || ''}
-            onChange={setSysPressure}
-          ></input> <p className='paragraphBP'>/</p>
-          <input className='inputBar'
-            value={diaPressure || ''}
-            onChange={setDiaPressure}
-          ></input> <p className='paragraphBP'>mmHg</p>
-        </label>
-        {/* <label>
+      <form className="entries-container">
+        <div className="entries">
+          {image === '' || image === null ? (
+            ''
+          ) : (
+            <img width={250} height={250} src={image} alt="Recipe Image" />
+          )}
+          <label>Date: {date.toLocaleDateString()}</label>
+          <label className="bloodSugarInput">
+            Blood Sugar:
+            <input
+              value={bloodSugar || ''}
+              onChange={setBloodSugar}
+            ></input>{' '}
+            <p className="paragraphBP">mg/dL</p>
+          </label>
+          <label className="bloodPressure">
+            Blood Pressure:
+            <input
+              className="inputBar"
+              value={sysPressure || ''}
+              onChange={setSysPressure}
+            ></input>{' '}
+            <p className="paragraphBP">/</p>
+            <input
+              className="inputBar"
+              value={diaPressure || ''}
+              onChange={setDiaPressure}
+            ></input>{' '}
+            <p className="paragraphBP">mmHg</p>
+          </label>
+          {/* <label>
           Time: <input value={time || ''} onChange={setTime}></input>
         </label> */}
-        <p>Before or After meal?</p>
-        {/* link to where you can see the images */}
-        <Link to='/foodlog'>Meal Log</Link>
-        <button className='save-entry-btn' onClick={saveEntry}>
-          Save Entry
-        </button>
-        <button className='popup-close-btn' onClick={() => props.setTrigger(false)}>Close</button>
-        { props.children }
-      </div>
-    </form>
-
+          <p>Before or After meal?</p>
+          {/* link to where you can see the images */}
+          <Link to="/foodlog">Meal Log</Link>
+          <button className="save-entry-btn" onClick={saveEntry}>
+            Save Entry
+          </button>
+          <button
+            className="popup-close-btn"
+            onClick={() => props.setTrigger(false)}
+          >
+            Close
+          </button>
+          {props.children}
+        </div>
+      </form>
     </div>
-  ) : '';
+  ) : (
+    ''
+  );
 }
 
 export default FoodLog;
