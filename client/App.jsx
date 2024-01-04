@@ -10,13 +10,13 @@ import MemoryGame from './components/MemoryGame';
 function App() {
   return (
     <Routes>
-      <Route exact path='/' element={<Login />} />
-      <Route exact path='/login' element={<Login />} />
-      <Route exact path='/homepage' element={<Homepage />} />
-      <Route exact path='/signup' element={<SignUp />} />
-      <Route exact path='/foodlog' element={<FoodLog />} />
-      <Route exact path='/games' element={<Games />}/>
-      <Route exact path='/memoryGame' element={<MemoryGame />} />
+      <Route exact path="/" element={<Login />} />
+      <Route exact path="/login" element={<Login />} />
+      <Route exact path="/homepage" element={<Homepage />} />
+      <Route exact path="/signup" element={<SignUp />} />
+      <Route exact path="/foodlog" element={<FoodLog />} />
+      <Route exact path="/games" element={<Games />} />
+      <Route exact path="/memoryGame" element={<MemoryGame />} />
     </Routes>
   );
 }

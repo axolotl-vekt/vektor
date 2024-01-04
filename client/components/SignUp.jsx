@@ -1,42 +1,51 @@
 import React from 'react';
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 function SignUp() {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const navigate = useNavigate();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [userNameError, setUserNameError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const navigate = useNavigate();
 
+  const handleSubmit = async (data) => {
+    data.preventDefault();
+  
+    if("" === password) {
+      setPasswordError("Please enter a password")
+    }
+  
+    if (password.length < 4) {
+      setPasswordError("The password must be 4 characters or longer")
+    }
 
-    const handleSubmit = async (data) => {
-        data.preventDefault();
-
-        try{
-          const reqOpts = {
-            method: 'POST',
-            headers: {'Content-Type':'application/json'},
-            body: JSON.stringify({username, password, firstName, lastName})
-          };
-
-          const reponse = await fetch('/api/signup', reqOpts);
-          const data = await reponse.json();
-          
-          console.log('=> req sent to front', data);
-          console.log('=> res data.verified', data.verified);
-    
-          if(data.verified) { 
-            console.log('login success');
-            //props.onFormSwitch('home');
-            navigate('/homepage'); 
-          }
-        } catch (error) {
-          console.log('err getting database');
-        }
+    try {
+      const reqOpts = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password, firstName, lastName }),
       };
 
-    return(
+      const reponse = await fetch('/api/signup', reqOpts);
+      const data = await reponse.json();
+
+      if(data.verified === "username") {
+        setUserNameError('Sorry, Username is taken');
+      }
+
+      if (data.verified === true) {
+        console.log('login success');
+        navigate('/homepage');
+      }
+    } catch (error) {
+      console.log('err getting database');
+    }
+  };
+
+  return (
     <div className="auth-form-container">
       <form className="register-form" onSubmit={handleSubmit}>
         <input
@@ -57,23 +66,23 @@ function SignUp() {
           onChange={(e) => setUsername(e.target.value)}
           placeholder="Username"
         />
+        {userNameError && <div className="error"> {userNameError} </div>}
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
         />
-        <button type="submit"
-        >Register</button>
+        {passwordError && <div className="error"> {passwordError} </div>}
+        <button type="submit">Register</button>
       </form>
       <Link to="/login">
-        <button
-        className="link-btn" 
-        >I made a terrible mistake, I have an account!
+        <button className="link-btn">
+          I made a terrible mistake, I have an account!
         </button>
-        </Link>
+      </Link>
     </div>
-    )
+  );
 }
 
 export default SignUp;
