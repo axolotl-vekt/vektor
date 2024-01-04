@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
+import style from '../login.styles.css'
 
 function Login(props) {
   const [username, setUsername] = useState('');
@@ -28,6 +29,9 @@ function Login(props) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),
       };
+
+      window.loginInfo = loginInfo.body;
+     
 
       console.log("=> Inside Login.jsx try")
 

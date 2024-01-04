@@ -7,6 +7,8 @@ import FoodLog from './components/FoodLog';
 import Games from './components/Games';
 import MemoryGame from './components/MemoryGame';
 import LandingPage from './components/LandingPage'
+import About from './components/About'
+import Contact from './components/Contact'
 
 function App() {
   return (
