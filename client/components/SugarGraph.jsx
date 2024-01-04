@@ -6,7 +6,7 @@ import { Chart as ChartJS} from 'chart.js/auto'
 /** Line graph function that takes in username and
  * renders a line graph of blood sugar levels with chargJS
  * */
-function LineGraph({username}) {
+function LineGraph({username, count}) {
 
   const sugarLevel =[];
   const sugarDate = [];
@@ -48,7 +48,7 @@ function LineGraph({username}) {
         }
         setData(chartData)
       })
-    }, [])
+    }, [count])
 
 /** Renders a line graph by passing in userData into a Line component from react chart js
  * */
