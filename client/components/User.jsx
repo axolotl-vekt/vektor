@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import Navbar from './Navbar'
+import Navbar from './Navbar';
+
 
 
 function User() {
@@ -60,7 +61,33 @@ function User() {
     console.log('useEffect is working!');
     getUserInfo();
   }, []);
-  
+
+  /** event handler to send test message to user's phone */
+  function textButtonChange(event) {
+
+    const message = {
+      to: userInfo.phone,
+      body: `Hi ${userInfo.firstName}, you've opted in to Invektus daily reminders!`,
+    };
+
+
+    fetch('/api/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(message)
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          console.log("SMS sent to ", usernameCookie);
+        } else {
+          console.log("SMS message failed")
+        }
+      });
+  }
+
 
 /**************update user******************** */
 
@@ -107,6 +134,18 @@ function User() {
       Welcome to Invektus!
     </h1>
     <form className='userInfo' onSubmit={handleSubmit}>
+        <br/><br/>
+        <label>
+          Username:
+          <input
+          // type="text"
+          name="username"
+          value={userInfo.username}
+          onChange={handleChange}
+          disabled
+          />
+        </label>
+
         <label><br/><br/>
           First Name:
           <input
@@ -118,7 +157,7 @@ function User() {
         </label><br/><br/>
 
         <label>
-          Last Name: 
+          Last Name:
           <input
           // type="text"
           name="lastName"
@@ -128,18 +167,17 @@ function User() {
         </label><br/><br/>
 
         <label>
-          Username: 
+          Email:
           <input
           // type="text"
-          name="username"
-          value={userInfo.username}
+          name="email"
+          value={userInfo.email}
           onChange={handleChange}
-          disabled
           />
         </label><br/><br/>
 
         <label>
-          Phone Number: 
+          Phone Number:
           <input
           // type="text"
           name="phone"
@@ -148,15 +186,13 @@ function User() {
           />
         </label><br/><br/>
 
-        <label>
-          Email: 
-          <input
-          // type="text"
-          name="email"
-          value={userInfo.email}
-          onChange={handleChange}
-          />
-        </label><br/><br/>
+
+        <label className="optIn">
+          <input type="checkbox" name="optIn" value={userInfo.optIn} onChange={handleChange}/>
+          Opt in to daily text messages?
+        </label><br/>
+    <button className="userSaveBtn" onClick={textButtonChange}>Send Test Text</button><br></br><br></br>
+
     <button className="userSaveBtn" type="submit">Save</button>
     </form>
   </center>

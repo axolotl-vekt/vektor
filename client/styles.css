@@ -27,7 +27,7 @@ h1 {
   padding-top: 10px;
   padding-bottom: 10px;
 }
- 
+
 .loginPageContainer {
   display: auto;
 }
@@ -212,7 +212,7 @@ h1 {
   transform: translate(-50%,-50%);
   width: 250px;
   height: 100px;
-  
+
   /* for elements to be fully centered --> translate */
   transform: translate(-50%,-50%);
   background-color: #f9f1de;
@@ -401,22 +401,22 @@ h1 {
 
 .individualCards.active {
   transform: rotateY(0);
-  
+
 }
 
 .individualCards.wrong {
   background-color: red;
-  
+
 }
 
 .individualCards.correct {
   background-color: rgb(119, 154, 166);
-  
+
 }
 
 .individualCards.active img {
   transform: scale(1);
-  
+
 }
 
 .graphs {
@@ -539,4 +539,18 @@ h1 {
   font-size: 100%;
   padding: 5px 30px;
   border-radius: 5px;
+}
+
+.optIn {
+  /* align-content: center; */
+  /* Use a flexbox layout */
+	display: flex;
+
+	/* Make a horizontal flexbox (the default) */
+	flex-direction: row;
+
+	/* The important part: vertically center the items */
+	align-items: center;
+
+  justify-content: center;
 }
