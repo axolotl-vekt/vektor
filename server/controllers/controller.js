@@ -168,7 +168,7 @@ controller.session = async (req, res, next) => {
     store: new FileStore(),
     secret: generateSecretKey(),
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24, // 1 day (86,400,000ms)
       httpOnly: true,
