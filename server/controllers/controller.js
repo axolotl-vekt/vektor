@@ -23,63 +23,33 @@ controller.createUser = async (req, res, next) => {
     };
     
     try {
-        const salt = await bcrypt.genSalt();
-        const hashedPassword = await bcrypt.hash(password, salt)
-
-        const user = new User({
-            firstName: firstName,
-            lastName: lastName,
-            username: username,
-            password: hashedPassword
-        });
-
-        console.log("newUser Schema: ", user)
-
-        await user.save();
-        console.log('=> User Created');
-
-        res.locals.userId = user._id;
-        // res.json({message: 'username & password loaded', verified: true});
-        return next();
-    } 
-    
-    catch (error) { return next({
-        log: '=> ERROR - Exited Early - Create User Error',
+      //password encrypting
+      const salt = await bcrypt.genSalt();
+      const hashedPassword = await bcrypt.hash(password, salt);
+  
+      //create a new User in database (User)
+      const user = new User({
+        firstName: firstName,
+        lastName: lastName,
+        username: username,
+        password: hashedPassword,
+      });
+      await user.save();
+  
+      console.log('=> User: ', username, ' Created');
+  
+      //passing verification using res.json
+      res.locals.userId = user._id;
+      res.json({ message: 'username & password loaded', verified: true });
+      return next();
+    } catch (error) {
+      //Create User middleware global error catch
+      return next({
+        log: '=> ERROR: Middleware: createUser global error',
         status: 500,
-        message: {error:'Username unavailable'},
-    })
+        message: { error: 'Create User Error' },
+      });
     }
-}
-
-
-  try {
-    //password encrypting
-    const salt = await bcrypt.genSalt();
-    const hashedPassword = await bcrypt.hash(password, salt);
-
-    //create a new User in database (User)
-    const user = new User({
-      firstName: firstName,
-      lastName: lastName,
-      username: username,
-      password: hashedPassword,
-    });
-    await user.save();
-
-    console.log('=> User: ', username, ' Created');
-
-    //passing verification using res.json
-    res.locals.userId = user._id;
-    res.json({ message: 'username & password loaded', verified: true });
-    return next();
-  } catch (error) {
-    //Create User middleware global error catch
-    return next({
-      log: '=> ERROR: Middleware: createUser global error',
-      status: 500,
-      message: { error: 'Create User Error' },
-    });
-  }
 };
 
 /*** Verify user info on "/login" middleware handles bcrypt***/
@@ -118,6 +88,7 @@ controller.verifyUser = async (req, res, next) => {
 
 controller.getInfo = async (req,res,next) => {
     const { username } = req.body;
+
     try{
         const data = await Info.findAll({username: username}) //compete logic for "/homepage" sugar tracking card
         if (data) {
@@ -131,13 +102,6 @@ controller.getInfo = async (req,res,next) => {
             message: {error: 'Error getting info'}
         })
     }
-  } catch (error) {
-    return next({
-      log: 'Error in getInfo middleware',
-      status: 500,
-      message: { error: 'Error getting info' },
-    });
-  }
 };
 
 controller.createEntry = async (req, res, next) => {

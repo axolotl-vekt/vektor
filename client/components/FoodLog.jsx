@@ -5,7 +5,7 @@ import Draggable from 'react-draggable';
 function FoodLog(props) {
   
   // const username = props.getCookie('username'); //not sure what this is -sean 20240103
-  const username = "sean"
+  //const username = "sean"
 
   const [entryData, setEntryData] = useState({
     username: username,
@@ -15,7 +15,8 @@ function FoodLog(props) {
     diaPressure: "",
     time: "",
   })
-
+  const {body} = window.loginInfo;
+  console.log("username props: ", body);
 
   const navigate = useNavigate();
   const handleChange = (e) => {
