@@ -6,6 +6,8 @@ import SignUp from './components/SignUp';
 import FoodLog from './components/FoodLog';
 import Games from './components/Games';
 import MemoryGame from './components/MemoryGame';
+import About from './components/About';
+import Contact from './components/Contact';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
       <Route exact path='/foodlog' element={<FoodLog />} />
       <Route exact path='/games' element={<Games />}/>
       <Route exact path='/memoryGame' element={<MemoryGame />} />
+      <Route exact path='/about' element={<About />} />
+      <Route exact path='/contact' element={<Contact />} />
     </Routes>
   );
 }
