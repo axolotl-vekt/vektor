@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Draggable from 'react-draggable';
+// import Draggable from 'react-draggable';
 
 function FoodLog(props) {
   
