@@ -4,11 +4,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
-  mode: (process.env.NODE_ENV || 'developement'),
+  mode: process.env.NODE_ENV || 'developement',
   entry: './client/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     rules: [
@@ -20,52 +20,50 @@ module.exports = {
           options: {
             presets: [
               ['@babel/preset-env', { targets: 'defaults' }],
-              ['@babel/preset-react']
-            ]}
-        }
+              ['@babel/preset-react'],
+            ],
+          },
+        },
       },
       {
         test: /\.(sa|sc|c)ss$/i,
         exclude: /node_modules/,
         use: [
           {
-            loader:'style-loader'
-          }, 
-          {
-            loader:'css-loader'
+            loader: 'style-loader',
           },
           {
-            loader:'sass-loader'
-          }, 
-          { 
+            loader: 'css-loader',
+          },
+          {
+            loader: 'sass-loader',
+          },
+          {
             loader: 'postcss-loader',
             options: {
               postcssOptions: {
-                plugins: [
-                  autoprefixer
-                ]
-              }
+                plugins: [autoprefixer],
+              },
             },
           },
         ],
-      }
-    ]
+      },
+    ],
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx'],
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: './client/index.html',
-    })
+    }),
   ],
-	devServer: {
+  devServer: {
     static: {
-      publicPath: '/dist', 
-      directory: path.join(__dirname, 'dist')
-    }, 
-	  proxy: {'/api': 'http://localhost:3000'},
+      publicPath: '/dist',
+      directory: path.join(__dirname, 'dist'),
+    },
+    proxy: { '/api': 'http://localhost:3000' },
     historyApiFallback: true,
-  }
+  },
 };
-

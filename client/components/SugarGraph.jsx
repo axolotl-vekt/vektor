@@ -1,7 +1,7 @@
-import React from 'react'
-import { Line } from 'react-chartjs-2'
+import React from 'react';
+import { Line } from 'react-chartjs-2';
 import { useState, useEffect } from 'react';
-import { Chart as ChartJS} from 'chart.js/auto'
+import { Chart as ChartJS } from 'chart.js/auto';
 
 function LineGraph({username}) {
 
@@ -48,14 +48,12 @@ function LineGraph({username}) {
       .catch(error => console.error('Error fetching data:', error));
   }, [username]);
   
+
   return (
     <div style={{ width: 700 }}>
       <Line data={userData} />
     </div>
-  )
+  );
 }
 
-export default LineGraph
-
-
-
+export default LineGraph;

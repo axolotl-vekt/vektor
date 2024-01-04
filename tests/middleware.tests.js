@@ -18,14 +18,14 @@ jest.mock('../models/dataModel');
 app.post('/api/signup', controller.createUser);
 
 describe('createUser middleware', () => {
-    // mock db connect
+  // mock db connect
   beforeAll(async () => {
     // returns uri for mock db from MongoMemoryServer
     const uri = await mongod.getUri();
     await mongoose.connect(uri, {
-        // these actually connect to the db. Not sure how it works, just in the docs
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+      // these actually connect to the db. Not sure how it works, just in the docs
+      //useNewUrlParser: true,
+      //useUnifiedTopology: true,
     });
   });
 
@@ -40,7 +40,7 @@ describe('createUser middleware', () => {
   });
 
   it('should create a new user successfully', async () => {
-    // mock bcrypt.hash 
+    // mock bcrypt.hash
     bcrypt.hash.mockResolvedValue('hashedPassword');
 
     // Mock user.create to return a new user
@@ -50,7 +50,7 @@ describe('createUser middleware', () => {
       password: 'hashedPassword',
     });
 
-    // mock request 
+    // mock request
     const response = await request(app)
       .post('/api/signup')
       .send({

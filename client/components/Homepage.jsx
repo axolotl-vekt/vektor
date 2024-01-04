@@ -1,25 +1,25 @@
-import React, { useState, useEffect, Component } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import FoodLog from "./FoodLog";
-import SugarGraph from "./SugarGraph";
-import BloodPressureGraph from "./BloodPressureGraph";
-import Navbar, { items } from "./Navbar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
-import Modal from "./Modal";
+import React, { useState, useEffect, Component } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import FoodLog from './FoodLog';
+import SugarGraph from './SugarGraph';
+import BloodPressureGraph from './BloodPressureGraph';
+//import { Navbar, items } from './Navbar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons';
+import Modal from './Modal';
 
 function Homepage() {
   function getCookie(name) {
-    const cookies = document.cookie.split("; ");
+    const cookies = document.cookie.split('; ');
     for (const cookie of cookies) {
-      const [cookieName, cookieValue] = cookie.split("=");
+      const [cookieName, cookieValue] = cookie.split('=');
       if (cookieName === name) {
         return cookieValue;
       }
     }
     return null;
   }
-  const usernameCookie = getCookie("username");
+  const usernameCookie = getCookie('username');
   console.log(usernameCookie);
   const cards = [];
   // for (let i = 0; i < 3; i++) {
@@ -29,7 +29,7 @@ function Homepage() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/homepage/bloodsugar")
+    fetch('http://localhost:3000/api/homepage/bloodsugar')
       .then((response) => response.json())
       .then((data) => {
         const array = [];
@@ -37,13 +37,13 @@ function Homepage() {
           if (el.username === usernameCookie) {
             const dateObject = new Date(el.date);
             const options = {
-              weekday: "short",
-              month: "numeric",
-              day: "numeric",
-              hour: "numeric",
-              minute: "numeric",
+              weekday: 'short',
+              month: 'numeric',
+              day: 'numeric',
+              hour: 'numeric',
+              minute: 'numeric',
             };
-            const formattedDate = dateObject.toLocaleString("en-US", options);
+            const formattedDate = dateObject.toLocaleString('en-US', options);
             el.date = formattedDate;
             array.push(el);
             // const formattedData = data.map(item => {
@@ -57,7 +57,7 @@ function Homepage() {
         console.log(array);
         setData(array);
       })
-      .catch((error) => console.log("Error displaying entries on homepage"));
+      .catch((error) => console.log('Error displaying entries on homepage'));
   }, [data]);
 
   // const navigate = useNavigate();
@@ -67,10 +67,10 @@ function Homepage() {
   // };
 
   function getCookie(cookieName) {
-    const cookies = document.cookie.split("; ");
+    const cookies = document.cookie.split('; ');
 
     for (const cookie of cookies) {
-      const [name, value] = cookie.split("=");
+      const [name, value] = cookie.split('=');
       if (name === cookieName) {
         return decodeURIComponent(value);
       }
@@ -81,12 +81,12 @@ function Homepage() {
 
   const handleDelete = (id) => {
     fetch(`http://localhost:3000/api/delete/${id}`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     })
-      .then(console.log("successfully deleted"))
+      .then(console.log('successfully deleted'))
       .catch((err) => console.log(err));
   };
 
@@ -94,9 +94,9 @@ function Homepage() {
   const [open, setOpen] = useState(false);
   const [itemId, setItemId] = useState(null);
   const [formData, setFormData] = useState({
-    bloodSugar: "",
-    sysPressure: "",
-    diaPressure: "",
+    bloodSugar: '',
+    sysPressure: '',
+    diaPressure: '',
   });
 
   const handleOpen = (theId) => {
@@ -108,9 +108,9 @@ function Homepage() {
     setOpen(false);
     setItemId(null);
     setFormData({
-      bloodSugar: "",
-      sysPressure: "",
-      diaPressure: "",
+      bloodSugar: '',
+      sysPressure: '',
+      diaPressure: '',
     });
   };
 
@@ -118,10 +118,10 @@ function Homepage() {
     if (itemId) {
       const selectedItem = data.find((item) => item._id === itemId);
       if (selectedItem) {
-        fetch("http://localhost:3000/api/update/", {
-          method: "PATCH",
+        fetch('http://localhost:3000/api/update/', {
+          method: 'PATCH',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             id: itemId,
@@ -143,7 +143,7 @@ function Homepage() {
     <div>
       {/* <h1>VEKTOR</h1> */}
       <div>
-        <Navbar items={items} />
+        {/* <Navbar items={items} /> */}
       </div>
       <div className="graphs">
         <SugarGraph username={usernameCookie} />
@@ -196,7 +196,7 @@ function Homepage() {
                   type="text"
                   onChange={handleChange}
                   name="bloodSugar"
-                />{" "}
+                />{' '}
                 mg/dL
               </div>
               <div>
@@ -205,9 +205,9 @@ function Homepage() {
                   type="text"
                   onChange={handleChange}
                   name="sysPressure"
-                />{" "}
-                /{" "}
-                <input type="text" onChange={handleChange} name="diaPressure" />{" "}
+                />{' '}
+                /{' '}
+                <input type="text" onChange={handleChange} name="diaPressure" />{' '}
                 mmHg
               </div>
             </form>

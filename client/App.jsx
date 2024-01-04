@@ -6,15 +6,14 @@ import SignUp from './components/SignUp';
 import FoodLog from './components/FoodLog';
 import Games from './components/Games';
 import MemoryGame from './components/MemoryGame';
-import About from './components/About';
-import Contact from './components/Contact';
+import LandingPage from './components/LandingPage'
 
 function App() {
   return (
     <Routes>
       <Route exact path='/' element={<Login />} />
-      <Route exact path='/login' element={<Login />} />
       <Route exact path='/homepage' element={<Homepage />} />
+      <Route exact path='/signin' element={<Login />} />
       <Route exact path='/signup' element={<SignUp />} />
       <Route exact path='/foodlog' element={<FoodLog />} />
       <Route exact path='/games' element={<Games />}/>

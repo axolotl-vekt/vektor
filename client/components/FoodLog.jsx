@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Draggable from 'react-draggable';
 
-
 function FoodLog(props) {
   
   // const username = props.getCookie('username'); //not sure what this is -sean 20240103
@@ -16,6 +15,7 @@ function FoodLog(props) {
     diaPressure: "",
     time: "",
   })
+
 
   const navigate = useNavigate();
   const handleChange = (e) => {
@@ -40,7 +40,7 @@ function FoodLog(props) {
       console.log('Entry Posted successfully ', response);
       navigate('/homepage');
     } catch (error) {
-        console.error('Error in front-end:', error.message);
+      console.error('Error in front-end:', error.message);
     }
   };
 
