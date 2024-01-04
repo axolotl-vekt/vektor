@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Draggable from 'react-draggable';
 
 //inspo from star wars units
 const useInput = ({ start }) => {
@@ -51,45 +52,48 @@ function FoodLog(props) {
   const today = new Date();
 
   return (props.trigger) ? (
-    <div className="entries-form-container">
-    <form className='entries-form' onSubmit={saveEntry}>
-      <div className='entries'>
-        <label className="dateLabel">
-          Date: {today.toLocaleDateString()}
-        </label>
-        <label className='bloodSugarInput'>
-          Blood Sugar:
-          <input className="inputBar"
-            value={bloodSugar} 
-            onChange={(e)=>setBloodSugar(e.target.value)}>
-          </input> <p className='paragraphBP'>mg/dL</p>
-        </label>
-        <label className='bloodPressure'>
-          Blood Pressure:
-          <input className='inputBar'
-            value={sysPressure}
-            onChange={(e)=>setSysPressure(e.target.value)}
-          ></input> <p className='paragraphBP'>/</p>
-          <input className='inputBar'
-            value={diaPressure}
-            onChange={(e)=>setDiaPressure(e.target.value)}
-          ></input> <p className='paragraphBP'>mmHg</p>
-        </label>
-        {/* <label>
-          Time: <input value={time || ''} onChange={setTime}></input>
-        </label> */}
-        <p>Before or After meal?</p>
-        {/* link to where you can see the images */}
-        <Link to='/foodlog'>Meal Log</Link>
-        <button className='save-entry-btn' onClick={saveEntry}>
-          Save Entry
-        </button>
-        <button className='popup-close-btn' onClick={() => props.setTrigger(false)}>Close</button>
-        { props.children }
-      </div>
-    </form>
+    <Draggable>
+      <div className="entries-form-container">
+      <form className='entries-form' onSubmit={saveEntry}>
+        <div className='entries'>
+          <label className="dateLabel">
+            Date: {today.toLocaleDateString()}
+          </label>
+          <label className='bloodSugarInput'>
+            Blood Sugar:
+            <input className="inputBar"
+              value={bloodSugar} 
+              onChange={(e)=>setBloodSugar(e.target.value)}>
+            </input> <p className='paragraphBP'>mg/dL</p>
+          </label>
+          <label className='bloodPressure'>
+            Blood Pressure:
+            <input className='inputBar'
+              value={sysPressure}
+              onChange={(e)=>setSysPressure(e.target.value)}
+            ></input> <p className='paragraphBP'>/</p>
+            <input className='inputBar'
+              value={diaPressure}
+              onChange={(e)=>setDiaPressure(e.target.value)}
+            ></input> <p className='paragraphBP'>mmHg</p>
+          </label>
+          {/* <label>
+            Time: <input value={time || ''} onChange={setTime}></input>
+          </label> */}
+          <p>Before or After meal?</p>
+          {/* link to where you can see the images */}
+          <Link to='/foodlog'>Meal Log</Link>
+          <button className='save-entry-btn' onClick={saveEntry}>
+            Save Entry
+          </button>
+          <button className='popup-close-btn' onClick={() => props.setTrigger(false)}>Close</button>
+          { props.children }
+        </div>
+      </form>
 
-    </div>
+      </div>
+    </Draggable>
+
   ) : '';
 }
 

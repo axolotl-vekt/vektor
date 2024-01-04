@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function SignUp() {
     const [username, setUsername] = useState('');
@@ -66,10 +66,13 @@ function SignUp() {
         <button type="submit"
         >Register</button>
       </form>
-      <button
+      <Link to="/login">
+        <button
         className="link-btn" 
-        onClick={() => props.onFormSwitch('login')}>I made a terrible mistake, I have an account!</button>
-        </div>
+        >I made a terrible mistake, I have an account!
+        </button>
+        </Link>
+    </div>
     )
 }
 

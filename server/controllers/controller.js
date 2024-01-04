@@ -45,25 +45,32 @@ controller.createUser = async (req, res, next) => {
 }
 
 controller.verifyUser = async (req, res, next) => {
-    const { username, password } = req.body
+  const { username, password } = req.body
 
-    try {
-        const userConfirmed = await User.findOne({ username })
-        console.log("=> User Name Found:", username);
+  try {
+    const userVerify = await User.findOne({ username })
+    console.log("=> User Name Found:", username);
 
-        if (userConfirmed) {
-            const passwordMatch = await bcrypt.compare(password, userConfirmed.password)
-            console.log("=> Password Found:", username);
-        if (passwordMatch){
-            res.locals.id = userConfirmed._id; //do not change - Mongoose
-            return next();
-            }
-        } //else statement for err handle username & password
+    if(!userVerify) {
+        res.status(500).json({ message: 'username not found' });
+        return next();
+    }
+        
+    if(await bcrypt.compare(password, userVerify.password)) {
+        res.locals.verify = true;
+        res.locals.userId = userVerify._id;
+        console.log("=> Password Verified")
+        res.json({verified: true});
+        return next();
+    } else {
+        res.status(500).json({ message: 'wrong password' });
+        return next();  
+    }
 
     } catch (error) {
         next({ message: 'Could not verify user' });
-    }
-}
+  }
+};
 
 controller.getInfo = async (req,res,next) => {
     try{
@@ -80,33 +87,6 @@ controller.getInfo = async (req,res,next) => {
         })
     }
 }
-// controller.startSession = async (req, res, next) => {
-//     if (res.locals.id == undefined) {
-//         return next('Error in startSession Controller: No user id')
-//     }
-
-//     const checkForSession = await Session.findOne({ cookieId: res.locals.id });
-//     if (checkForSession) return next();
-
-//     Session.create({ cookieId: res.locals.id }, (err, sesionInfo) => {
-//         if (err) {
-//             return next('Error in startSession Controller: ' + err);
-//         };
-//         return next();
-//     })
-// }
-
-// controller.setSSIDCookie = (req, res, next) => {
-//     const { username } = req.body;
-//     if (!username) {
-//         return next('Error in userController.verifyUser')
-//     }
-//     if (res.locals.id === undefined) {
-//         return next('Error in userController.verifyUser: No user id')
-//     }
-//     res.cookie('ssid', `${res.locals.id}`, { httpOnly: true })
-//     return next();
-// }
 
 
 
