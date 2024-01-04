@@ -5,13 +5,14 @@ const path = require('path');
 // const db = require('../server/db/markets');
 
 const server = 'http://localhost:3000/api';
-
+require('dotenv').config();
 /**
  * Read the docs! https://www.npmjs.com/package/supertest
  */
 describe('Route integration', () => {
   describe('/', () => {
     describe('GET', () => {
+      console.log('process.env.NODE_ENV!', process.env.NODE_ENV);
       it('responds with 200 status and text/html content type', () => {
         return request(server)
           .get('/')
