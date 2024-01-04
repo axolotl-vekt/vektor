@@ -10,9 +10,9 @@ import Modal from './Modal';
 
 function Homepage() {
   function getCookie(name) {
-    const cookies = document.cookie.split('; ');
+    const cookies = document.cookie.split("; ");
     for (const cookie of cookies) {
-      const [cookieName, cookieValue] = cookie.split('=');
+      const [cookieName, cookieValue] = cookie.split("=");
       if (cookieName === name) {
         return cookieValue;
       }
@@ -70,7 +70,7 @@ function Homepage() {
     const cookies = document.cookie.split('; ');
 
     for (const cookie of cookies) {
-      const [name, value] = cookie.split('=');
+      const [name, value] = cookie.split("=");
       if (name === cookieName) {
         return decodeURIComponent(value);
       }
@@ -81,7 +81,7 @@ function Homepage() {
 
   const handleDelete = (id) => {
     fetch(`http://localhost:3000/api/delete/${id}`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
         'Content-Type': 'application/json',
       },
@@ -118,8 +118,8 @@ function Homepage() {
     if (itemId) {
       const selectedItem = data.find((item) => item._id === itemId);
       if (selectedItem) {
-        fetch('http://localhost:3000/api/update/', {
-          method: 'PATCH',
+        fetch("http://localhost:3000/api/update/", {
+          method: "PATCH",
           headers: {
             'Content-Type': 'application/json',
           },
@@ -141,9 +141,9 @@ function Homepage() {
 
   return (
     <div>
-      <h1>VEKTOR</h1>
+      {/* <h1>VEKTOR</h1> */}
       <div>
-        <Navbar />
+        <Navbar items={items} />
       </div>
       <div className="graphs">
         <SugarGraph username={usernameCookie} />
@@ -217,22 +217,5 @@ function Homepage() {
     </div>
   );
 }
-
-// function Homepage() {
-//   return(
-//   <div>
-//     <h1 className="hp-header">Homepage</h1>
-//     <div className="entries-container">Entries
-//       <div className="entries">
-//         <p>Date:</p>
-//         <p>Blood sugar:</p>
-//         <p>Blood Pressure:</p>
-//         <p>Time:</p>
-//         <p>Before or After meal?</p>
-//       </div>
-//     </div>
-//   </div>
-//   )
-// }
 
 export default Homepage;
