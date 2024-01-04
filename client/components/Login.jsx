@@ -50,6 +50,7 @@ function Login(props) {
 
   return (
     <div className="auth-form-container" style={{ transitionDelay: '100ms' }}>
+      <a href="https://imgur.com/6CMrUbD"><img src="https://i.imgur.com/6CMrUbD.png" title="source: imgur.com" /></a>
       <form className="login-form" onSubmit={handleSubmit}>
         <input
           type="text"

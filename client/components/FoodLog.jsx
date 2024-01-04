@@ -4,19 +4,17 @@ import Draggable from 'react-draggable';
 
 function FoodLog(props) {
   
-  // const username = props.getCookie('username'); //not sure what this is -sean 20240103
-  //const username = "sean"
-
+  // const username = props.getCookie(username); //not sure what this is -sean 20240103
+  // // const username = "sean"
+  // console.log("username:", username)
   const [entryData, setEntryData] = useState({
-    username: username,
+    username: "",
     date: "",
+    time: "",
     bloodSugar: "",
     sysPressure: "",
     diaPressure: "",
-    time: "",
   })
-  const {body} = window.loginInfo;
-  console.log("username props: ", body);
 
   const navigate = useNavigate();
   const handleChange = (e) => {
@@ -52,17 +50,19 @@ function FoodLog(props) {
       <div className="entries-form-container" component="form">
         <form className='entries-form' onSubmit={handleSubmit}>
           <div className='entries'>
-            <label className="dateLabel">
-              Date: {today.toLocaleDateString()}
+            <label className="dateLabel"> Date & Time: {/*today.toLocaleDateString()*/}
               <input className="inputBar" 
-                  value={entryData.time} 
-                  onChange={handleChange}/>
+                    type="date"
+                    name="date"
+                    value={entryData.date} 
+                    onChange={handleChange}/>
               <input className="inputBar" 
+                  type="time"
+                  name="time"
                   value={entryData.date} 
                   onChange={handleChange}/>
             </label>
-            <label className='bloodSugarInput'>
-              Blood Sugar:
+            <label className='bloodSugarInput'> Blood Sugar:
               <input className="inputBar"
                   name='bloodSugar'
                   value={entryData.bloodSugar} 
@@ -88,7 +88,7 @@ function FoodLog(props) {
           {/* <label>
             Time: <input value={time || ''} onChange={setTime}></input>
           </label> */}
-          <p>Before or After meal?</p>
+          {/* <p>Before or After meal?</p> */}
           {/* link to where you can see the images */}
           <Link to='/foodlog'>Meal Log</Link>
           <button className='save-entry-btn' onChange={handleChange}>
