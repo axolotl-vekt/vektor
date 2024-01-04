@@ -23,7 +23,6 @@ router.get('/homepage/bloodsugar', controller.getInfo, (req, res) => {
 });
 
 
-
 router.post('/getUser', controller.getUser, (req, res) => {
   return res.status(200).json(res.locals.user);
 })
