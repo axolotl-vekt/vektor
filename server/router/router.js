@@ -23,6 +23,7 @@ router.get('/homepage/bloodsugar', controller.getInfo, (req, res) => {
 });
 
 
+
 router.post('/getUser', controller.getUser, (req, res) => {
   return res.status(200).json(res.locals.user);
 })
@@ -62,6 +63,10 @@ router.post('/entry', controller.createEntry, (req, res) => {
  */
 router.patch('/update', controller.updateEntry, (req, res) => {
   return res.status(200).json({});
+});
+
+router.patch('/updateUser', controller.updateUser, (req, res) => {
+  return res.status(200).json(res.locals.user);
 });
 
 /** Handle POST request to Handle POST request to 'http://localhost:3000/api/update

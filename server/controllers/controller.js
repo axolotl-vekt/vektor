@@ -10,7 +10,7 @@ const controller = {};
 */
 controller.createUser = async (req, res, next) => {
     /** get usernmae and password from front end */
-    const { firstName, lastName, username, password, phone } = req.body
+    const { firstName, lastName, username, password, phone, email } = req.body
     /** check that username and password were sent from front end
      * otherwise return error
      */
@@ -69,9 +69,9 @@ controller.verifyUser = async (req, res, next) => {
 }
 
 controller.getUser = async(req, res, next) => {
-    const {username} = req.body
+    const {username} = req.body;
     try{
-        const data = await Info.findOne({username})
+        const data = await User.findOne({username})
         if (data) {
             res.locals.user = data;
             return next();
@@ -85,7 +85,47 @@ controller.getUser = async(req, res, next) => {
     }
 }
 
+/** updateUser middleware */
+controller.updateUser = async (req, res, next) => {
+    /** get usernmae and password from front end */
+    const { firstName, lastName, username, phone, email } = req.body
+    /** deleted this bc a user should be able to change their information
+     */
+    // if (!firstName || !lastName || !username || !password || !phone || !email ) {
+    //     return next({
+    //         log: 'Error in updating user, please follow rules for username and password',
+    //         status: 400,
+    //         error: 'Error in updating user, please follow rules for username and password'
+    //     })
+    // }
+    /** asynchronously update new user in db
+     * sending username, password
+     * getting back newUser entry
+     */
+    try {
+        console.log('attempting update for ', username, ' with ', firstName, lastName, phone, email);
+        await User.updateOne(
+            {username},
+            {$set: {firstName, lastName, phone, email}},
+            );
+        const updatedUser = await User.findOne({username})
+        if (updatedUser) {
+            res.locals.user = updatedUser;
+            console.log('updated the user info for ', username);
+            return next();
+        }    
+        
+        /** sending user id back to router.js */
+        // res.locals.user = updatedUser;
 
+        return next();
+    } catch (error) { return next ({
+        log: 'Error in updateUser middleware',
+            status: 500,
+            error: 'Error in updating user'
+        })
+    };
+}
 
 /** getInfo middleware */
 controller.getInfo = async (req,res,next) => {
@@ -104,6 +144,8 @@ controller.getInfo = async (req,res,next) => {
         })
     }
 }
+
+
 // controller.startSession = async (req, res, next) => {
 //     if (res.locals.id == undefined) {
 //         return next('Error in startSession Controller: No user id')

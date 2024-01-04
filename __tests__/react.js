@@ -120,7 +120,7 @@ describe('Unit testing React components', () => {
               );
         })
         test('renders Header', () => {
-            const vektorHeader = screen.getByText('VEKTOR');
+            const vektorHeader = screen.getByText('Invektus');
             expect(vektorHeader).toBeInTheDocument();
         });
     });

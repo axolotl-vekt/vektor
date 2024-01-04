@@ -10,6 +10,7 @@ function User() {
   const [userInfo, setUserInfo] = useState({
     firstName: '',
     lastName: '',
+    username: '',
     phone: '',
     email: ''
   });
@@ -30,6 +31,7 @@ function User() {
     /**else return null */
     return null;
   }
+
   const usernameCookie = getCookie('username')
   console.log(usernameCookie)
   const getUserInfo = async () => {
@@ -59,16 +61,42 @@ function User() {
     getUserInfo();
   }, []);
   
+
+/**************update user******************** */
+
+  const updateUser = async () => {
+    // console.log('starting update of user ',userInfo);
+    try {
+      const requestOptions = {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'Application/JSON',
+        },
+        body: JSON.stringify( userInfo ),
+      };
+
+      const response = await fetch('http://localhost:3000/api/updateUser', requestOptions);
+      const data = await response.json();
+      if (!response.ok) console.log('ERROR, not 200');
+      // console.log('async call for data', data);
+      setUserInfo(data);
+      // console.log('user info', userInfo);
+    } catch (error) {
+      console.log(error, 'error accessing database');
+    }
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUserInfo({
-      ...userInfo,
+    setUserInfo((prevUserInfo) => ({
+      ...prevUserInfo,
       [name]: value,
-    });
-  }
+    }));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    updateUser();
     console.log('Submitted Data:', userInfo);
   }
 
@@ -78,11 +106,11 @@ function User() {
     <h1>
       Welcome to Invektus!
     </h1>
-    <div onSubmit={handleSubmit}>
-        <label className='userInfo'><br/><br/>
+    <form className='userInfo' onSubmit={handleSubmit}>
+        <label><br/><br/>
           First Name:
           <input
-          type="text"
+          // type="text"
           name="firstName"
           value={userInfo.firstName}
           onChange={handleChange}
@@ -92,7 +120,7 @@ function User() {
         <label>
           Last Name: 
           <input
-          type="text"
+          // type="text"
           name="lastName"
           value={userInfo.lastName}
           onChange={handleChange}
@@ -102,17 +130,18 @@ function User() {
         <label>
           Username: 
           <input
-          type="text"
+          // type="text"
           name="username"
           value={userInfo.username}
           onChange={handleChange}
+          disabled
           />
         </label><br/><br/>
 
         <label>
           Phone Number: 
           <input
-          type="text"
+          // type="text"
           name="phone"
           value={userInfo.phone}
           onChange={handleChange}
@@ -122,96 +151,16 @@ function User() {
         <label>
           Email: 
           <input
-          type="text"
+          // type="text"
           name="email"
           value={userInfo.email}
           onChange={handleChange}
           />
         </label><br/><br/>
-    <button type="submit">Save</button>
-    </div>
+    <button className="userSaveBtn" type="submit">Save</button>
+    </form>
   </center>
   )
 }
 
-export default User
-
-{/* <div className='oneGame'>
-Your Info: <br></br>
-First Name: firstName<br></br>
-Last Name: lastName<br></br>
-Username: username<br></br>
-Phone Number: phone<br></br>
-Email: email<br></br>
-Opt in to text messages?<br></br>
-Yes No
-</div> */}
-
-
-//     // <div>
-//     //   <Navbar />
-//     //   <div>
-//     //     <h1> Welcome to Invektus</h1>
-//     //     <div className='oneGame'>
-//     //         Your Info: <br></br>
-//     //         First Name: firstName<br></br>
-//     //         Last Name: lastName<br></br>
-//     //         Username: username<br></br>
-//     //         Phone Number: phone<br></br>
-//     //         Email: email<br></br>
-//     //         Opt in to text messages?<br></br>
-//     //         Yes No
-//     //     </div>
-//     //   </div>
-//     // </div>
-
-
-
-
-
-
-
-
-// function User ({ userInfo }) {
-//   const { firstName, lastName, username, phone } = userInfo;
-//   const [optInToTextMessages, setOptInToTextMessages] = useState(false);
-
-//   const handleOptInChange = (value) => {
-//     setOptInToTextMessages(value === 'Yes');
-//   };
-
-//   return (
-//     <div>
-//       <Navbar />
-//       <div>
-//         <h1>Welcome to Invektus</h1>
-//         <div className='oneGame'>
-//           <h2>Your Info:</h2>
-//           <ul>
-//             <li><strong>First Name:</strong> {firstName}</li>
-//             <li><strong>Last Name:</strong> {lastName}</li>
-//             <li><strong>Username:</strong> {username}</li>
-//             <li><strong>Phone Number:</strong> {phone}</li>
-//           </ul>
-//           <p><strong>Opt in to text messages?</strong></p>
-//           <label>
-//             <input
-//               type="radio"
-//               value="Yes"
-//               checked={optInToTextMessages}
-//               onChange={() => handleOptInChange('Yes')}
-//             /> Yes
-//           </label>
-//           <label>
-//             <input
-//               type="radio"
-//               value="No"
-//               checked={!optInToTextMessages}
-//               onChange={() => handleOptInChange('No')}
-//             /> No
-//           </label>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
+export default User;
