@@ -112,15 +112,14 @@ controller.getInfo = async (req,res,next) => {
 
 controller.createEntry = async (req, res, next) => {
     const { username, bloodSugar, sysPressure, diaPressure } = req.body;
-
+    // console.log('req.body:', req.body)
     try {
-        const newEntry = await Info.create({
+        const newEntry = new Info({
             username,
             bloodSugar,
             sysPressure,
             diaPressure,
         })
-        console.log('created entry')
         res.locals.entry = newEntry._id;
         return next();
     } catch (error) { 
