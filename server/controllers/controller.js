@@ -32,7 +32,7 @@ controller.createUser = async (req, res, next) => {
         console.log('=> User Created');
 
         res.locals.userId = user._id;
-        res.json({message: 'username & password loaded', verified: true});
+        // res.json({message: 'username & password loaded', verified: true});
         return next();
     } 
     
@@ -73,8 +73,9 @@ controller.verifyUser = async (req, res, next) => {
 };
 
 controller.getInfo = async (req,res,next) => {
+    const { username } = req.body;
     try{
-        const data = await Info.find({}) //compete logic for "/homepage" sugar tracking card
+        const data = await Info.findAll({username: username}) //compete logic for "/homepage" sugar tracking card
         if (data) {
             res.locals.data = data;
             return next();
@@ -92,7 +93,7 @@ controller.getInfo = async (req,res,next) => {
 
 controller.createEntry = async (req, res, next) => {
     const { username, bloodSugar, sysPressure, diaPressure } = req.body;
-    // console.log('req.body:', req.body)
+    console.log('req.body:', req.body) //works
     try {
         const newEntry = new Info({
             username,
@@ -100,7 +101,11 @@ controller.createEntry = async (req, res, next) => {
             sysPressure,
             diaPressure,
         })
+        await newEntry.save();
+        console.log("Entry created")
         res.locals.entry = newEntry._id;
+        console.log("res.locals.entry: ", res.locals.entry)
+        // res.json({message:'entry created', verified: true})
         return next();
     } catch (error) { 
         return next({

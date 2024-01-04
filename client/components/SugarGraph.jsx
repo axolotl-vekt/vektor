@@ -13,40 +13,40 @@ function LineGraph({username}) {
     datasets: [],
   }) 
 
-  username="john_doe";
-  // useEffect(() => {
-  //   fetch('http://localhost:3000/api/homepage/bloodsugar', {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'text/plain',
-  //     },
-  //   })
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       if (!data[0]) {
-  //         for (let i = 0; i < data.length; i++) {
-  //           if (Object.hasOwnProperty(data[i], 'bloodSugar') && data[i].username === username) {
-  //             sugarLevel.push(data[i].bloodSugar);
-  //             const dateObject = new Date(data[i].date);
-  //             const options = { month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
-  //             const formattedDate = dateObject.toLocaleString('en-US', options);
-  //             sugarDate.push(formattedDate);
-  //           }
-  //         }
-  //         const chartData = {
-  //           labels: sugarDate,
-  //           datasets: [
-  //             {
-  //               label: 'Blood Sugar Level Today',
-  //               data: sugarLevel,
-  //             },
-  //           ],
-  //         };
-  //         setUserData(chartData);
-  //       }
-  //     })
-  //     .catch(error => console.error('Error fetching data:', error));
-  // }, [username]);
+  
+  useEffect(() => {
+    fetch('http://localhost:3000/api/homepage/bloodsugar', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'text/plain',
+      },
+    })
+      .then(response => console.log("response data here", response.json()))
+      .then(data => {
+        if (!data[0]) {
+          for (let i = 0; i < data.length; i++) {
+            if (Object.hasOwnProperty(data[i], 'bloodSugar') && data[i].username === username) {
+              sugarLevel.push(data[i].bloodSugar);
+              const dateObject = new Date(data[i].date);
+              const options = { month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+              const formattedDate = dateObject.toLocaleString('en-US', options);
+              sugarDate.push(formattedDate);
+            }
+          }
+          const chartData = {
+            labels: sugarDate,
+            datasets: [
+              {
+                label: 'Blood Sugar Level Today',
+                data: sugarLevel,
+              },
+            ],
+          };
+          setUserData(chartData);
+        }
+      })
+      .catch(error => console.error('Error fetching data:', error));
+  }, [username]);
   
   return (
     <div style={{ width: 700 }}>
