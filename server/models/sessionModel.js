@@ -12,7 +12,7 @@ const Schema = mongoose.Schema;
 const sessionSchema = new Schema({
   cookieId: { type: String, required: true, unique: true },
   // createdAt: { type: Date, expires: 30, default: Date.now }
-  /**added this, session will expire in 1 day instead of 30 seconds */
+  /**added 86400, session will expire in 1 day instead of 30 seconds */
   createdAt: { type: Date, expires: 86400, default: Date.now }
 });
 

@@ -1,5 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital@1&family=Poppins');
+
+
 body {
-  background-color: #faedcd;
+  /* background-color: #faedcd; */
+  background-color: #d0e6f3;
+  background-image: linear-gradient(160deg, #cadae3 0%);
+  font-family: 'Poppins', sans-serif;
+
 }
 
 * {
@@ -9,16 +16,16 @@ body {
 
 h3 {
   text-align: center;
-  background-color: #578b61;
-  color: rgb(165, 213, 180);
+  background-color: #eca9a9;
+  color: rgb(35, 34, 34);
   padding-bottom: 10px;
 }
 
 h1 {
   text-align: center;
-  font-family:'Courier New', Courier, monospace;
+  font-family: 'Poppins', sans-serif;
   font-size: 50px;
-  background-color: #578b61;
+  background-color: #4f78887e;
   padding-top: 10px;
   padding-bottom: 10px;
 }
@@ -35,7 +42,7 @@ h1 {
 .loginContainer {
     display: flex;
     justify-content: space-around;
-    background-color: #ccd5ae;
+    background-color: #c7666b;
 }
 .loginCard {
     display: flex;
@@ -47,7 +54,7 @@ h1 {
     border-radius: 10px;
     margin: 10rem;
     padding: 5rem 0;
-    box-shadow: 10px 10px 10px #3a5a40;
+    box-shadow: 10px 10px 10px #67776a;
 }
 
 .loginTitle {
@@ -85,7 +92,7 @@ h1 {
 }
 
 .loginBtn button {
-  background-color: #ccd5ae;
+  background-color: #c7666b;
   color: white;
   border: none;
   padding: 10px;
@@ -100,7 +107,7 @@ h1 {
 .signUpPageContainer {
   display: flex;
   justify-content: space-around;
-  background-color: #ccd5ae;
+  background-color: #c7666b;
 }
 
 .signUpCard {
@@ -137,14 +144,14 @@ h1 {
 
 .signUpSubmitBtn {
   border: none;
-  background-color: #ccd5ae;
+  background-color: #c7666b;
   color: white;
   border-radius: 5px;
   padding: 0.5rem;
 }
 
 .signUpCancelBtn {
-  border: 2px solid #ccd5ae;
+  border: 2px solid #c7666b;
   background-color: white;
   border-radius: 5px;
   padding: 0.5rem;
@@ -157,7 +164,7 @@ h1 {
 
 /* --------- homepage --------- */
 .hp-header {
-  background-color: #ccd5ae;
+  background-color: #c7666b;
   text-align: center;
   font-size: 80px;
   color: #ffffff
@@ -286,7 +293,7 @@ h1 {
 }
 
 .navBarContainer {
-  background-color: #c4cea0;
+  background-color: #78a6a2;
   padding: 1rem;
 }
 
@@ -373,7 +380,7 @@ h1 {
 }
 
 .individualCards.correct {
-  background-color: green;
+  background-color: rgb(119, 154, 166);
   
 }
 
@@ -402,13 +409,13 @@ h1 {
 .entriesHomepage {
   display: flex;
   justify-content: space-around;
-  background-color: #ccd5ae;
+  background-color: #f7cacd;
   border-radius: 10px;
   padding: 10px;
   border: 1px solid black;
   width: 20rem;
   margin: 10px;
-  box-shadow: 5px 5px 5px #3a5a40;
+  box-shadow: 5px 5px 5px #3a5640;
 }
 
 .oneGame {
@@ -416,7 +423,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   margin: 5rem;
-  background-color: #ccd5ae;
+  background-color: #c7666b;
   width: 250px;
   padding: 0 0 1rem;
   font-size: 25px;
@@ -464,4 +471,24 @@ h1 {
 
 .modalBtn:hover {
   cursor: pointer;
+}
+
+
+
+/* --------about page---------- */
+.aboutbody {
+  display: flex;
+  text-align: start;
+  font-size: 200%;
+  font-family: 'Poppins', sans-serif;
+  justify-content: space-around;
+  padding: 0px 30p;
+}
+
+/* --------user page---------- */
+.userInfo {
+  align-content: center;
+  font-size: 100%;
+  font-family: 'Poppins', sans-serif;
+  padding: 0px 30p;
 }
