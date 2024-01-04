@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 import Modal from './Modal'
 import Quotes from './Quotes'
+import { DatasetController } from 'chart.js';
 
 
 function Homepage() {
@@ -70,11 +71,8 @@ function Homepage() {
       setData(array)
     })
     .catch(error => console.log('Error displaying entries on homepage'))
-<<<<<<< HEAD
     /**removed data from [data] - so browser does constantly render */
-=======
->>>>>>> dev
-  },[])
+  },[data])
   
   // const navigate = useNavigate();
 
@@ -161,7 +159,7 @@ function Homepage() {
 
   return (
     <div>
-      <h1>VEKTOR</h1>
+      <h1>Invektus</h1>
       <h3><Quotes /></h3>
       <div>
         <Navbar />

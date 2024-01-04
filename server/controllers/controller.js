@@ -10,11 +10,11 @@ const controller = {};
 */
 controller.createUser = async (req, res, next) => {
     /** get usernmae and password from front end */
-    const { username, password } = req.body
+    const { firstName, lastName, username, password, phone } = req.body
     /** check that username and password were sent from front end
      * otherwise return error
      */
-    if (!username || !password) {
+    if (!username || !password || !firstName || !lastName || !phone || !email ) {
         return next({
             log: 'Error in createUser middleware',
             status: 400,
@@ -27,8 +27,12 @@ controller.createUser = async (req, res, next) => {
      */
     try {
         const newUser = await User.create({
+            firstName: firstName,
+            lastName: lastName,
             username: username,
             password: password,
+            phone: phone,
+            email: email,
         })
         console.log('got the newUser')
         /** sending user id back to router.js */
@@ -63,6 +67,25 @@ controller.verifyUser = async (req, res, next) => {
         })
     }
 }
+
+controller.getUser = async(req, res, next) => {
+    const {username} = req.body
+    try{
+        const data = await Info.findOne({username})
+        if (data) {
+            res.locals.user = data;
+            return next();
+        }
+    } catch (error) {
+        return next({
+            log: 'Error in getSugar middleware',
+            status: 500,
+            error: 'Error in retreiving sugar levels'
+        })
+    }
+}
+
+
 
 /** getInfo middleware */
 controller.getInfo = async (req,res,next) => {

@@ -11,7 +11,6 @@ const useInput = ({ start }) => {
   return [value, onChange];
 };
 
-
 function FoodLog(props) {
   
   const username = props.getCookie('username');

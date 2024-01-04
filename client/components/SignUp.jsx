@@ -12,6 +12,7 @@ function SignUp() {
         lastName:'',
         username:'',
         password:'',
+        phone: '',
     })
     /**Use Navigate to use react router dom to switch pages */
     const navigate = useNavigate();
@@ -66,6 +67,9 @@ function SignUp() {
                         </div>
                         <div >
                             <input className='signUpInput' type='password' name='password' placeholder='Create Password' onChange={handleChange}></input>
+                        </div>
+                        <div >
+                            <input className='signUpInput' type='text' name='phone' placeholder='Phone Number' onChange={handleChange}></input>
                         </div>
                         <div className='signUpButtons'>
                             <button className='signUpSubmitBtn' type='submit'>Submit</button>
