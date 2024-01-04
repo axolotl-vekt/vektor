@@ -24,7 +24,8 @@ module.exports = {
             ],
           },
         },
-      },
+        
+        },
       {
         test: /\.(sa|sc|c)ss$/i,
         exclude: /node_modules/,
