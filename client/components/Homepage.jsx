@@ -40,6 +40,7 @@ function Homepage() {
   /**set data to empty array */
   const [ data, setData ] = useState([]);
 
+
   useEffect(() => {
     /**fetching the data from router/homepage - which grabs all of the data from mongodb */
     fetch('http://localhost:3000/api/homepage/bloodsugar')
@@ -70,10 +71,7 @@ function Homepage() {
       setData(array)
     })
     .catch(error => console.log('Error displaying entries on homepage'))
-<<<<<<< HEAD
     /**removed data from [data] - so browser does constantly render */
-=======
->>>>>>> dev
   },[])
   
   // const navigate = useNavigate();
