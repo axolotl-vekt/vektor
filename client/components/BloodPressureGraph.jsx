@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { Line } from 'react-chartjs-2'
 
-function BloodPressureGraph({username}) {
+function BloodPressureGraph({username, count}) {
 
 	/**
 	 * initialize userData to store labels and datasets
@@ -56,7 +56,7 @@ function BloodPressureGraph({username}) {
 				}
 			setData(chartData);
 			})
-	}, [])
+	}, [count])
 /** 
  * component returns a div containing a Line chart from react-chartjs-2, and it passes the 
  * userData as the data prop for the chart. 

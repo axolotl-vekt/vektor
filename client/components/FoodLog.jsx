@@ -52,6 +52,11 @@ function FoodLog(props) {
   };
 
   const date = new Date();
+  
+  function closeReRender(){
+    props.setTrigger(false);
+    props.setCount(props.count + 1);
+  }
 
   return (props.trigger) ? (
     <div>
@@ -88,7 +93,7 @@ function FoodLog(props) {
           <button className='save-entry-btn' onClick={saveEntry}>
             Save Entry
           </button>
-          <button className='popup-close-btn' onClick={() => props.setTrigger(false)}>Close</button>
+          <button className='popup-close-btn' onClick={closeReRender}>Close</button>
           { props.children }
         </div>
       </div>
