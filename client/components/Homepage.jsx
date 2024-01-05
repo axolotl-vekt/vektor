@@ -168,7 +168,7 @@ function Homepage() {
   return (
     <div>
       <h1>Invektus</h1>
-      <h3><Quotes /></h3>
+      {/* <h3><Quotes /></h3> */}
       <div>
         <Navbar />
       </div>

@@ -62,15 +62,16 @@ function FoodLog(props) {
     <div>
     <form className='entries-container'>
       <div className='entries'>
-        {image === '' || image === null ? ('') : 
-        (<img width={250} height={250} src={image} alt='Recipe Image' />
-        )}
+        {/* {image === '' || image === null ? ('') : 
+        (<img width={400} height={250} src={image} alt='Recipe Image' />
+        )} */}
+        <br/>
         <label>
           Date: {date.toLocaleDateString()}
         </label>
         <label className='bloodSugarInput'>
-          Blood Sugar:
-          <input value={bloodSugar || ''} onChange={setBloodSugar}></input> <p className='paragraphBP'>mg/dL</p>
+          Blood Sugar: 
+          <input className='inputBar' value={bloodSugar || ''} onChange={setBloodSugar}></input> <p className='paragraphBP'>mg/dL</p>
         </label>
         <label className='bloodPressure'>
           Blood Pressure:
@@ -88,7 +89,7 @@ function FoodLog(props) {
         </label> */}
         {/* <p>Before or After meal?</p> */}
         {/* link to where you can see the images */}
-        <Link to='/foodlog'>Meal Log</Link>
+        {/* <Link to='/foodlog'>Meal Log</Link> */}
         <div id='newEntryBtns'>
           <button className='save-entry-btn' onClick={saveEntry}>
             Save Entry

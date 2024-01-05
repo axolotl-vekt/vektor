@@ -53,8 +53,8 @@ function Login() {
         
     return(
         <div className='loginPageContainer'>
-            <div className='loginContainer'>
-                <div className='loginCard'>
+            <div className="centered">Invektus</div>
+            <div className='loginCard'>
                     <h2 className='loginTitle'>Login</h2>
                     <form className='loginInputForm' onSubmit={handleSubmit}>
                         <div className='loginLabelDiv'>
@@ -76,12 +76,14 @@ function Login() {
                         <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
                     </form>
                 </div>
-            </div>
+            {/* <div className='loginContainer'>
+                
+            </div> */}
             <div >
                 {/* <img className='loginImg' src="https://pics.craiyon.com/2023-06-26/5c43832150134eb99cdee5fde6ffa06b.webp" alt="" /> */}
                 {/* <img className='loginImg3' src="https://www.caseblink.com/joinPageWawes.png" alt="" /> */}
-                <img className='loginImg3' src="https://static6.depositphotos.com/1001877/555/i/600/depositphotos_5553681-stock-photo-stethoscope-and-a-silhouette-of.jpg" alt="" />
-                <div className="centered">Invektus</div>
+                {/* <img className='loginImg3' src="https://static6.depositphotos.com/1001877/555/i/600/depositphotos_5553681-stock-photo-stethoscope-and-a-silhouette-of.jpg" alt="" /> */}
+                
             </div>
         </div>
     )

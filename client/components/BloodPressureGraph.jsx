@@ -49,7 +49,7 @@ function BloodPressureGraph({username, count}) {
 						{label: 'Systolic Blood Pressure',
 						data: systolicPressures,},
 						{
-							label: 'Diabolic Blood Pressure',
+							label: 'Diastolic Blood Pressure',
 							data: diabolicPressures,
 						}
 					]
