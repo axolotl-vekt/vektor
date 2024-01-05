@@ -12,7 +12,7 @@ const app = express();
 
 /*** Create a new user on "/signup" middleware handles bcrypt***/
 controller.createUser = async (req, res, next) => {
-    const { username, password, firstName, lastName } = req.body
+    const { username, password, firstName, lastName } = req.body;
     
     if (!username || !password || !firstName || !lastName) {
         return next({
@@ -57,7 +57,7 @@ controller.verifyUser = async (req, res, next) => {
   const { username, password } = req.body;
   console.log('=> Inside Middleware verifyUser');
 
-  console.log(req.session.id)
+  //console.log(req.session.id)
 
   try {
     const userVerify = await User.findOne({ username });
@@ -70,7 +70,8 @@ controller.verifyUser = async (req, res, next) => {
     if (await bcrypt.compare(password, userVerify.password)) {
       res.locals.verify = true;
       res.locals.userId = userVerify._id;
-      res.json({ verified: true });
+      res.json({ verified: true , currentUser: username});
+
       console.log('=> Password Verified');
       return next();
     } else {
@@ -109,7 +110,7 @@ controller.createEntry = async (req, res, next) => {
     console.log('req.body:', req.body) //works
     try {
         const newEntry = new Info({
-            username,
+            username: res.locals.userName,
             bloodSugar,
             sysPressure,
             diaPressure,
@@ -159,14 +160,13 @@ controller.updateEntry = async (req, res, next) => {
   }
 };
 
+//middleware not being invoked - currently down
 controller.session = async (req, res, next) => {
   console.log("=> Inside session middleware")
 
   const generateSecretKey = () => {
     return crypto.randomBytes(32).toString('hex');
   };
-
-  console.log("=> Secrete Key Created");
 
   session({
     store: new FileStore(),
@@ -178,15 +178,6 @@ controller.session = async (req, res, next) => {
       httpOnly: true,
     },
   });
-
-  console.log('=> SessionID: ', req.session);
-
-    // const sessionData = new Session ({
-    //   cookieId: cookieSession
-    // });
-
-    // await sessionData.save();
-    // console.log('=> SessionID: ', sessionData, ' added to database');
     next();
 };
 

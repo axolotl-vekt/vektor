@@ -16,20 +16,21 @@ const generateSecretKey = () => {
 
 const app = express();
 
-app.set('trust proxy', 1)
+// const sess = ({
+//     name: "VEKT",
+//     store: new FileStore(),
+//     secret: generateSecretKey(),
+//     cookie: {
+//       maxAge: 1000 * 60 * 60 * 24, // 1 day (86,400,000ms)
+//     },
+//     resave: false,
+//     saveUninitialized: false,
+// });
 
-app.use(
-  session({
-    name: "VEKT",
-    store: new FileStore(),
-    secret: generateSecretKey(),
-    cookie: {
-      maxAge: 1000 * 60 * 60 * 24, // 1 day (86,400,000ms)
-      httpOnly: true,
-    },
-    resave: false,
-    saveUninitialized: false,
-  }));
+// if (app.get('env') === 'production') {
+//   app.set('trust proxy', 1)
+//   sess.cookie.secure = true
+// }
 
 app.use(express.json());
 app.use(cors());

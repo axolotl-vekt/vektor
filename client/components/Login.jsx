@@ -30,14 +30,12 @@ function Login(props) {
         body: JSON.stringify({ username, password }),
       };
 
-      window.loginInfo = loginInfo.body;
-     
-
+  
       console.log("=> Inside Login.jsx try")
 
-      const reponse = await fetch('/api/login', loginInfo);
+      const reponse = await fetch('/api/signin', loginInfo);
       const data = await reponse.json();
-      //console.log('sent to the front', data.verified);
+      console.log('=> data af Login.handleSubmit', data);
 
       if (data.verified) {
         console.log('login success');

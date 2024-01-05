@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-// import Draggable from 'react-draggable';
+import Draggable from 'react-draggable';
 
-function FoodLog(props) {
-  
+async function FoodLog(props) {
   // const username = props.getCookie(username); //not sure what this is -sean 20240103
-  // // const username = "sean"
+  const username = "sean"
   // console.log("username:", username)
+
+  console.log("cookies username test: ", username)
+  const [data, setData] = useState({})
+
   const [entryData, setEntryData] = useState({
     username: "",
     date: "",
@@ -16,8 +19,45 @@ function FoodLog(props) {
     diaPressure: "",
   })
 
+  try {
+    // const loginInfo = {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({username}),
+    // };
+
+    // console.log("=> handleChange at FoodLog")
+    // const reponse = await fetch('/api/signin', loginInfo);
+    // const data = await reponse.json();
+
+      
+
+    useEffect(() => {
+      async function fetchData() {
+        try {
+          const response = await fetch("/signin");
+          const jsonData = await response.json();
+          setData(jsonData);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      }
+  
+      fetchData();
+    }, []);
+
+    console.log('foodLog loginInfo data:', data);
+    console.log('foodLog username data:', data.currentUser);
+ 
+      
+
+  } catch (error) {
+    console.log('err getting username', error);
+  }
+
   const navigate = useNavigate();
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
+    console.log("EntryData found at handleChange:", entryData)
     const { name, value } = e.target;
     setEntryData((prevData) => ({
       ...prevData,
@@ -27,7 +67,7 @@ function FoodLog(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("EntryData found at handleSubmit:", entryData)
+    
     try {
       const options = {
         method: 'POST',
