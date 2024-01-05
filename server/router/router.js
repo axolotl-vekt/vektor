@@ -4,6 +4,7 @@ const express = require('express');
 const controller = require('../controllers/controller');
 const router = express.Router();
 
+
 /** Handle GET request to 'http://localhost:3000/api/' --> return index.html page */
 router.get('/', (req, res) => {
   return res.sendFile(path.resolve(__dirname, '../../client/index.html'));
@@ -20,6 +21,11 @@ router.get('/homepage', (req, res) => {
 router.get('/homepage/bloodsugar', controller.getInfo, (req, res) => {
   return res.status(200).json(res.locals.data);
 });
+
+
+router.post('/getUser', controller.getUser, (req, res) => {
+  return res.status(200).json(res.locals.user);
+})
 
 /** Handle POST request to 'http://localhost:3000/api/signup'
  * Request body should have username and password
@@ -58,6 +64,10 @@ router.patch('/update', controller.updateEntry, (req, res) => {
   return res.status(200).json({});
 });
 
+router.patch('/updateUser', controller.updateUser, (req, res) => {
+  return res.status(200).json(res.locals.user);
+});
+
 /** Handle POST request to Handle POST request to 'http://localhost:3000/api/update
  * Request body should have id of data point to delete
  * Request body is sent to deleteEntry middleware
@@ -67,5 +77,7 @@ router.patch('/update', controller.updateEntry, (req, res) => {
 router.delete('/delete/:id', controller.deleteEntry, (req, res) => {
   return res.status(200).json({});
 });
+
+
 
 module.exports = router;

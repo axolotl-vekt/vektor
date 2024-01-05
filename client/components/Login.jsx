@@ -78,8 +78,10 @@ function Login() {
                 </div>
             </div>
             <div >
-                <h3 id="overlay">Vektor</h3>
-                <img className='loginImg' src="https://pics.craiyon.com/2023-06-26/5c43832150134eb99cdee5fde6ffa06b.webp" alt="" />
+                {/* <img className='loginImg' src="https://pics.craiyon.com/2023-06-26/5c43832150134eb99cdee5fde6ffa06b.webp" alt="" /> */}
+                {/* <img className='loginImg3' src="https://www.caseblink.com/joinPageWawes.png" alt="" /> */}
+                <img className='loginImg3' src="https://static6.depositphotos.com/1001877/555/i/600/depositphotos_5553681-stock-photo-stethoscope-and-a-silhouette-of.jpg" alt="" />
+                <div className="centered">Invektus</div>
             </div>
         </div>
     )

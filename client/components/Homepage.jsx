@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 import Modal from './Modal'
 import Quotes from './Quotes'
+import { DatasetController } from 'chart.js';
 
 
 function Homepage() {
@@ -39,6 +40,8 @@ function Homepage() {
   const [buttonPopup, setButtonPopup] = useState(false);
   /**set data to empty array */
   const [ data, setData ] = useState([]);
+  const [ count, setCount] = useState(1);
+
 
   useEffect(() => {
     /**fetching the data from router/homepage - which grabs all of the data from mongodb */
@@ -71,7 +74,7 @@ function Homepage() {
     })
     .catch(error => console.log('Error displaying entries on homepage'))
     /**removed data from [data] - so browser does constantly render */
-  },[])
+  },[count])
   
   // const navigate = useNavigate();
 
@@ -103,7 +106,9 @@ function Homepage() {
       }
     })
     .then(console.log('successfully deleted'))
+    .then(setCount(count + 1))
     .catch(err => console.log(err))
+
   }
 
   //update pop up modal:
@@ -121,6 +126,8 @@ function Homepage() {
   };
 
   const handleClose = () => {
+    setCount(count + 1)
+    console.log("COUNT", count)
     setOpen(false)
     setItemId(null)
     setFormData({
@@ -149,6 +156,8 @@ function Homepage() {
         })
       }
     }
+    setCount(count + 1)
+    console.log("COUNT", count)
   }
 
   const handleChange = (e) => {
@@ -158,20 +167,20 @@ function Homepage() {
 
   return (
     <div>
-      <h1>VEKTOR</h1>
+      <h1>Invektus</h1>
       <h3><Quotes /></h3>
       <div>
         <Navbar />
       </div>
       <div className='graphs'>
-        <SugarGraph username={usernameCookie}/>
-        <BloodPressureGraph username={usernameCookie}/>
+        <SugarGraph username={usernameCookie} count={count}/>
+        <BloodPressureGraph username={usernameCookie} count={count}/>
       </div>
       <div className='newEntryBtnContainer'>
         <button id='newEntry-btn' onClick={() => setButtonPopup(true)}>New Entry</button>
       </div>
       {/* <div className='card-container'>{cards}</div> */}
-      <FoodLog trigger={buttonPopup} setTrigger={setButtonPopup} getCookie={getCookie}></FoodLog>
+      <FoodLog trigger={buttonPopup} setTrigger={setButtonPopup} getCookie={getCookie} setCount={setCount} count={count}></FoodLog>
       <div className='entriesContainer'>
         {data.map(item => (
           <div key={item._id} className='entriesHomepage'>
