@@ -14,38 +14,32 @@
 
 </div>
 
-VEKTOR is a an application designed to allow users to log their glucose levels, blood pressure and meals. With VEKTOR, the user can visualize their glucose trends and receive insight on whether a certain meal had cause a spike in their glucose levels. 
+VEKTOR is a an application designed to allow users to log their glucose levels and blood pressure levels. With VEKTOR, the user can monitor their glucose trends throughout the day. 
 
 ## Features in progress
-
+1. Incorporate meal log feature to provide insight on foods that may have caused glucose spikes.
+2. Update About and Contact page
 
 ## Our team
   <table>
     <tr>
-      <!-- <td align='center'> -->
-        <b>Elaine Wong<b>
-          <!-- <a href='https://github.com/XilloGen'>🐙 GitHub</a>
-          <br>
-          <a href='https://www.linkedin.com/in/tanner-robertson-3343a42a2/'>🖇️ LinkedIn</a> -->
-      <!-- </td> -->
-      <!-- <td align='center'> -->
+        <b>Elaine Wong<b> 
+        <a href='https://github.com/user-byte123'>🐙 GitHub</a>
+        <a href='http://www.linkedin.com/in/elainewongrph'>🖇️ LinkedIn</a>
+      </td>
         <br />
         <b>King-Hur Wu<b>
-        <!-- <a href='https://github.com/Amaor426'>🐙 GitHub</a> -->
-        <br>
-        <!-- <a href='https://www.linkedin.com/in/ariel-maor-aa419220/'>🖇️ LinkedIn</a> -->
-      <!-- </td> -->
-      <!-- <td align='center'> -->
+        <a href='https://github.com/amrcnking'>🐙 GitHub</a>
+        <a href='https://www.linkedin.com/in/king-hur-wu/'>🖇️ LinkedIn</a>
+      </td>
+      <br/>
         <b>Tanya Hang<b>
-        <!-- <a href='https://github.com/charmieduhh'>🐙 GitHub</a> -->
-        <br>
-        <!-- <a href='https://www.linkedin.com/in/charmie-d-17293011b/'>🖇️ LinkedIn</a> -->
-      <!-- </td> -->
-      <!-- <td align='center'> -->
+        <a href='https://github.com/tanyahang'>🐙 GitHub</a>
+        </td>
+      <br/>
         <b>Vicky Hoang<b>
-        <!-- <a href='https://github.com/vkhoang'>🐙 GitHub</a>
-        <br>
-        <a href='https://www.linkedin.com/in/vkhoang/'>🖇️ LinkedIn</a> -->
-      <!-- </td> -->
+        <a href='https://github.com/vkhoang'>🐙 GitHub</a>
+        <a href='https://www.linkedin.com/in/vkhoang/'>🖇️ LinkedIn</a>
+      </td>
     </tr>
   </table>
