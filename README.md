@@ -14,7 +14,7 @@
 
 </div>
 
-VEKTOR is a an application designed to allow users to log their glucose levels and blood pressure levels. With VEKTOR, the user can monitor their glucose trends throughout the day. 
+VEKTOR is a an application designed to allow users to log their glucose and blood pressure levels. With VEKTOR, the user can monitor their glucose trends throughout the day. 
 
 ## Features in progress
 1. Incorporate meal log feature to provide insight on foods that may have caused glucose spikes.
