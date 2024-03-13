@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import ReactDom from 'react-dom/client';
 import './styles.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import Homepage from './components/Homepage';
@@ -24,7 +23,7 @@ function App() {
   return (
     // added BrowserRouter to make a context, and be able to use useParams
     <BrowserRouter>
-    {/* <QueryClientProvider client={queryClient}> */}
+    <QueryClientProvider client={queryClient}>
       <Routes>
         <Route exact path='/' element={<Login />} />
         <Route exact path='/homepage' element={<Homepage />} />
@@ -32,7 +31,7 @@ function App() {
         <Route exact path='/games' element={<Games />}/>
         <Route exact path='/memoryGame' element={<MemoryGame />} />
       </Routes>
-    {/* </QueryClientProvider> */}
+    </QueryClientProvider>
     </BrowserRouter>
   );
 }
