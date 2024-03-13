@@ -32,26 +32,27 @@ function Homepage() {
   const [ newData, setNewData ] = useState(Date.now())
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/homepage/bloodsugar')
-    .then(response => response.json())
-    .then(data => {
-      const array = []
-      data.forEach(el => { 
-        if(el.username === usernameCookie){
-          const dateObject = new Date(el.date);
-          const options = { weekday: 'short', month: 'numeric', day: 'numeric', hour: 'numeric', minute:'numeric' };
-          const formattedDate = dateObject.toLocaleString('en-US', options);
-          el.date = formattedDate
-          array.push(el)        
-        }
-      })
-      console.log(array)
-      setData(array)
-    })
-    .catch(error => console.log('Error displaying entries on homepage'))
+    requestMetrics()
     // don't want to put a dependency, since i need it to keep displaying the updated responses, and if i put an [] it'll just fetch once
-  },[])
+  }, []) 
   
+  async function requestMetrics() {
+    const res = await fetch('http://localhost:3000/api/homepage/bloodsugar');
+    const json = await res.json();
+
+    const array = [];
+    json.forEach(ele => {
+      if (ele.username == usernameCookie) {
+        const dateObject = new Date(ele.date);
+        const options = { weekday: 'short', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric'};
+        const formattedDate = dateObject.toLocaleString('en-US', options);
+        ele.date = formattedDate;
+        array.push(ele);
+      }
+    })
+    setData(array)
+  };
+
 
   function getCookie(cookieName) {
     const cookies = document.cookie.split('; ');
