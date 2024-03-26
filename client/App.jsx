@@ -22,17 +22,19 @@ const queryClient = new QueryClient( {
 function App() {
   return (
     // added BrowserRouter to make a context, and be able to use useParams
-    <BrowserRouter>
-    <QueryClientProvider client={queryClient}>
-      <Routes>
-        <Route exact path='/' element={<Login />} />
-        <Route exact path='/homepage' element={<Homepage />} />
-        <Route exact path='/signup' element={<SignUp />} />
-        <Route exact path='/games' element={<Games />}/>
-        <Route exact path='/memoryGame' element={<MemoryGame />} />
-      </Routes>
-    </QueryClientProvider>
-    </BrowserRouter>
+    <div>
+      <BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <Routes>
+          <Route exact path='/' element={<Login />} />
+          <Route exact path='/homepage' element={<Homepage />} />
+          <Route exact path='/signup' element={<SignUp />} />
+          <Route exact path='/games' element={<Games />}/>
+          <Route exact path='/memoryGame' element={<MemoryGame />} />
+        </Routes>
+      </QueryClientProvider>
+      </BrowserRouter>
+    </div>
   );
 }
 

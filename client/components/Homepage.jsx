@@ -137,7 +137,7 @@ function Homepage() {
   }
 
   return (
-    <div>
+    <div className="bg-red-500">
       <h1>VEKTOR</h1>
       <h3><Quotes /></h3>
       <div>
