@@ -55,36 +55,36 @@ function NewEntry(props) {
   const date = new Date();
 
   return (props.trigger) ? (
-    <div>
-    <form className='entries-container'>
+    <div className='bg-blue-500 w-5/12'>
+    <form className='entries-container p-4'>
       <div className='entries'>
         {image === '' || image === null ? ('') : 
         (<img width={250} height={250} src={image} alt='Recipe Image' />
         )}
-        <label>
+        <label className='flex'>
           Date: {date.toLocaleDateString()}
         </label>
-        <label className='bloodSugarInput'>
+        <label className='flex'>
           Blood Sugar:
-          <input value={bloodSugar || ''} onChange={setBloodSugar}></input> <p className='paragraphBP'>mg/dL</p>
+          <input className='flex w-1/6' value={bloodSugar || ''} onChange={setBloodSugar}></input> <p>mg/dL</p>
         </label>
-        <label className='bloodPressure'>
+        <label className='flex'>
           Blood Pressure:
-          <input className='inputBar'
+          <input className='w-1/6'
             value={sysPressure || ''}
             onChange={setSysPressure}
           ></input> <p className='paragraphBP'>/</p>
-          <input className='inputBar'
+          <input className='w-1/6'
             value={diaPressure || ''}
             onChange={setDiaPressure}
           ></input> <p className='paragraphBP'>mmHg</p>
         </label>
         <Link to='/foodlog'>Meal Log</Link>
-        <div id='newEntryBtns'>
-          <button className='save-entry-btn' onClick={saveEntry}>
+        <div id='newEntryBtns' className='flex justify-center'>
+          <button className='bigButtons' onClick={saveEntry}>
             Save Entry
           </button>
-          <button className='popup-close-btn' onClick={() => props.setTrigger(false)}>Close</button>
+          <button className='bigButtons' onClick={() => props.setTrigger(false)}>Close</button>
           { props.children }
         </div>
       </div>
