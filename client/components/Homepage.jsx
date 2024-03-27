@@ -137,32 +137,31 @@ function Homepage() {
   }
 
   return (
-    <div className="bg-red-500">
-      <h1>VEKTOR</h1>
-      <h3><Quotes /></h3>
+    <div className='bg-yellow-50'>
+      <h1 className='text-xl bg-black text-white text-center'>VEKTOR</h1>
+      <h3><Quotes/></h3>
       <div>
         <Navbar />
       </div>
-      <div className='graphs'>
+      <div className='flex'>
         <SugarGraph username={usernameCookie}/>
         <BloodPressureGraph username={usernameCookie}/>
       </div>
-      <div className='newEntryBtnContainer'>
-        <button id='newEntry-btn' onClick={() => setButtonPopup(true)}>New Entry</button>
+      <div className='flex justify-center'>
+        <button className='bigButtons' id='newEntry-btn' onClick={() => setButtonPopup(true)}>New Entry</button>
       </div>
-      {/* <div className='card-container'>{cards}</div> */}
       <NewEntry trigger={buttonPopup} setTrigger={setButtonPopup} getCookie={getCookie}></NewEntry>
-      <div className='entriesContainer'>
+      <div className='grid grid-cols-1 gap 4 sm:grid-cols-2 lg:grid-cols-3 p-5'>
         {data.map(item => (
-          <div key={item._id} className='entriesHomepage'>
-            <div>
+          <div key={item._id} className='flex bg-gray-500 rounded-md m-2 p-4 text-white'>
+            <div className='w-2/3'>
               <div>{item.date}</div>
               <div>Blood Sugar: {item.bloodSugar} mg/dL</div>
               <div>Blood Pressure: {item.sysPressure} / {item.diaPressure} mmHg</div>
             </div>
-            <div className='entryBtn'>
-              <button className='updateBtn'><FontAwesomeIcon icon={faPen}  type='button' onClick={() => handleOpen(item._id)}/></button>
-              <button className='deleteBtn'><FontAwesomeIcon icon={faTrash} onClick={() => handleDelete(item._id)}/></button>
+            <div className='flex w-1/3 justify-end'>
+              <button className='bigButtons mx-2 my-4'><FontAwesomeIcon icon={faPen}  type='button' onClick={() => handleOpen(item._id)}/></button>
+              <button className='bigButtons mx-2 my-4'><FontAwesomeIcon icon={faTrash} onClick={() => handleDelete(item._id)}/></button>
             </div>
           </div>
         ))}

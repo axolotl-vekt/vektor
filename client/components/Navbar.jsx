@@ -3,18 +3,16 @@ import { Link } from 'react-router-dom';
 
 function Navbar() {
   return (
-    <nav>
-      <div className='navBarContainer'>
-        <ul className='navBarList'>
-          <li className='navigationLinks'><Link to="/homepage" className='text-white'><strong>Home</strong></Link></li>
-          <li className='navigationLinks'><Link to="/about" ><strong>About</strong></Link></li>
-          <li className='navigationLinks'><Link to="/contact"><strong>Contact</strong></Link></li>
-          <li className='navigationLinks'><Link to="/games"><strong>Games</strong></Link></li>
-          <li className='navigationLinks'><Link to="/"><strong>Logout</strong></Link></li>
-        </ul>
-      </div>
+    <nav className='flex w-full bg-slate-500'>
+      <ul className='flex w-full h-10 justify-between pr-4 pl-4'>
+        <li className='navBarLinks'><Link to="/homepage" className='underlineHover'>Home</Link></li>
+        <li className='navBarLinks'><Link to="/about" className='underlineHover'>About</Link></li>
+        <li className='navBarLinks'><Link to="/contact" className='underlineHover'>Contact</Link></li>
+        <li className='navBarLinks'><Link to="/games" className='underlineHover'>Games</Link></li>
+        <li className='navBarLinks'><Link to="/" className='.navBarLinks underlineHover'>Profile</Link></li>
+      </ul>
     </nav>
   );
 }
 
-export default Navbar;
+export default Navbar; 

@@ -15,7 +15,7 @@ function Quotes () {
     },[])
 
     return (
-        <div>{quote.text} --{quote.author}</div>
+        <div className='flex bg-black text-white justify-center'>{quote.text} --{quote.author}</div>
     )
 }
 export default Quotes;

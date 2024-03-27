@@ -3,3 +3,28 @@ user's settings (JSON) and add to the last line 'css.lint.unknownAtRules': 'igno
 @tailwind base;
 @tailwind components;
 @tailwind utilities; 
+
+
+@layer components {
+  .navBarLinks {
+    @apply content-around text-white font-bold
+  }
+}
+
+@layer utilities {
+  .underlineHover:hover {
+    @apply underline
+  }
+}
+
+@layer utilities {
+  .bigButtons:hover {
+    @apply bg-blue-500 
+  }
+}
+
+@layer utilities {
+  .bigButtons {
+    @apply bg-blue-600 rounded-lg text-white font-bold p-2
+  }
+}
