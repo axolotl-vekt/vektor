@@ -1,3 +1,4 @@
+require('dotenv').config()
 const path = require('path');
 const express = require('express');
 const router = require('./router/router.js');
@@ -7,13 +8,9 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 //npm i cookie-parser- EW
 const cookieParser = require('cookie-parser');
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
-const MONGO_URI = 'mongodb+srv://tawniex44:3vd5DPgTjLU819sO@cluster0.7z5ioep.mongodb.net/?retryWrites=true&w=majority'
-
-// const MONGO_URI = "mongodb+srv://ewong1217:kZFC34hkjGKrKbs5@cluster0.hukljwm.mongodb.net/?retryWrites=true&w=majority"
-
-mongoose.connect(MONGO_URI, {
+mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })

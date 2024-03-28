@@ -150,7 +150,9 @@ function Homepage() {
       <div className='flex justify-center'>
         <button className='bigButtons' id='newEntry-btn' onClick={() => setButtonPopup(true)}>New Entry</button>
       </div>
-      <NewEntry trigger={buttonPopup} setTrigger={setButtonPopup} getCookie={getCookie}></NewEntry>
+      <div className='flex justify-center'>
+        <NewEntry trigger={buttonPopup} setTrigger={setButtonPopup} getCookie={getCookie}></NewEntry>
+      </div>
       <div className='grid grid-cols-1 gap 4 sm:grid-cols-2 lg:grid-cols-3 p-5'>
         {data.map(item => (
           <div key={item._id} className='flex bg-gray-500 rounded-md m-2 p-4 text-white'>
@@ -165,20 +167,20 @@ function Homepage() {
             </div>
           </div>
         ))}
-              <Modal isOpen={open} onClose={handleClose} onSubmit={handleSubmit}>
-                  <div>
-                    <form>
-                      <div>
-                        <label>Blood Sugar</label>
-                        <input type='text' onChange={handleChange} name='bloodSugar' className='inputHealth'/> mg/dL
-                      </div>
-                      <div>
-                        <label>Blood Pressure</label>
-                        <input type='text' onChange={handleChange} name='sysPressure' className='inputHealth'/> / <input type='text' onChange={handleChange} name='diaPressure' className='inputHealth'/> mmHg
-                      </div>
-                    </form>
+        <Modal isOpen={open} onClose={handleClose} onSubmit={handleSubmit}>
+            <div>
+              <form>
+                <div>
+                  <label>Blood Sugar</label>
+                  <input type='text' onChange={handleChange} name='bloodSugar' className='inputHealth'/> mg/dL
                 </div>
-              </Modal>
+                <div>
+                  <label>Blood Pressure</label>
+                  <input type='text' onChange={handleChange} name='sysPressure' className='inputHealth'/> / <input type='text' onChange={handleChange} name='diaPressure' className='inputHealth'/> mmHg
+                </div>
+              </form>
+            </div>
+        </Modal>
       </div>
     </div>
   );

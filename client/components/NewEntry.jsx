@@ -55,7 +55,7 @@ function NewEntry(props) {
   const date = new Date();
 
   return (props.trigger) ? (
-    <div className='bg-blue-500 w-5/12'>
+    <div className='bg-blue-500 w-5/12 rounded-lg'>
     <form className='entries-container p-4'>
       <div className='entries'>
         {image === '' || image === null ? ('') : 
@@ -66,15 +66,15 @@ function NewEntry(props) {
         </label>
         <label className='flex'>
           Blood Sugar:
-          <input className='flex w-1/6' value={bloodSugar || ''} onChange={setBloodSugar}></input> <p>mg/dL</p>
+          <input className='flex w-1/6 rounded-lg border-solid border-sky-700 m-1' value={bloodSugar || ''} onChange={setBloodSugar}></input> <p>mg/dL</p>
         </label>
         <label className='flex'>
           Blood Pressure:
-          <input className='w-1/6'
+          <input className='w-1/6 rounded-lg border-solid border-sky-700 m-1'
             value={sysPressure || ''}
             onChange={setSysPressure}
           ></input> <p className='paragraphBP'>/</p>
-          <input className='w-1/6'
+          <input className='w-1/6 rounded-lg border-solid border-gray-600 m-1'
             value={diaPressure || ''}
             onChange={setDiaPressure}
           ></input> <p className='paragraphBP'>mmHg</p>
@@ -89,7 +89,6 @@ function NewEntry(props) {
         </div>
       </div>
     </form>
-
     </div>
   ) : '';
 }
