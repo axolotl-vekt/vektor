@@ -7,7 +7,7 @@ import Navbar from './Navbar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 import Modal from './Modal'
-import Quotes from './Quotes'
+
 
 
 function Homepage() {
@@ -34,7 +34,7 @@ function Homepage() {
   useEffect(() => {
     requestMetrics()
     // don't want to put a dependency, since i need it to keep displaying the updated responses, and if i put an [] it'll just fetch once
-  }, []) 
+  },[]) 
   
   async function requestMetrics() {
     const res = await fetch('http://localhost:3000/api/homepage/bloodsugar');
@@ -137,13 +137,11 @@ function Homepage() {
   }
 
   return (
-    <div className='bg-yellow-50'>
-      <h1 className='text-xl bg-black text-white text-center'>VEKTOR</h1>
-      <h3><Quotes/></h3>
+    <div className='bg-white-50'>
       <div>
         <Navbar />
       </div>
-      <div className='flex'>
+      <div className='flex justify-between'>
         <SugarGraph username={usernameCookie}/>
         <BloodPressureGraph username={usernameCookie}/>
       </div>
@@ -151,15 +149,27 @@ function Homepage() {
         <button className='bigButtons' id='newEntry-btn' onClick={() => setButtonPopup(true)}>New Entry</button>
       </div>
       <div className='flex justify-center'>
-        <NewEntry trigger={buttonPopup} setTrigger={setButtonPopup} getCookie={getCookie}></NewEntry>
+        <NewEntry trigger={buttonPopup} setTrigger={setButtonPopup} getCookie={getCookie}>
+        </NewEntry>
       </div>
       <div className='grid grid-cols-1 gap 4 sm:grid-cols-2 lg:grid-cols-3 p-5'>
         {data.map(item => (
           <div key={item._id} className='flex bg-gray-500 rounded-md m-2 p-4 text-white'>
             <div className='w-2/3'>
               <div>{item.date}</div>
-              <div>Blood Sugar: {item.bloodSugar} mg/dL</div>
-              <div>Blood Pressure: {item.sysPressure} / {item.diaPressure} mmHg</div>
+              <div className='flex'>
+                Blood Sugar: 
+                <div className={item.bloodSugar < 100 ? 'highlight':''}>{item.bloodSugar}</div>mg/dL
+              </div>
+              <div className='flex'>Blood Pressure: 
+                <div className={item.sysPressure < 120 ? 'highlight' : '' }>
+                  {item.sysPressure}   
+                </div> /
+                <div className={item.diaPressure < 80 ? 'highlight' : ''}>
+                  {item.diaPressure}
+                </div>
+                mmHg
+              </div>
             </div>
             <div className='flex w-1/3 justify-end'>
               <button className='bigButtons mx-2 my-4'><FontAwesomeIcon icon={faPen}  type='button' onClick={() => handleOpen(item._id)}/></button>

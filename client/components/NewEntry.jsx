@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Checkbox from '@mui/material/Checkbox';
 
 //inspo from star wars units
 const useInput = ({ start }) => {
@@ -21,6 +22,11 @@ function NewEntry(props) {
   const [sysPressure, setSysPressure] = useInput('');
   const [diaPressure, setDiaPressure] = useInput('');
   const [time, setTime] = useInput('');
+  const [fasting, setFasting] = useState(false)
+
+  const handleFasting = (e) => {
+    fasting ? setFasting(false) : setFasting(true)
+  }
 
   const navigate = useNavigate();
   const saveEntry = async (e) => {
@@ -30,6 +36,7 @@ function NewEntry(props) {
       image,
       date,
       bloodSugar,
+      fasting,
       sysPressure,
       diaPressure,
       time
@@ -64,11 +71,12 @@ function NewEntry(props) {
         <label className='flex'>
           Date: {date.toLocaleDateString()}
         </label>
-        <label className='flex'>
+        <label className='flex items-center'>
           Blood Sugar:
           <input className='flex w-1/6 rounded-lg border-solid border-sky-700 m-1' value={bloodSugar || ''} onChange={setBloodSugar}></input> <p>mg/dL</p>
+          <div><Checkbox color='default' onClick={handleFasting}></Checkbox>Fasting</div>
         </label>
-        <label className='flex'>
+        <label className='flex items-center'>
           Blood Pressure:
           <input className='w-1/6 rounded-lg border-solid border-sky-700 m-1'
             value={sysPressure || ''}
@@ -79,12 +87,12 @@ function NewEntry(props) {
             onChange={setDiaPressure}
           ></input> <p className='paragraphBP'>mmHg</p>
         </label>
-        <Link to='/foodlog'>Meal Log</Link>
+        <Link to='/foodlog'>Food Log</Link>
         <div id='newEntryBtns' className='flex justify-center'>
-          <button className='bigButtons' onClick={saveEntry}>
+          <button className='bigButtons mx-2' onClick={saveEntry}>
             Save Entry
           </button>
-          <button className='bigButtons' onClick={() => props.setTrigger(false)}>Close</button>
+          <button className='bigButtons mx-2' onClick={() => props.setTrigger(false)}>Close</button>
           { props.children }
         </div>
       </div>

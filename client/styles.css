@@ -5,9 +5,9 @@ user's settings (JSON) and add to the last line 'css.lint.unknownAtRules': 'igno
 @tailwind utilities; 
 
 
-@layer components {
-  .navBarLinks {
-    @apply content-around text-white font-bold
+@layer utilities {
+  .highlight {
+    @apply bg-green-600 font-bold
   }
 }
 
