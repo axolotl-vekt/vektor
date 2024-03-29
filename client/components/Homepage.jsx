@@ -51,6 +51,7 @@ function Homepage() {
       }
     })
     setData(array)
+    console.log(array)
   };
 
 
@@ -119,7 +120,7 @@ function Homepage() {
           })
         })
         .then(() => {
-          
+        
         })
         .catch(error => console.error('Error updating data:', error))
       }
@@ -135,6 +136,7 @@ function Homepage() {
     const { name, value } = e.target;
     setFormData({...formData, [name]:value})
   }
+
 
   return (
     <div className='bg-white-50'>
@@ -159,7 +161,7 @@ function Homepage() {
               <div>{item.date}</div>
               <div className='flex'>
                 Blood Sugar: 
-                <div className={item.bloodSugar < 100 ? 'highlight':''}>{item.bloodSugar}</div>mg/dL
+                <div className={item.fasting ? item.bloodSugar < 100 ? 'highlight':'' : item.bloodSugar < 130 ? 'highlight' : ''}>{item.bloodSugar}</div>mg/dL
               </div>
               <div className='flex'>Blood Pressure: 
                 <div className={item.sysPressure < 120 ? 'highlight' : '' }>
