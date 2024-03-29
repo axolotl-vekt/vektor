@@ -7,7 +7,7 @@ import Navbar from './Navbar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 import Modal from './Modal'
-import Quotes from './Quotes'
+
 
 
 function Homepage() {
@@ -34,7 +34,7 @@ function Homepage() {
   useEffect(() => {
     requestMetrics()
     // don't want to put a dependency, since i need it to keep displaying the updated responses, and if i put an [] it'll just fetch once
-  }, []) 
+  },[]) 
   
   async function requestMetrics() {
     const res = await fetch('http://localhost:3000/api/homepage/bloodsugar');
@@ -51,6 +51,7 @@ function Homepage() {
       }
     })
     setData(array)
+    console.log(array)
   };
 
 
@@ -119,7 +120,7 @@ function Homepage() {
           })
         })
         .then(() => {
-          
+        
         })
         .catch(error => console.error('Error updating data:', error))
       }
@@ -136,28 +137,41 @@ function Homepage() {
     setFormData({...formData, [name]:value})
   }
 
+
   return (
-    <div className='bg-yellow-50'>
-      <h1 className='text-xl bg-black text-white text-center'>VEKTOR</h1>
-      <h3><Quotes/></h3>
+    <div className='bg-white-50'>
       <div>
         <Navbar />
       </div>
-      <div className='flex'>
+      <div className='flex justify-between'>
         <SugarGraph username={usernameCookie}/>
         <BloodPressureGraph username={usernameCookie}/>
       </div>
       <div className='flex justify-center'>
         <button className='bigButtons' id='newEntry-btn' onClick={() => setButtonPopup(true)}>New Entry</button>
       </div>
-      <NewEntry trigger={buttonPopup} setTrigger={setButtonPopup} getCookie={getCookie}></NewEntry>
+      <div className='flex justify-center'>
+        <NewEntry trigger={buttonPopup} setTrigger={setButtonPopup} getCookie={getCookie}>
+        </NewEntry>
+      </div>
       <div className='grid grid-cols-1 gap 4 sm:grid-cols-2 lg:grid-cols-3 p-5'>
         {data.map(item => (
           <div key={item._id} className='flex bg-gray-500 rounded-md m-2 p-4 text-white'>
             <div className='w-2/3'>
               <div>{item.date}</div>
-              <div>Blood Sugar: {item.bloodSugar} mg/dL</div>
-              <div>Blood Pressure: {item.sysPressure} / {item.diaPressure} mmHg</div>
+              <div className='flex'>
+                Blood Sugar: 
+                <div className={item.fasting ? item.bloodSugar < 100 ? 'highlight':'' : item.bloodSugar < 130 ? 'highlight' : ''}>{item.bloodSugar}</div>mg/dL
+              </div>
+              <div className='flex'>Blood Pressure: 
+                <div className={item.sysPressure < 120 ? 'highlight' : '' }>
+                  {item.sysPressure}   
+                </div> /
+                <div className={item.diaPressure < 80 ? 'highlight' : ''}>
+                  {item.diaPressure}
+                </div>
+                mmHg
+              </div>
             </div>
             <div className='flex w-1/3 justify-end'>
               <button className='bigButtons mx-2 my-4'><FontAwesomeIcon icon={faPen}  type='button' onClick={() => handleOpen(item._id)}/></button>
@@ -165,20 +179,20 @@ function Homepage() {
             </div>
           </div>
         ))}
-              <Modal isOpen={open} onClose={handleClose} onSubmit={handleSubmit}>
-                  <div>
-                    <form>
-                      <div>
-                        <label>Blood Sugar</label>
-                        <input type='text' onChange={handleChange} name='bloodSugar' className='inputHealth'/> mg/dL
-                      </div>
-                      <div>
-                        <label>Blood Pressure</label>
-                        <input type='text' onChange={handleChange} name='sysPressure' className='inputHealth'/> / <input type='text' onChange={handleChange} name='diaPressure' className='inputHealth'/> mmHg
-                      </div>
-                    </form>
+        <Modal isOpen={open} onClose={handleClose} onSubmit={handleSubmit}>
+            <div>
+              <form>
+                <div>
+                  <label>Blood Sugar</label>
+                  <input type='text' onChange={handleChange} name='bloodSugar' className='inputHealth'/> mg/dL
                 </div>
-              </Modal>
+                <div>
+                  <label>Blood Pressure</label>
+                  <input type='text' onChange={handleChange} name='sysPressure' className='inputHealth'/> / <input type='text' onChange={handleChange} name='diaPressure' className='inputHealth'/> mmHg
+                </div>
+              </form>
+            </div>
+        </Modal>
       </div>
     </div>
   );
