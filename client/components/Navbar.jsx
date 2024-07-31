@@ -33,8 +33,8 @@ function Navbar() {
         <div className='flex'>
           <Avatar className='justify-end w-1/12'alt='userProfile' src='https://cdn.pixabay.com/photo/2020/09/25/16/50/portrait-5601950_640.jpg'onClick={handleClick}/>
           <Menu anchorEl={anchorEl} open= {open} onClose={handleClose}>
-            <Link><MenuItem onClick={handleClose}><FontAwesomeIcon icon={faBullseye} className='pr-2'/>Personal Goals</MenuItem></Link>
-            <Link><MenuItem onClick={handleClose}><FontAwesomeIcon icon={faPlay} className='pr-2'/>Games</MenuItem></Link>
+            <Link to='/personalGoals'><MenuItem onClick={handleClose}><FontAwesomeIcon icon={faBullseye} className='pr-2'/>Personal Goals</MenuItem></Link>
+            <Link to='/games'><MenuItem onClick={handleClose}><FontAwesomeIcon icon={faPlay} className='pr-2'/>Games</MenuItem></Link>
             <Link><MenuItem onClick={handleClose}><FontAwesomeIcon icon={faGear} className='pr-2'/>Settings</MenuItem></Link>
             <Link to='/'><MenuItem onClick={handleClose}><FontAwesomeIcon icon={faSignOut} className='pr-2'/>Logout</MenuItem></Link>
           </Menu>

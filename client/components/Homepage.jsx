@@ -132,12 +132,6 @@ function Homepage() {
     setNewData(prevData => prevData + 1);
   }
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({...formData, [name]:value})
-  }
-
-
   return (
     <div className='bg-white-50'>
       <div>
@@ -174,24 +168,12 @@ function Homepage() {
               </div>
             </div>
             <div className='flex w-1/3 justify-end'>
-              <button className='bigButtons mx-2 my-4'><FontAwesomeIcon icon={faPen}  type='button' onClick={() => handleOpen(item._id)}/></button>
-              <button className='bigButtons mx-2 my-4'><FontAwesomeIcon icon={faTrash} onClick={() => handleDelete(item._id)}/></button>
+              <button className='bigButtons mx-2 my-4' onClick={() => handleOpen(item._id)}><FontAwesomeIcon icon={faPen} /></button>
+              <button className='bigButtons mx-2 my-4' onClick={() => handleDelete(item._id)}><FontAwesomeIcon icon={faTrash}/></button>
             </div>
           </div>
         ))}
         <Modal isOpen={open} onClose={handleClose} onSubmit={handleSubmit}>
-            <div>
-              <form>
-                <div>
-                  <label>Blood Sugar</label>
-                  <input type='text' onChange={handleChange} name='bloodSugar' className='inputHealth'/> mg/dL
-                </div>
-                <div>
-                  <label>Blood Pressure</label>
-                  <input type='text' onChange={handleChange} name='sysPressure' className='inputHealth'/> / <input type='text' onChange={handleChange} name='diaPressure' className='inputHealth'/> mmHg
-                </div>
-              </form>
-            </div>
         </Modal>
       </div>
     </div>
