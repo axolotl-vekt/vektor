@@ -8,6 +8,7 @@ import SignUp from './components/SignUp';
 import NewEntry from './components/NewEntry';
 import Games from './components/Games';
 import MemoryGame from './components/MemoryGame';
+import PersonalGoals from './components/PersonalGoals';
 
 //declare queryClient w/ infinity staleTime and cacheTime to store the cache without refetching
 const queryClient = new QueryClient( {
@@ -31,6 +32,7 @@ function App() {
           <Route exact path='/signup' element={<SignUp />} />
           <Route exact path='/games' element={<Games />}/>
           <Route exact path='/memoryGame' element={<MemoryGame />} />
+          <Route exact path='/personalGoals' element={<PersonalGoals />} />
         </Routes>
       </QueryClientProvider>
       </BrowserRouter>

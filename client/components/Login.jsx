@@ -13,6 +13,7 @@ function Login() {
     const [ cookies, setCookies ] = useCookies(["username"]);
 
     const handleCookies = () => {
+        //setting the cookie and setting our cookie to be valid on any URL path
         setCookies('username', loginData.username, {path: '/', secure: true})
     }
 

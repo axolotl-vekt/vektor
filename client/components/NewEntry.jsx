@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Checkbox from '@mui/material/Checkbox';
+import FoodLog from './FoodLog';
 
 //inspo from star wars units
 const useInput = ({ start }) => {
@@ -80,14 +81,14 @@ function NewEntry(props) {
           Blood Pressure:
           <input className='w-1/6 rounded-lg border-solid border-sky-700 m-1'
             value={sysPressure || ''}
-            onChange={setSysPressure}
-          ></input> <p className='paragraphBP'>/</p>
+            onChange={setSysPressure}>
+          </input> <p className='paragraphBP'>/</p>
           <input className='w-1/6 rounded-lg border-solid border-gray-600 m-1'
             value={diaPressure || ''}
-            onChange={setDiaPressure}
-          ></input> <p className='paragraphBP'>mmHg</p>
+            onChange={setDiaPressure}>
+          </input> <p className='paragraphBP'>mmHg</p>
         </label>
-        <Link to='/foodlog'>Food Log</Link>
+        <FoodLog></FoodLog>
         <div id='newEntryBtns' className='flex justify-center'>
           <button className='bigButtons mx-2' onClick={saveEntry}>
             Save Entry
